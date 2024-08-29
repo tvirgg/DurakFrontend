@@ -1,0 +1,168 @@
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+:root {
+  --bg: #0F1620;
+  --bg2: #1F617E;
+  --bg3: #235975;
+  --bg4: #224E65;
+
+  /* fonts */
+  --nats: "NATS", sans-serif;
+  --cruin: "Cruin Regular", sans-serif;
+  --cruin-bold: "Cruin Bold", sans-serif;
+  --cruin-medium: "Cruin Medium", sans-serif;
+  --cruin-light: "Cruin Light", sans-serif;
+  --sf: "SF-Pro Rounded", sans-serif;
+  --sfd: "SF-Pro Display", sans-serif;
+  --sfd-bold: "SF-Pro Display Bold", sans-serif;
+  --sfd-medium: "SF-Pro Display Medium", sans-serif;
+  --sfd-light: "SF-Pro Display Light", sans-serif;
+
+
+  /* font-colors */
+  --fcolor1: #E1E1E1;
+  /* colors */
+  --white: #fff;
+  --black: #000;
+  --f5: #f5f5f5;
+  --d9: #D9D9D9;
+  --d9-50: #D9D9D950;
+  --c9: #c9c9c9;
+  --be: #bebebe;
+  --cb: #CBCBCB;
+  --blue1: #43AFF8;
+  --blue2: #55A6FF;
+  --blue-light: #51C4FF;
+  --native-blue: #007AFF;
+  --foam-green: #78BBB4;
+  --yellow: #FFD013;
+  /* custom */
+  --secondary-hint-color: #A2ACB0;
+  /* gradient-colors */
+  --muted-blue: #235975;
+  --muted-blue2: #1D303C;
+  /* gradiaents */
+  --gradient1: linear-gradient(-45deg, var(--muted-blue), var(--muted-blue2));
+  --gradient2: linear-gradient(211.3deg, #79b0ffe6 -60.84%, #778ae6e6 -5.11%, #727bffe6 51.96%, #424d80e6 164.93%);
+  --gradient-p: linear-gradient(180deg, #347CA2 0%, #1D323F 100%);
+  /* size values */
+  --container-padding: 14px;
+  --row-padding: 12px;
+
+  /* border-radius */
+  --br-extra-small: 4px;
+  --br-small: 8px;
+  --br-medium: 12px;
+  --br-large: 16px;
+  --br-extra-large: 24px;
+  --br-full: 50%;
+  /* paddings */
+  --p-extra-small: 4px;
+  --p-small: 6px;
+  --p-menium: 8px;
+  --p-large: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  font-family: "NATS", sans-serif;
+  position: relative;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  background: var(--bg) !important;
+  color: var(--white);
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  /* Отключение горизонтальной прокрутки */
+  overflow-x: hidden;
+  /* Для плавного скролла на iOS */
+  -webkit-overflow-scrolling: touch;
+
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  overflow-y: hidden;
+}
+
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+span {
+  margin: 0;
+}
+
+h1,
+h2 {
+  font-weight: 400;
+  line-height: 22px;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+button,
+input {
+  outline: none;
+  border: none;
+}
+
+button {
+  background: none;
+}
+
+button:active {
+  opacity: 0.8;
+}
+
+
+.container {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: var(--container-padding);
+}
+
+.row {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+
+.pb-80 {
+  padding-bottom: 80px;
+}
+
+.page_title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}

@@ -1,0 +1,179 @@
+/* / */
+/* card_premium */
+/* / */
+.menu_section .card_premium {
+  display: flex;
+  width: 100%;
+  position: relative;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 12px;
+  background: var(--gradient2);
+  border-radius: var(--br-medium);
+  overflow: hidden;
+  max-height: 87px;
+}
+
+
+.menu_section .card_premium .texts {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  color: var(--white);
+  gap: 13px;
+  padding: 8px;
+  z-index: 2;
+}
+
+.menu_section .card_premium .texts .title {
+  display: flex;
+  position: relative;
+  font-weight: 200;
+}
+
+.menu_section .card_premium .texts .prices {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  font-family: var(--sfd-medium);
+  font-size: 12px;
+  color: var(--fcolor1);
+}
+
+.menu_section .card_premium .texts .prices span {
+  text-align: center;
+}
+
+.menu_section .card_premium .texts .prices .old {
+  text-decoration: line-through;
+}
+
+.menu_section .card_premium .texts .discount {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-20%, -80%);
+  font-family: var(--sfd-medium);
+  font-size: 24px;
+  padding: 4px 8px;
+  border-radius: var(--br-medium);
+  background: var(--blue2);
+
+}
+
+.menu_section .card_premium .cardImg {
+  display: block;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 0;
+}
+
+/* double */
+.menu_section .double {
+  --min-height: 160px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+/* rate */
+.menu_section .double .card_user_rate,
+.menu_section .double .card_user_earn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  padding: 8px;
+  background: var(--bg2);
+  border-radius: var(--br-medium);
+  min-height: var(--min-height);
+  color: var(--white);
+}
+
+.menu_section .double .card_user_rate h1,
+.menu_section .double .card_user_earn h1 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 35px;
+  width: 100%;
+  text-align: center;
+  font-size: 40px;
+  font-weight: 400;
+}
+
+.menu_section .double .card_user_rate img {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+.menu_section .double .card_user_rate .rate_bar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 5px;
+  background: #D9D9D980;
+  font-size: 24px;
+  text-align: center;
+  border-radius: var(--br-medium);
+  margin-top: -25px;
+}
+
+/* earn */
+.menu_section .double .card_user_earn {
+  justify-content: flex-end;
+}
+
+.menu_section .double .card_user_earn .progress_bar {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  background-color: var(--f5);
+  box-shadow: 0px 4px 4px 0px #0000001A inset;
+  padding: 2px;
+  border-radius: var(--br-large);
+  margin-bottom: 10px;
+}
+
+.menu_section .double .card_user_earn .progress_bar .progress {
+  display: block;
+  width: 50%;
+  height: 100%;
+  background: var(--yellow);
+  border-radius: var(--br-large);
+  box-shadow: 0px 4px 4px 0px #FFFFFF80 inset;
+}
+
+.menu_section .double .card_user_earn .earn_check {
+  display: block;
+  position: relative;
+  font-size: 24px;
+  margin-bottom: 5px;
+  padding-right: 10px;
+}
+
+.menu_section .double .card_user_earn .earn_check .icon {
+  display: block;
+  position: absolute;
+  right: -20px;
+  top: -1px;
+  width: 30px;
+  height: 30px;
+}
+
+.menu_section .double .card_user_earn .perhour {
+  font-family: var(--nats);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: center;
+  color: #BEBEBE;
+  margin-bottom: 18px;
+}

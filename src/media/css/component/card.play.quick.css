@@ -1,0 +1,32 @@
+.card_play_custom {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 100%;
+  padding: 23px 18px;
+  background: var(--foam-green);
+  border-radius: var(--br-medium);
+  overflow: hidden;
+  font-family: var(--nats);
+}
+
+.card_play_custom .cardImg {
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 40%;
+}
+
+.card_play_custom h1 {
+  display: block;
+  font-size: 40px;
+  text-align: left;
+  line-height: 40px;
+  font-weight: 300;
+}
+
+.card_play_custom .title {
+  color: var(--white);
+  text-transform: uppercase;
+}

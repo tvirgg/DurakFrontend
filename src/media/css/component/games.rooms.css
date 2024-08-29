@@ -1,0 +1,83 @@
+/* rooms css */
+.rooms {
+  --btn-bg: #D8D8D8;
+  --name-color: #ADADAD;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+}
+
+.rooms .header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 7px;
+}
+
+.rooms .header .row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  margin-bottom: 2px;
+}
+
+.rooms .header .title {
+  display: flex;
+  font-size: 40px;
+  font-weight: 400;
+}
+
+.rooms .header .btns {
+  display: flex;
+  align-items: center;
+}
+
+.rooms .header .btn_create {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: 20px;
+  padding: 6px;
+  border-radius: var(--br-medium);
+  background: var(--btn-bg);
+}
+
+.rooms .header .btn_search,
+.rooms .header .btn_filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: 100%;
+  padding: 12px;
+}
+
+.rooms .header .btn_filter {
+  height: 100%;
+}
+
+.rooms .header .btn_filter svg {
+  display: block;
+}
+
+.rooms .header .search_bar {
+  display: block;
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  position: relative;
+  transition: max-height 1s ease-in-out;
+}
+
+.rooms .header .search_bar_active {
+  max-height: 1000px;
+}
+
+.rooms .header .search_input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: var(--br-medium);
+}

@@ -1,0 +1,108 @@
+.lobbies {
+  display: block;
+  width: 100%;
+  background: var(--gradient-p);
+  min-height: 100vh;
+}
+
+.lobbies .page_title span {
+  font-size: 20px;
+}
+
+.lobbies .check {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.lobbies .check .vall {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.lobbies .check .vall .icon {
+  width: 40px;
+  height: auto;
+}
+
+/* / */
+
+
+.progress-bar {
+  touch-action: none;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.progress-bar .progress-track,
+.progress-bar .nums {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 4px;
+}
+
+
+
+
+.progress-bar .progress-track {
+  position: relative;
+  background: var(--white);
+  border-radius: 4px 12px 12px 4px;
+  padding: 8px 4px;
+}
+
+.progress-bar .progress-track .dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4px;
+  height: 4px;
+  background: var(--black);
+  border-radius: var(--br-full);
+}
+
+.progress-bar .progress-track :nth-child(2) {
+  opacity: 0.3;
+}
+
+.progress-bar .progress-track .dot .num {
+  display: block;
+  position: absolute;
+  top: -120%;
+  text-align: center;
+}
+
+.progress-bar .handler {
+  display: block;
+  position: absolute;
+  margin-left: -4px;
+  width: 6px;
+  height: 35px;
+  border-radius: var(--br-small);
+  background: var(--black);
+}
+
+/* btn_bar */
+.lobbies .btn_bar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 7px;
+  width: 100%;
+  z-index: 90;
+}

@@ -1,0 +1,143 @@
+.filter_window {
+  display: none;
+  touch-action: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  padding: 6px;
+  position: fixed;
+  z-index: 90;
+  background: #1E3645;
+  width: calc(100% - 28px);
+  top: 6px;
+  left: 14px;
+  border-radius: var(--br-medium);
+  /* Для Safari и старых версий Chrome */
+  /* Для IE 9 */
+  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  /* Для Safari и старых версий Chrome */
+  -ms-transition: all 0.5s ease;
+  /* Для IE 9 */
+}
+
+.filter_window_active {
+  display: flex;
+  animation: fopen 0.3s forwards;
+  -webkit-animation: fopen 0.3s forwards;
+  /* Для Safari и старых версий Chrome */
+}
+
+@keyframes fopen {
+  from {
+    transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    /* Для Safari и старых версий Chrome */
+  }
+
+  to {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    /* Для Safari и старых версий Chrome */
+  }
+}
+
+@-webkit-keyframes fopen {
+  from {
+    -webkit-transform: translate(0, -50%) scale(0.8);
+  }
+
+  to {
+    -webkit-transform: translate(0, -50%) scale(1);
+  }
+}
+
+.filter_window .close_btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 15px;
+}
+
+.filter_window p {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-size: 20px;
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.filter_window .cards_number {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.filter_window .cards_number input,
+.filter_window .bid input,
+.filter_window .game_type input {
+  display: none;
+}
+
+.filter_window .cards_number label {
+  display: block;
+  padding: 12px 30px;
+  background: var(--cb);
+  color: var(--black);
+  font-size: 20px;
+  border-radius: var(--br-medium);
+}
+
+.filter_window .cards_number input:checked+label,
+.filter_window .bid input:checked+label,
+.filter_window .game_type input:checked+label {
+  box-shadow: 0px 4px 4px 0px #FFFFFF40;
+  background: var(--white);
+}
+
+/* bid type */
+.filter_window .bid {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.filter_window .bid label,
+.filter_window .game_type label {
+  display: block;
+  padding: 5px 12px;
+  background: var(--cb);
+  color: var(--black);
+  font-size: 20px;
+  min-width: 140px;
+  text-align: center;
+  border-radius: var(--br-small);
+}
+
+/* game type */
+.filter_window .game_type {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 8px;
+  padding: 0 15px;
+  margin-bottom: 8px;
+}
+
+.filter_window .game_type label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  width: 100%;
+}
+
+.filter_window .game_type label .icon {
+  display: block;
+  position: absolute;
+  right: 4px;
+}
+
+.filter_window .game_type label svg * {
+  stroke: #000 !important;
+}

@@ -1,0 +1,57 @@
+.play_cards {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 12px;
+}
+
+.play_cards .card {
+  display: flex;
+  position: relative;
+  background: var(--bg-color);
+  border-radius: var(--br-medium);
+  padding: 20px;
+  overflow: hidden;
+  text-align: left;
+}
+
+.play_cards .card .title {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.play_cards .card .title h1,
+.play_cards .card .title h2 {
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.play_cards .card .title h1 {
+  color: var(--white);
+}
+
+.play_cards .card .title h2 {
+  color: var(--black);
+}
+
+.play_cards .card .cardImg {
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+}
+
+.play_cards .card_quick {
+  --bg-color: #78BBB4;
+}
+
+.play_cards .card_tourneys {
+  --bg-color: #78BB87;
+}
+
+.play_cards .card_trainings {
+  --bg-color: #9578BB;
+}

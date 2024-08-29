@@ -1,0 +1,14 @@
+.withdraw .wallet_adress {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.withdraw .wallet_adress input {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  border-radius: var(--br-small);
+  background: var(--c9);
+  margin: 5px 0;
+}

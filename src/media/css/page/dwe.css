@@ -1,0 +1,146 @@
+.dwe {
+  --btn-bg: #D9D9D9;
+  --btn-active-bg: #7B878E;
+  --btn-submit-bg: #51C4FF;
+
+  min-height: 100vh;
+  font-size: 20px;
+}
+
+.dwe h1,
+.dwe h2,
+.dwe h3,
+.dwe p {
+  display: block;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.dwe h2 {
+  font-size: 30px;
+}
+
+.dwe .page_title h1 {
+  font-size: 40px;
+  font-weight: 400;
+}
+
+.dwe .page_title p {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.dwe .page_title {
+  display: flex;
+  flex-direction: column;
+}
+
+.dwe .wrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  gap: 14px;
+  padding: 0 4px;
+}
+
+.dwe .choose {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.dwe .choose .list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+
+.dwe .choose .list input {
+  display: none;
+}
+
+.dwe .choose .list input[type="radio"]:checked+label {
+  background: var(--btn-active-bg);
+}
+
+.dwe .choose .list label {
+  display: block;
+  min-width: 130px;
+  text-align: center;
+  padding: 5px 12px;
+  background: var(--btn-bg);
+  color: var(--black);
+  border-radius: var(--br-small);
+}
+
+.dwe .convert .list,
+.dwe .pay .list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  padding: 10px;
+}
+
+.dwe .convert .list span,
+.dwe .pay .list span {
+  display: flex;
+  align-items: center;
+}
+
+.dwe .bar_btn {
+  display: block;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 7px;
+}
+
+.dwe .btn_submit {
+  display: block;
+  width: 100%;
+  background: var(--btn-submit-bg);
+  padding: 8px 15px;
+  min-height: 50px;
+  border-radius: var(--br-medium);
+}
+
+.dwe .btn_submit:active {
+  opacity: 0.6;
+}
+
+/* transaction_history */
+.dwe .transaction_history {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+}
+
+.dwe .transaction_history .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: var(--br-medium);
+  font-size: 20px;
+  background: linear-gradient(253.01deg, #235975 2.81%, #1D303C 100%);
+  max-height: 35px;
+}
+
+.dwe .transaction_history .row .date {
+  padding-left: 20px;
+}
+
+.dwe .transaction_history .row .vall {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}

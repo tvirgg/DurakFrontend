@@ -1,0 +1,169 @@
+.earn .header_bar {
+  display: -webkit-box;
+  /* Safari 3-4, iOS 4.2-5.1 */
+  display: -moz-box;
+  /* Firefox 19-28 */
+  display: -ms-flexbox;
+  /* IE 10 */
+  display: -webkit-flex;
+  /* Chrome 21, Safari 6.1, iOS 7.1 */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.earn .header_bar .content {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 40px;
+}
+
+.earn .header_bar .content .coins {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  position: relative;
+  align-items: center;
+  font-size: 37px;
+}
+
+.earn .header_bar .content .coins .icon {
+  position: absolute;
+  right: -36px;
+  width: 36px;
+  height: auto;
+  aspect-ratio: 1/1;
+}
+
+.earn .header_bar .content .per {
+  position: relative;
+  font-size: 24px;
+  color: var(--be);
+}
+
+.earn .content .back_img {
+  display: block;
+  position: absolute;
+  left: -20px;
+  top: 0;
+  height: 100%;
+  z-index: 0;
+}
+
+/* buffs */
+.earn .header_bar .buffs {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.earn .header_bar .buffs span {
+  display: block;
+  padding: 0 10px;
+  background: #E8D0AE;
+  border: 2px solid #FFC26D;
+  color: var(--black);
+  border-radius: var(--br-large);
+  min-width: 85px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.earn .tasks {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.earn .tasks .task {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  min-height: 82px;
+  padding: 5px;
+  background: linear-gradient(253.01deg, #235975 2.81%, #1D303C 100%);
+  border-radius: var(--br-medium);
+  color: var(--white);
+  text-align-last: left;
+}
+
+.earn .tasks h2 {
+  padding: 10px;
+}
+
+.earn .tasks .task .picture {
+  display: block;
+  width: 73px;
+  aspect-ratio: 1/1;
+}
+
+.earn .tasks .task .content {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.earn .tasks .task .content .title {
+  font-size: 22px;
+}
+
+.earn .tasks .task .content .info {
+  font-size: 16px;
+  color: #d4d4d4;
+}
+
+.earn .tasks .task .content .prize {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  position: relative;
+  gap: 2px;
+  align-items: center;
+  font-size: 20px;
+}
+
+.earn .tasks .task .iconChevronRight {
+  display: block;
+  position: absolute;
+  right: 5px;
+}
+
+.earn .tasks .task .iconChevronRight path {
+  fill: #d4d4d4;
+}

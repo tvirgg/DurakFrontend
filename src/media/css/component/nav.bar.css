@@ -1,0 +1,48 @@
+.navbar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 5px;
+  padding: 0 5px;
+  padding-bottom: 5px;
+  position: fixed;
+  bottom: 7px;
+  left: 14px;
+  width: calc(100% - 28px);
+  height: auto;
+  background: var(--bg3);
+  border-radius: var(--br-extra-large);
+  overflow: hidden;
+  z-index: 100;
+}
+
+.navbar button {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 400;
+  padding: 5px;
+}
+
+.navbar button .icon {
+  display: block;
+  width: 100%;
+  background-size: 200% 100%;
+}
+
+.navbar .btn_earn .icon {
+  width: 65%;
+}
+
+.navbar button span {
+  display: block;
+  position: absolute;
+  bottom: -3px;
+  font-family: var(--nats);
+  font-size: 16px;
+  font-weight: 400;
+}

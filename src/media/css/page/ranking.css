@@ -1,0 +1,114 @@
+.ranking {
+  --row-bg: linear-gradient(253.01deg, #235975 9.13%, #1D303C 100%);
+  --bg-gold: -webkit-linear-gradient(90deg, #FFD943 0%, #FBAE23 68.5%, #F18B24 95.5%);
+  --bg-silver: linear-gradient(90deg, #EEEEEE 36%, #999999 90%);
+  --bg-bronze: linear-gradient(90deg, #B97B4F 0%, #BF855C 73%, #EAE1DA 98.5%);
+  --bg-self: linear-gradient(90deg, #5DB3DF 0%, #4BA3D1 100%);
+
+
+}
+
+.ranking .page_title {
+  margin-bottom: 20px;
+}
+
+.ranking .wrap {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.ranking .wrap .rate_list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 5px;
+}
+
+.ranking .wrap .rate_list .row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  background: var(--row-bg);
+  height: auto;
+  padding: 5px;
+  border-radius: var(--br-medium);
+  animation: loaded 0.2s 1 forwards;
+  transform: scaleX(0.9);
+  opacity: 0;
+}
+
+@keyframes loaded {
+  from {
+    transform: scaleX(0.9);
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+.ranking .wrap .rate_list .self {
+  background: var(--bg-self);
+  box-shadow: 0px 4px 4px 0px #FFFFFF40;
+}
+
+.ranking .wrap .rate_list .user_name {
+  display: flex;
+  position: relative;
+  gap: 5px;
+}
+
+.ranking .wrap .rate_list .user_name .icon {
+  display: block;
+  position: absolute;
+  top: -2px;
+  right: -25px;
+}
+
+.ranking .wrap .rate_list :nth-child(1) .user .user_name {
+  background: var(--bg-gold);
+}
+
+.ranking .wrap .rate_list :nth-child(2) .user .user_name {
+  background: var(--bg-silver);
+}
+
+.ranking .wrap .rate_list :nth-child(3) .user .user_name {
+  background: var(--bg-bronze);
+}
+
+.ranking .wrap .rate_list :nth-child(1) .user .user_name,
+.ranking .wrap .rate_list :nth-child(2) .user .user_name,
+.ranking .wrap .rate_list :nth-child(3) .user .user_name {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ranking .wrap .rate_list .row .user {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.ranking .wrap .rate_list .row .user .user_picture {
+  display: block;
+  width: 35px;
+  aspect-ratio: 1/1;
+}
+
+.ranking .wrap .rate_list .row .score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 10px;
+}

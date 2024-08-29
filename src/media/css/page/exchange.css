@@ -1,0 +1,28 @@
+.exchange .echange {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.exchange .echange input {
+  display: none;
+}
+
+.exchange .echange .btn_change {
+  display: flex;
+  position: relative;
+  padding: 4px;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: var(--btn-bg);
+  text-align: center;
+  min-width: 130px;
+  border-radius: var(--br-small);
+  color: var(--black);
+}
+
+.exchange .echange .btn_change:active {
+  background: var(--btn-active-bg);
+}

@@ -1,0 +1,72 @@
+/* / */
+/* card_invite */
+/* / */
+.card_invite {
+  display: flex;
+  width: 100%;
+  position: relative;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 12px;
+  background: var(--gradient2);
+  border-radius: var(--br-medium);
+  overflow: hidden;
+  max-height: 87px;
+}
+
+.card_invite {
+  background: linear-gradient(90deg, #E87328 0%, #C6894C 100%);
+}
+
+.card_invite .texts {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  color: var(--white);
+  gap: 13px;
+  padding: 8px;
+  z-index: 2;
+}
+
+.card_invite .texts {
+  color: var(--black);
+}
+
+.card_invite .texts .title {
+  display: flex;
+  position: relative;
+  font-weight: 200;
+}
+
+.card_invite .texts .title span {
+  display: block;
+  position: absolute;
+  top: 0;
+  transform: translateY(-25%);
+  left: 75%;
+  padding: 12px 6px;
+  background: var(--white);
+  border-radius: var(--br-small);
+
+}
+
+.card_invite .texts .prize {
+  display: block;
+  position: absolute;
+  left: 38%;
+  top: 68%;
+  background: #027AFF;
+  padding: 2px 6px;
+  border-radius: var(--br-small);
+  color: var(--white);
+  transform: rotate(2deg);
+}
+
+.card_invite .cardImg {
+  display: block;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 0;
+}

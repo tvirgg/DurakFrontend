@@ -1,0 +1,268 @@
+body {
+  overflow: hidden !important;
+  position: relative;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #347CA2 0%, #1D323F 100%);
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  /* 80 : 414 : 100 */
+  --card-width: 19.3236714976vw;
+
+}
+
+.game .players {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  padding-top: 10px;
+  gap: 30px;
+}
+
+.game .players .player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 100;
+  position: relative;
+}
+
+.game .players .player .picture {
+  display: block;
+  width: calc(100vw / 6);
+  aspect-ratio: 1/1;
+  /* border: 1px solid #0004; */
+  box-shadow: 0 0 10px #0008;
+  border-radius: 50%;
+  position: relative;
+}
+
+.game .players .player .picture img {
+  display: block;
+  width: 100%;
+}
+
+.game .players .player .picture .frame {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.game .players .player .cards_count {
+  display: block;
+  position: absolute;
+  top: 0;
+  transform: translateY(-120%);
+  width: 100%;
+  text-align: center;
+  background: var(--native-blue);
+  border-radius: var(--br-extra-large);
+  font-family: var(--sfd);
+  font-size: 12px;
+  padding: 2px 0;
+}
+
+.game .players .player .player_name {
+  font-family: var(--sfd);
+  font-size: 12px;
+  padding-top: 5px;
+}
+
+.game .control_btns {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30vh;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 7px;
+  z-index: 0;
+}
+
+.game .control_btns button {
+  display: block;
+  position: relative;
+  border-radius: var(--br-extra-large);
+  background: #0002;
+  font-size: 20px;
+  font-family: var(--sfd);
+  padding: 6px 8px;
+  min-width: 90px;
+  color: var(--white);
+  z-index: 1;
+  transition: background 0.3s ease, color 0.2s ease;
+}
+
+.game .control_btns button:disabled {
+  background-color: #0002;
+  color: #fff5;
+}
+
+.game .control_btns .take {
+  background: #FF6464;
+}
+
+.game .control_btns .cheat {
+  background: var(--native-blue);
+}
+
+.game .control_btns .pass {
+  background: var(--white);
+  color: var(--black);
+}
+
+/* game cards */
+.game .game_card {
+  display: block;
+  width: 19.3236714976vw;
+  aspect-ratio: 2/3;
+  background-size: 100% 100%;
+  position: fixed;
+  transform: translate(-35px, calc(50vh - 60px));
+  top: 0;
+  left: 0;
+  border-radius: 4px;
+  z-index: 100;
+}
+
+.game .game_card::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-image: url(../res/cards/cardBack.svg);
+  background-size: cover;
+  transition: opacity 0.2s ease, background 0.3s ease;
+  transition-delay: 0.1s;
+  border-radius: 4px;
+}
+
+.game .open-card::after {
+  opacity: 0;
+  /* background-image: none; */
+}
+
+.game .b-card::after {
+  background-image: none;
+  background: #000;
+  opacity: 0.5;
+}
+
+.game .open-card {
+  box-shadow: 0 0 10px #0005;
+}
+
+
+/* change_card */
+.game .change_card {
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: var(--card-width);
+  aspect-ratio: 2/3;
+  background-image: url(../res/cards/changeCard.svg);
+  background-size: 100% 100%;
+  transform-origin: center center;
+  transform: translate(calc(50vw - 40px), calc(50vh - 60px));
+}
+
+/* / */
+/* timer */
+.timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 20vh;
+  width: 52px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  margin-top: 50px;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.3s ease;
+  --timer-dur: 10s;
+}
+
+.timer span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  font-size: 40px;
+  color: #26FF0A;
+  z-index: 2;
+}
+
+.timer span::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 26px solid #D9D9D970;
+  transform: scale(1.2) rotate(45deg);
+  z-index: -1;
+}
+
+.timer_active {
+  margin-top: 0;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.timer_active span:before {
+  display: flex;
+  animation: prixClipFix var(--timer-dur) 1 linear;
+}
+
+@keyframes prixClipFix {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+  }
+
+  25% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+  }
+
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+  }
+
+  75% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+  }
+
+  100% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+  }
+}
+
+/* player-self */
+.game .player_self {
+  display: block;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+}

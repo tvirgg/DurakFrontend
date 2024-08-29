@@ -1,0 +1,32 @@
+.deposit .ton_wallet {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.deposit .ton_wallet .ton_copy_btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: var(--white);
+}
+
+
+.deposit .ton_wallet .ton_copy_btn p {
+  font-size: 36px;
+}
+
+.deposit .ton_wallet .ton_copy_btn small {
+  color: var(--c9);
+  font-size: 13px;
+}
+
+.deposit .ton_wallet .connect_btn {
+  display: block;
+  background: var(--d9);
+  padding: 4px 25px;
+  border-radius: var(--br-medium);
+}
