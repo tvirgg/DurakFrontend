@@ -6,7 +6,7 @@ body {
 .game {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(180deg, #347CA2 0%, #1D323F 100%);
+  background: linear-gradient(180deg, #347ca2 0%, #1d323f 100%);
   align-items: center;
   justify-content: space-between;
   width: 100%;
@@ -14,7 +14,6 @@ body {
   overflow: hidden;
   /* 80 : 414 : 100 */
   --card-width: 19.3236714976vw;
-
 }
 
 .game .players {
@@ -112,7 +111,7 @@ body {
 }
 
 .game .control_btns .take {
-  background: #FF6464;
+  background: #ff6464;
 }
 
 .game .control_btns .cheat {
@@ -139,7 +138,7 @@ body {
 }
 
 .game .game_card::after {
-  content: "";
+  content: '';
   display: block;
   width: 100%;
   height: 100%;
@@ -166,7 +165,6 @@ body {
 .game .open-card {
   box-shadow: 0 0 10px #0005;
 }
-
 
 /* change_card */
 .game .change_card {
@@ -208,12 +206,12 @@ body {
   width: 100%;
   height: 100%;
   font-size: 40px;
-  color: #26FF0A;
+  color: #26ff0a;
   z-index: 2;
 }
 
 .timer span::before {
-  content: "";
+  content: '';
   width: 100%;
   height: 100%;
   left: 0;
@@ -221,7 +219,7 @@ body {
   position: absolute;
   box-sizing: border-box;
   border-radius: 50%;
-  border: 26px solid #D9D9D970;
+  border: 26px solid #d9d9d970;
   transform: scale(1.2) rotate(45deg);
   z-index: -1;
 }
@@ -265,4 +263,105 @@ body {
   position: absolute;
   left: 50%;
   bottom: 0;
+}
+
+/* Game.module.css */
+.game .control_btns .react {
+  background: #4caf50;
+  color: white;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.game .control_btns .react:hover {
+  background: #45a049;
+}
+
+.game .control_btns .react:active {
+  transform: scale(0.95);
+}
+
+/* Стили для попапа с эмодзи */
+.game .emoji_popup {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  gap: 10px;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+}
+
+.game .emoji_popup.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.game .emoji_button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.game .emoji_button:hover {
+  transform: scale(1.1);
+}
+
+.game .emoji_button:active {
+  transform: scale(0.95);
+  opacity: 0.8;
+}
+
+.game .emoji_button img {
+  width: 40px;
+  height: 40px;
+}
+
+/* Стили для выбранного emoji */
+.game .selected_emoji {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  bottom: 140px;
+  z-index: 1001;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.game .selected_emoji.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  animation: emojiPulse 0.5s ease;
+}
+
+.game .selected_emoji.hide {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-20px);
+}
+
+.game .selected_emoji img {
+  width: 60px;
+  height: 60px;
+}
+
+@keyframes emojiPulse {
+  0% {
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.2);
+  }
+  100% {
+    transform: translateX(-50%) scale(1);
+  }
 }

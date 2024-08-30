@@ -8,6 +8,7 @@ import catEmoji from "../media/img/catEmoji.png";
 //
 //
 import PModal from "./ui/pModal";
+import { I18nText } from "./i18nText";
 
 //
 const ProfileWindows = () => {
@@ -167,7 +168,7 @@ const ProfileWindows = () => {
         <div className="w_container" id="w_container">
           {/* Слайд выбора категории */}
           <div className="slide choose_cat slide_active">
-            <p className="title">Choose category of present:</p>
+            <p className="title"><I18nText path="profile_windows_choose_category_of_present" /></p>
             <div className="btns">
               {catBtns.map((btn, index) => (
                 <button
@@ -197,7 +198,7 @@ const ProfileWindows = () => {
 
           {/* Слайд выбора уровня */}
           <div className="slide choose_lvl">
-            <p className="title">Choose level of present:</p>
+            <p className="title"><I18nText path="profile_windows_choose_level_of_present" /></p>
             <div className="btns">
               {lvlBtns.map((btn, index) => (
                 <button
@@ -226,7 +227,7 @@ const ProfileWindows = () => {
 
           {/* Слайд выбора подарка */}
           <div className="slide choose_present">
-            <p className="title">Choose present:</p>
+            <p className="title"><I18nText path="profile_windows_choose_present" /></p>
             <div className="presents">{renderPresents()}</div>
             <button
               className="sbtn send_btn"
@@ -238,12 +239,12 @@ const ProfileWindows = () => {
                 cursor: present.pid !== null ? "pointer" : "not-allowed",
               }}
             >
-              Send Present
+              <I18nText path="profile_windows_send_present" />
             </button>
           </div>
         </div>
         <button className="cancel_btn" onClick={closeWindow}>
-          Cancel
+        <I18nText path="user_profile_cancel" />
         </button>
       </div>
       {/* Модальные окна */}

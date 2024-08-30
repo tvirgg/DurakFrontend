@@ -1,19 +1,19 @@
-import React from "react";
-import "../media/css/menu.main.css";
+import React from 'react'
+import '../media/css/menu.main.css'
 // icons
 // components
-import CardUserProfile from "../components/card.user.profile";
-import CardPlayQuick from "../components/card.play.quick";
-import CardUserRate from "../components/card.user.rate";
-import CardUserEarn from "../components/card.user.earn";
-import Preloader from "../includes/preloader";
+import CardUserProfile from '../components/card.user.profile'
+import CardPlayQuick from '../components/card.play.quick'
+import CardUserRate from '../components/card.user.rate'
+import CardUserEarn from '../components/card.user.earn'
+import Preloader from '../includes/preloader'
 // NavBar
-import NavBar from "../components/nav.bar";
-import MenuCarousel from "../components/menu.carousel";
+import NavBar from '../components/nav.bar'
+import MenuCarousel from '../components/menu.carousel'
 
 const Main = () => {
   return (
-    <section className="page menu_section pb-80">
+    <section className="page menu_section">
       <Preloader />
       <div className="container">
         {/* user-profile */}
@@ -30,6 +30,6 @@ const Main = () => {
         <NavBar />
       </div>
     </section>
-  );
-};
-export default Main;
+  )
+}
+export default Main

@@ -1,13 +1,14 @@
-import React from "react";
+import React from 'react'
 //
-import "../media/css/component/filter.window.css";
-import "../media/css/games.css";
+import '../media/css/component/filter.window.css'
+import '../media/css/games.css'
 // components
-import GamesPlayCards from "../components/games.play.cards";
-import GamesRooms from "../components/games.rooms";
-import Preloader from "../includes/preloader";
+import GamesPlayCards from '../components/games.play.cards'
+import GamesRooms from '../components/games.rooms'
+import Preloader from '../includes/preloader'
 // NavBar
-import NavBar from "../components/nav.bar";
+import NavBar from '../components/nav.bar'
+import { I18nText } from '../components/i18nText'
 
 const Games = () => {
   return (
@@ -20,13 +21,17 @@ const Games = () => {
         <GamesRooms />
         {/* / */}
         <div className="btn_bar">
-          <button className="reset">Reset</button>
-          <button className="apply">Apply</button>
+          <button className="reset">
+            <I18nText path="reset_button" />
+          </button>
+          <button className="apply">
+            <I18nText path="apply_button" />
+          </button>
         </div>
         {/* nav */}
         <NavBar />
       </div>
     </section>
-  );
-};
-export default Games;
+  )
+}
+export default Games
