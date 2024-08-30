@@ -104,7 +104,7 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: var(--br-extra-large);
-  font-size: 14px;
+  font-size: 20px;
   font-family: var(--sfd);
   padding: 0 10px;
   z-index: 1;
@@ -120,10 +120,6 @@ body {
 @media (max-width: 375px) {
   .game {
     --button-height: 32px;
-  }
-
-  .game .control_btns button {
-    font-size: 16px;
   }
 }
 
