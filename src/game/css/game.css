@@ -4,6 +4,12 @@ body {
 }
 
 .game {
+  --button-height: 26px; /* Базовая высота кнопки */
+  --button-margin: 4px; /* Отступ между кнопками */
+  --total-buttons: 4; /* Общее количество кнопок */
+}
+
+.game {
   display: flex;
   flex-direction: column;
   background: linear-gradient(180deg, #347ca2 0%, #1d323f 100%);
@@ -31,7 +37,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
   z-index: 100;
   position: relative;
 }
@@ -80,49 +85,61 @@ body {
 .game .control_btns {
   display: flex;
   position: fixed;
-  bottom: 0;
+  bottom: 20vh;
   left: 0;
-  gap: 8px;
+  gap: var(--button-margin);
   width: 100%;
-  height: 30vh;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: flex-start;
-  padding: 7px;
+  padding: var(--button-margin);
   z-index: 0;
+  box-sizing: border-box;
+  justify-content: center;
 }
 
 .game .control_btns button {
-  display: block;
-  position: relative;
+  flex: 0 1 auto;
+  height: var(--button-height);
+  min-width: 78px;
+  max-width: calc(100% / var(--total-buttons) - var(--button-margin) * 2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: var(--br-extra-large);
-  background: #0002;
   font-size: 20px;
   font-family: var(--sfd);
-  padding: 6px 8px;
-  min-width: 90px;
-  color: var(--white);
+  padding: 0 10px;
   z-index: 1;
-  transition: background 0.3s ease, color 0.2s ease;
+  color: #007aff;
+  background-color: #ffffff;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.game .control_btns button:disabled {
+@media (max-width: 375px) {
+  .game {
+    --button-height: 32px;
+  }
+}
+
+/* .game .control_btns button:disabled {
   background-color: #0002;
   color: #fff5;
-}
+} */
 
-.game .control_btns .take {
+/* .game .control_btns .take {
   background: #ff6464;
-}
+} */
 
-.game .control_btns .cheat {
+/* .game .control_btns .cheat {
   background: var(--native-blue);
-}
+} */
 
-.game .control_btns .pass {
+/* .game .control_btns .pass {
   background: var(--white);
   color: var(--black);
-}
+} */
 
 /* game cards */
 .game .game_card {
@@ -268,18 +285,15 @@ body {
 
 /* Game.module.css */
 .game .control_btns .react {
-  color: #54a0f6;
+  color: #007aff;
   background-color: #ffffff;
   transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.game .control_btns .react:hover {
-  background-color: #cbcbcb;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
 .game .control_btns .react:focus-within {
   transform: scale(0.95);
-  background-color: #cbcbcbc6;
+  background-color: #cbcbcb;
 }
 
 /* Стили для попапа с эмодзи */
@@ -390,4 +404,27 @@ body {
     opacity: 0;
     transform: translateX(-50%) translateY(-20px) scale(0.8);
   }
+}
+
+.player-emoji {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.player-emoji.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.player-emoji.hide {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-20px);
+}
+
+.player-emoji img {
+  width: 30px;
+  height: 30px;
 }

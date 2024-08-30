@@ -2,7 +2,7 @@
   "menu": "Меню",
   "games": "Игры",
   "profile": "Профиль",
-  "earn": "Заработок",
+  "earn": "Доход",
   "market": "Магазин",
 
   "filter_button": "Фильтр",
@@ -12,7 +12,7 @@
   "apply_button": "Применить",
   "create_lobby_button": "Создайте новое лобби",
 
-  "earn_title": "Заработок",
+  "earn_title": "Доход",
   "coins_label": "монет",
   "per_hour": "в час",
   "buff_collect": "собрать",

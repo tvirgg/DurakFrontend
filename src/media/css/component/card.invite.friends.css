@@ -15,7 +15,7 @@
 }
 
 .card_invite {
-  background: linear-gradient(90deg, #E87328 0%, #C6894C 100%);
+  background: linear-gradient(90deg, #e87328 0%, #c6894c 100%);
 }
 
 .card_invite .texts {
@@ -47,7 +47,6 @@
   padding: 12px 6px;
   background: var(--white);
   border-radius: var(--br-small);
-
 }
 
 .card_invite .texts .prize {
@@ -55,7 +54,7 @@
   position: absolute;
   left: 38%;
   top: 68%;
-  background: #027AFF;
+  background: #027aff;
   padding: 2px 6px;
   border-radius: var(--br-small);
   color: var(--white);
