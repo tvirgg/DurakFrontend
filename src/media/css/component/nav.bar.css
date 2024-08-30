@@ -42,7 +42,6 @@
   display: block;
   position: absolute;
   bottom: -3px;
-  font-family: var(--nats);
   font-size: 16px;
   font-weight: 400;
 }

@@ -7,7 +7,6 @@
   background: var(--foam-green);
   border-radius: var(--br-medium);
   overflow: hidden;
-  font-family: var(--nats);
 }
 
 .card_play_custom .cardImg {

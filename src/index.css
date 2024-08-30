@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -78,7 +81,7 @@ code {
 html,
 body {
   width: 100%;
-  font-family: 'NATS', sans-serif;
+  font-family: 'Inter', sans-serif;
   position: relative;
   font-weight: 400;
   margin: 0;
