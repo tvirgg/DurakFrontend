@@ -6,8 +6,6 @@ import goblinEmoji from '../media/img/emojis/goblin.png'
 import smileEmoji from '../media/img/emojis/smile.png'
 import winkEmoji from '../media/img/emojis/wink.png'
 
-const LazyImage = lazy(() => import('./lazy.image'))
-
 const emojis = [
   { src: dragonEmoji, alt: 'Dragon Emoji' },
   { src: goblinEmoji, alt: 'Goblin Emoji' },
@@ -22,7 +20,7 @@ const EmojiButton = React.memo(({ emoji, onClick }) => (
     onClick={() => onClick(emoji.src)}
   >
     <Suspense fallback={<div>Loading...</div>}>
-      <LazyImage
+      <img
         src={emoji.src}
         alt={emoji.alt}
       />
