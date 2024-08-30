@@ -1,4 +1,4 @@
-import React, { useState, useEffect }  from 'react'
+import React, { useState, useEffect, useMemo, lazy, Suspense } from 'react'
 
 import dragonEmoji from '../media/img/emojis/dragon.png'
 import goblinEmoji from '../media/img/emojis/goblin.png'
@@ -6,7 +6,31 @@ import goblinEmoji from '../media/img/emojis/goblin.png'
 import smileEmoji from '../media/img/emojis/smile.png'
 import winkEmoji from '../media/img/emojis/wink.png'
 
-const EmojiPopup = ({ onSelectEmoji, show }) => {
+const LazyImage = lazy(() => import('./lazy.image'))
+
+const emojis = [
+  { src: dragonEmoji, alt: 'Dragon Emoji' },
+  { src: goblinEmoji, alt: 'Goblin Emoji' },
+  // { src: knightEmoji, alt: 'Knight Emoji' },
+  { src: smileEmoji, alt: 'Smile Emoji' },
+  { src: winkEmoji, alt: 'Wink Emoji' },
+]
+
+const EmojiButton = React.memo(({ emoji, onClick }) => (
+  <button
+    className="emoji_button"
+    onClick={() => onClick(emoji.src)}
+  >
+    <Suspense fallback={<div>Loading...</div>}>
+      <LazyImage
+        src={emoji.src}
+        alt={emoji.alt}
+      />
+    </Suspense>
+  </button>
+))
+
+const EmojiPopup = React.memo(({ onSelectEmoji, show }) => {
   const [isVisible, setIsVisible] = useState(show)
 
   useEffect(() => {
@@ -15,53 +39,28 @@ const EmojiPopup = ({ onSelectEmoji, show }) => {
     } else {
       const timer = setTimeout(() => {
         setIsVisible(false)
-      }, 300) // Соответствует длительности анимации исчезновения
+      }, 300)
       return () => clearTimeout(timer)
     }
   }, [show])
 
+  const emojiButtons = useMemo(
+    () =>
+      emojis.map((emoji, index) => (
+        <EmojiButton
+          key={index}
+          emoji={emoji}
+          onClick={onSelectEmoji}
+        />
+      )),
+    [onSelectEmoji],
+  )
+
   if (!isVisible && !show) return null
 
   return (
-    <div className={`emoji_popup ${show ? 'show' : ''}`}>
-      <button
-        className="emoji_button"
-        onClick={() => onSelectEmoji(dragonEmoji)}
-      >
-        <img
-          src={dragonEmoji}
-          alt="Dragon Emoji"
-        />
-      </button>
-      <button
-        className="emoji_button"
-        onClick={() => onSelectEmoji(goblinEmoji)}
-      >
-        <img
-          src={goblinEmoji}
-          alt="Goblin Emoji"
-        />
-      </button>
-      <button
-        className="emoji_button"
-        onClick={() => onSelectEmoji(smileEmoji)}
-      >
-        <img
-          src={smileEmoji}
-          alt="Smile Emoji"
-        />
-      </button>
-      <button
-        className="emoji_button"
-        onClick={() => onSelectEmoji(winkEmoji)}
-      >
-        <img
-          src={winkEmoji}
-          alt="Wink Emoji"
-        />
-      </button>
-    </div>
+    <div className={`emoji_popup ${show ? 'show' : ''}`}>{emojiButtons}</div>
   )
-}
+})
 
 export default EmojiPopup
