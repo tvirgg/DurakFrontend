@@ -28,6 +28,7 @@ import localStorageUtils from './utils/localStorageUtils'
 // events
 import { touchEvents } from './scripts/touchEvents'
 import EmojiPopup from '../components/emoji.popup'
+import { I18nText } from '../components/i18nText'
 
 // game
 const Game = () => {
@@ -419,26 +420,26 @@ const Game = () => {
           onClick={toggleTimer}
           disabled={!buttonStates.cheat}
         >
-          cheat
+          <I18nText path="cheat_button" />
         </button>
         <button
           className="take"
           disabled={!buttonStates.take}
         >
-          take
+          <I18nText path="take_button" />
         </button>
         <button
           className="pass"
           disabled={!buttonStates.pass}
         >
-          pass
+          <I18nText path="pass_button" />
         </button>
         <button
           className="react"
           onClick={toggleEmojiPopup}
           disabled={!buttonStates.react}
         >
-          react
+          <I18nText path="react_button" />
         </button>
       </div>
 

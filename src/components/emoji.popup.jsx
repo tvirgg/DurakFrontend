@@ -2,7 +2,7 @@ import React, { useState, useEffect }  from 'react'
 
 import dragonEmoji from '../media/img/emojis/dragon.png'
 import goblinEmoji from '../media/img/emojis/goblin.png'
-import knightEmoji from '../media/img/emojis/knight.png'
+// import knightEmoji from '../media/img/emojis/knight.png'
 import smileEmoji from '../media/img/emojis/smile.png'
 import winkEmoji from '../media/img/emojis/wink.png'
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 // css
 import "../media/css/profile.css";
 // img

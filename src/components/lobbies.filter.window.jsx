@@ -70,7 +70,7 @@ const FilterWindow = () => {
           id="bid2"
           name="bid"
         />
-        <label htmlFor="bid2">Coins</label>
+        <label htmlFor="bid2"><I18nText path="coins_label" /></label>
       </div>
       {/* bids */}
       <p>

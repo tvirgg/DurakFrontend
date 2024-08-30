@@ -73,18 +73,14 @@
   "task_golden_player_title": "Золотой игрок",
   "task_golden_player_info": "Заработайте 1.000.000 монет",
 
-  "invite_friends_title": "Пригласите друзей",
+  "invite": "Пригласите",
+  "friends": "друзей",
   "invite_friends_subtitle": "и получите награды",
-  "invite_friends_prize": "+40 DUR",
   "quick_game_title": "БЫСТРАЯ ИГРА",
   "quick_game_play": "играть",
   "premium_title": "Премиум",
-  "premium_old_price": "60 TON / год",
+  "year": "год",
   "premium_new_price": "45 TON / год",
-  "premium_discount": "-25%",
-  "earn_title": "ЗАРАБОТОК",
-  "earn_progress": "115/200",
-  "earn_per_hour": "10/час",
 
   "user_profile_in_game": "В игре",
   "user_profile_premium": "Премиум",
@@ -98,8 +94,6 @@
   "user_profile_close": "Закрыть",
   "user_rate_title": "ТОП",
   "user_rate_bar": "2345.",
-  "quick_game_title": "БЫСТРАЯ ИГРА",
-  "quick_game_play": "играть",
   "tourneys_title": "ТУРНИРЫ",
   "trainings_title": "ТРЕНИРОВКИ",
   "filter_window_choose_number_of_cards": "Выберите количество карт",
@@ -116,5 +110,10 @@
   "profile_windows_choose_present": "Выберите подарок:",
   "profile_windows_send_present": "Отправить подарок",
   "profile_windows_success": "Вы отправили подарок!",
-  "profile_windows_fail": "Недостаточно средств"
+  "profile_windows_fail": "Недостаточно средств",
+
+  "cheat_button": "мухлевать",
+  "take_button": "взять",
+  "pass_button": "сбросить",
+  "react_button": "реакция"
 }

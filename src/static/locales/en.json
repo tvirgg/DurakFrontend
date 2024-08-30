@@ -73,17 +73,13 @@
   "task_golden_player_title": "Golden player",
   "task_golden_player_info": "Earn 1.000.000 coins",
 
-  "invite_friends_title": "Invite friends",
+  "invite": "Invite",
+  "friends": "friends",
   "invite_friends_subtitle": "and get rewards",
-  "invite_friends_prize": "+40 DUR",
   "quick_game_play": "play",
   "premium_title": "Premium",
-  "premium_old_price": "60 TON / year",
+  "year": "year",
   "premium_new_price": "45 TON / year",
-  "premium_discount": "-25%",
-  "earn_title": "EARN",
-  "earn_progress": "115/200",
-  "earn_per_hour": "10/per hour",
 
   "user_profile_in_game": "In Game",
   "user_profile_premium": "Premium",
@@ -114,5 +110,10 @@
   "profile_windows_choose_present": "Choose present:",
   "profile_windows_send_present": "Send present",
   "profile_windows_success": "You’ve sent the present!",
-  "profile_windows_fail": "Insufficient balance"
+  "profile_windows_fail": "Insufficient balance",
+  
+  "cheat_button": "cheat",
+  "take_button": "take",
+  "pass_button": "pass",
+  "react_button": "react"
 }
