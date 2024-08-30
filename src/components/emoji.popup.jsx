@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect }  from 'react'
 
 import dragonEmoji from '../media/img/emojis/dragon.png'
 import goblinEmoji from '../media/img/emojis/goblin.png'
@@ -7,7 +7,20 @@ import smileEmoji from '../media/img/emojis/smile.png'
 import winkEmoji from '../media/img/emojis/wink.png'
 
 const EmojiPopup = ({ onSelectEmoji, show }) => {
-  if (!show) return null
+  const [isVisible, setIsVisible] = useState(show)
+
+  useEffect(() => {
+    if (show) {
+      setIsVisible(true)
+    } else {
+      const timer = setTimeout(() => {
+        setIsVisible(false)
+      }, 300) // Соответствует длительности анимации исчезновения
+      return () => clearTimeout(timer)
+    }
+  }, [show])
+
+  if (!isVisible && !show) return null
 
   return (
     <div className={`emoji_popup ${show ? 'show' : ''}`}>

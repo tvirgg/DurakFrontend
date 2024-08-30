@@ -267,18 +267,18 @@ body {
 
 /* Game.module.css */
 .game .control_btns .react {
-  background: #4caf50;
-  color: white;
-  font-weight: bold;
+  color: #54a0f6;
+  background-color: #ffffff;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .game .control_btns .react:hover {
-  background: #45a049;
+  background-color: #cbcbcb;
 }
 
-.game .control_btns .react:active {
+.game .control_btns .react:focus-within {
   transform: scale(0.95);
+  background-color: #cbcbcbc6;
 }
 
 /* Стили для попапа с эмодзи */
@@ -286,10 +286,10 @@ body {
   position: fixed;
   bottom: 80px;
   left: 50%;
+  padding: 1px;
   transform: translateX(-50%) translateY(20px);
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
-  padding: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   display: flex;
   gap: 10px;
@@ -303,18 +303,31 @@ body {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);
+  animation: popupAppear 0.3s ease;
+}
+
+@keyframes popupAppear {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
 }
 
 .game .emoji_button {
   background: none;
   border: none;
+  padding: 10px;
+  border-radius: 12px;
   cursor: pointer;
-  padding: 0;
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .game .emoji_button:hover {
-  transform: scale(1.1);
+  background-color: #54a0f6;
 }
 
 .game .emoji_button:active {
@@ -335,18 +348,17 @@ body {
   bottom: 140px;
   z-index: 1001;
   opacity: 0;
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .game .selected_emoji.show {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
-  animation: emojiPulse 0.5s ease;
+  animation: emojiAppear 0.3s ease;
 }
 
 .game .selected_emoji.hide {
-  opacity: 0;
-  transform: translateX(-50%) translateY(-20px);
+  animation: emojiDisappear 0.3s ease forwards;
 }
 
 .game .selected_emoji img {
@@ -354,14 +366,27 @@ body {
   height: 60px;
 }
 
-@keyframes emojiPulse {
+@keyframes emojiAppear {
   0% {
-    transform: translateX(-50%) scale(1);
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px) scale(0.8);
   }
   50% {
-    transform: translateX(-50%) scale(1.2);
+    transform: translateX(-50%) translateY(0) scale(1.2);
   }
   100% {
-    transform: translateX(-50%) scale(1);
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+@keyframes emojiDisappear {
+  0% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px) scale(0.8);
   }
 }

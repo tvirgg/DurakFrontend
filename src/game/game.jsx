@@ -104,17 +104,16 @@ const Game = () => {
 
   const disablePlayerControls = () => {
     setCardsDisabled(true)
-    setBoolTakeBtn(false)
-    setBoolPassBtn(false)
+    controlBtns(false, false, false, true)
     setCardsDisabled(true)
   }
-  const contolBtns = (cheat, take, pass) => {
-    let b1 = document.querySelector('.game .control_btns .cheat')
-    let b2 = document.querySelector('.game .control_btns .take')
-    let b3 = document.querySelector('.game .control_btns .pass')
-    b1.disabled = !cheat
-    b2.disabled = !take
-    b3.disabled = !pass
+  const controlBtns = (cheat, take, pass, react) => {
+    setButtonStates({
+      cheat: cheat,
+      take: take,
+      pass: pass,
+      react: react,
+    })
   }
   //
   //
@@ -127,15 +126,18 @@ const Game = () => {
   const [showEmojiPopup, setShowEmojiPopup] = useState(false)
   const [selectedEmoji, setSelectedEmoji] = useState(null)
   const [selectedEmojiClass, setSelectedEmojiClass] = useState('')
+  const [buttonStates, setButtonStates] = useState({
+    cheat: false,
+    take: false,
+    pass: false,
+    react: false,
+  })
   // Refs
   const playerRefs = useRef([])
   const cardRefs = useRef([])
   // play
   const [gamePlaying, setGamePlaying] = useState(false)
   // UI bools
-  const [boolCheatBtn, setBoolCheatBtn] = useState(false)
-  const [boolTakeBtn, setBoolTakeBtn] = useState(false)
-  const [boolPassBtn, setBoolPassBtn] = useState(false)
   const [cardsDisabled, setCardsDisabled] = useState(false)
   // eff
 
@@ -297,9 +299,7 @@ const Game = () => {
 
       const timer = document.querySelector('.game .timer')
       if (!gamePlaying) {
-        setBoolCheatBtn(true)
-        setBoolTakeBtn(true)
-        setBoolPassBtn(true)
+        controlBtns(true, true, true, true) // Активируем все кнопки
         setGamePlaying(true)
         setTimerActive(true)
         timer.classList.add('timer_active')
@@ -312,10 +312,6 @@ const Game = () => {
       return () => cleanUp()
     }
   }, [game.status, playerSelfCards, cardsDisabled])
-
-  useEffect(() => {
-    contolBtns(boolCheatBtn, boolTakeBtn, boolPassBtn)
-  }, [boolCheatBtn, boolTakeBtn, boolPassBtn])
   // ~
 
   // Новые функции для эмодзи
@@ -328,11 +324,11 @@ const Game = () => {
     setShowEmojiPopup(false)
     setSelectedEmojiClass('show')
 
-    const hideTimeout = setTimeout(() => setSelectedEmojiClass('hide'), 3000)
+    const hideTimeout = setTimeout(() => setSelectedEmojiClass('hide'), 1750)
     const clearTimeout = setTimeout(() => {
       setSelectedEmoji(null)
       setSelectedEmojiClass('')
-    }, 3500)
+    }, 2250)
 
     return () => {
       clearTimeout(hideTimeout)
@@ -420,27 +416,27 @@ const Game = () => {
       <div className="control_btns">
         <button
           className="cheat"
-          disabled={!boolCheatBtn}
+          onClick={toggleTimer}
+          disabled={!buttonStates.cheat}
         >
           cheat
         </button>
-
         <button
           className="take"
-          disabled={!boolTakeBtn}
+          disabled={!buttonStates.take}
         >
           take
         </button>
         <button
           className="pass"
-          disabled={!boolPassBtn}
-          onClick={handleTimerStop}
+          disabled={!buttonStates.pass}
         >
           pass
         </button>
         <button
           className="react"
           onClick={toggleEmojiPopup}
+          disabled={!buttonStates.react}
         >
           react
         </button>
@@ -452,7 +448,6 @@ const Game = () => {
         show={showEmojiPopup}
       />
 
-      {/* Отображение выбранного эмодзи */}
       {selectedEmoji && (
         <div className={`selected_emoji ${selectedEmojiClass}`}>
           <img
