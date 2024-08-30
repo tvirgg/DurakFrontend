@@ -31,7 +31,7 @@ const CardUserProfile = () => {
 
   return (
     <div className="card user_profile anim_sjump">
-      <div className="row">
+      <div className="user_info_container">
         <div className="user_picture">
           <img
             className="img"
@@ -44,7 +44,6 @@ const CardUserProfile = () => {
             alt="user-frame"
           />
         </div>
-        {/* /user-info */}
         <div className="user_info">
           <p className="user_name">
             Paul
@@ -54,7 +53,7 @@ const CardUserProfile = () => {
             <IconPlayArrow />
             <I18nText path="user_profile_in_game" />
           </span>
-          <div className="row check">
+          <div className="balance_info">
             <span className="coins_count">
               1.230.200
               <IconCoin />
@@ -64,7 +63,7 @@ const CardUserProfile = () => {
               0.00 DUR
             </span>
           </div>
-          <div className="row gr2">
+          <div className="premium_usdt">
             <button
               className="cancel_premium"
               onClick={openModal}

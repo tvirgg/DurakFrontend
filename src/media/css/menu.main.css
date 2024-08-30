@@ -14,7 +14,6 @@
   max-height: 87px;
 }
 
-
 .menu_section .card_premium .texts {
   display: flex;
   flex-direction: column;
@@ -59,7 +58,6 @@
   padding: 4px 8px;
   border-radius: var(--br-medium);
   background: var(--blue2);
-
 }
 
 .menu_section .card_premium .cardImg {
@@ -104,7 +102,7 @@
   line-height: 35px;
   width: 100%;
   text-align: center;
-  font-size: 40px;
+  font-size: 24px;
   font-weight: 400;
 }
 
@@ -119,8 +117,8 @@
   justify-content: center;
   width: 100%;
   padding: 5px;
-  background: #D9D9D980;
-  font-size: 24px;
+  background: #d9d9d980;
+  font-size: 18px;
   text-align: center;
   border-radius: var(--br-medium);
   margin-top: -25px;
@@ -136,7 +134,7 @@
   width: 100%;
   min-height: 30px;
   background-color: var(--f5);
-  box-shadow: 0px 4px 4px 0px #0000001A inset;
+  box-shadow: 0px 4px 4px 0px #0000001a inset;
   padding: 2px;
   border-radius: var(--br-large);
   margin-bottom: 10px;
@@ -148,13 +146,13 @@
   height: 100%;
   background: var(--yellow);
   border-radius: var(--br-large);
-  box-shadow: 0px 4px 4px 0px #FFFFFF80 inset;
+  box-shadow: 0px 4px 4px 0px #ffffff80 inset;
 }
 
 .menu_section .double .card_user_earn .earn_check {
   display: block;
   position: relative;
-  font-size: 24px;
+  font-size: 18px;
   margin-bottom: 5px;
   padding-right: 10px;
 }
@@ -169,10 +167,10 @@
 }
 
 .menu_section .double .card_user_earn .perhour {
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 22px;
   text-align: center;
-  color: #BEBEBE;
+  color: #bebebe;
   margin-bottom: 18px;
 }
