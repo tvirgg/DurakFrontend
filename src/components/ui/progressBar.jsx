@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 
-const ProgressBar = ({ values = [] }) => {
-  const [progress, setProgress] = useState(0); // Индекс текущей точки
+const ProgressBar = ({ values = [], progress, setProgress }) => {
+  // const [progress, setProgress] = useState(0); // Индекс текущей точки
   const progressTrackRef = useRef(null);
   const handlerRef = useRef(null);
 
