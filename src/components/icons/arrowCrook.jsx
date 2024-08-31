@@ -1,16 +1,15 @@
-import * as React from "react";
+import * as React from 'react'
 const IconArrowCrook = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={32}
-    height={29}
-    fill="none"
-    {...props}
+    height="24px"
+    viewBox="0 -960 960 960"
+    width="24px"
+    fill="#e8eaed"
+    stroke="#e8eaed"
+    strokeWidth="2" 
   >
-    <path
-      fill="#fff"
-      d="m19.383 12.271-8.089 7.174-1.329-1.178 8.089-7.174h-7.44l.016-1.665h10.63v9.428l-1.877.015v-6.6Z"
-    />
+    <path d="m216-160-56-56 464-464H360v-80h400v400h-80v-264L216-160Z" />
   </svg>
-);
-export default IconArrowCrook;
+)
+export default IconArrowCrook

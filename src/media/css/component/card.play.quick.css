@@ -19,10 +19,10 @@
 
 .card_play_custom h1 {
   display: block;
-  font-size: 40px;
+  font-size: 26px;
   text-align: left;
   line-height: 40px;
-  font-weight: 300;
+  font-weight: 600;
 }
 
 .card_play_custom .title {

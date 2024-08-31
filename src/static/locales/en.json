@@ -11,6 +11,8 @@
   "reset_button": "Reset",
   "apply_button": "Apply",
   "create_lobby_button": "Create your new lobby",
+  "lobbies": "LOBBIES",
+  "lobbies_tagline": "Join others or create your own game.",
 
   "earn_title": "Earn",
   "coins_label": "coins",

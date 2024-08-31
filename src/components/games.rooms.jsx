@@ -7,15 +7,23 @@ import IconChevronRight from "./icons/chevronRight";
 import IconArrowDegRight from "./icons/arrowDegRight";
 import IconPlayWhite from "./icons/playWhite";
 import IconDur from "./icons/dur";
+import IconAlertCircle from "./icons/alertCircle";
+import IconRefresh from "./icons/refresh";
 import IconCoin from "./icons/coin";
+import PostRequester from "../PostRequester";
 //
 import { useNavigate } from "react-router-dom";
 //
 import FilterWindow from "../components/lobbies.filter.window";
 
 //
-const GamesRooms = () => {
+const GamesRooms = ({ roomsData }) => {
   const navigate = useNavigate();
+
+  const connectToGame = async (id) => {
+    console.log(id, "connectToGame");
+    await PostRequester("/game/connect", { gameId: id });
+  };
 
   const linkLobbies = () => {
     navigate("/lobbies");
@@ -26,73 +34,73 @@ const GamesRooms = () => {
     bar.classList.toggle("search_bar_active");
   };
 
-  const roomsData = [
-    {
-      id: 1,
-      price: 5,
-      currency: null,
-      owner_name: "Christian Bale",
-      players_count: 2,
-      players_limit: 3,
-      status: null,
-    },
-    {
-      id: 2,
-      price: null,
-      currency: null,
-      owner_name: "Christian Bale",
-      players_count: 2,
-      players_limit: 3,
-      status: null,
-    },
-    {
-      id: 3,
-      price: 10,
-      currency: "DUR",
-      owner_name: "Christian Bale",
-      players_count: 1,
-      players_limit: 2,
-      status: null,
-    },
-    {
-      id: 4,
-      price: 2,
-      currency: "Coin",
-      owner_name: "Christian Bale",
-      players_count: 2,
-      players_limit: 3,
-      status: null,
-    },
-    {
-      id: 5,
-      price: null,
-      currency: null,
-      owner_name: "Christian Bale",
-      players_count: 2,
-      players_limit: 2,
-      status: null,
-    },
-    {
-      id: 6,
-      price: 1,
-      currency: "Coin",
-      owner_name: "Christian Bale",
-      players_count: 2,
-      players_limit: 3,
-      status: null,
-    },
-  ];
+  // const roomsData = [
+  //   {
+  //     id: 1,
+  //     price: 5,
+  //     currency: null,
+  //     owner_name: "Christian Bale",
+  //     players_count: 2,
+  //     players_limit: 3,
+  //     status: null,
+  //   },
+  //   {
+  //     id: 2,
+  //     price: null,
+  //     currency: null,
+  //     owner_name: "Christian Bale",
+  //     players_count: 2,
+  //     players_limit: 3,
+  //     status: null,
+  //   },
+  //   {
+  //     id: 3,
+  //     price: 10,
+  //     currency: "DUR",
+  //     owner_name: "Christian Bale",
+  //     players_count: 1,
+  //     players_limit: 2,
+  //     status: null,
+  //   },
+  //   {
+  //     id: 4,
+  //     price: 2,
+  //     currency: "Coin",
+  //     owner_name: "Christian Bale",
+  //     players_count: 2,
+  //     players_limit: 3,
+  //     status: null,
+  //   },
+  //   {
+  //     id: 5,
+  //     price: null,
+  //     currency: null,
+  //     owner_name: "Christian Bale",
+  //     players_count: 2,
+  //     players_limit: 2,
+  //     status: null,
+  //   },
+  //   {
+  //     id: 6,
+  //     price: 1,
+  //     currency: "Coin",
+  //     owner_name: "Christian Bale",
+  //     players_count: 2,
+  //     players_limit: 3,
+  //     status: null,
+  //   },
+  // ];
 
   const getPriceContent = (price, currency) => {
-    if (price === null) return "Free";
-    if (currency === "DUR")
+    if (price === null || price === 0) return "Free";
+    if (currency === "premium")
       return (
         <>
           {price}
           <IconDur />
         </>
       );
-    if (currency === "Coin")
+    if (currency === "usual")
       return (
         <>
           {price}
@@ -139,23 +147,37 @@ const GamesRooms = () => {
       {/* list */}
       <div className="rooms_list anim_sjump">
         {roomsData.map((room) => (
-          <div className="room" key={room.id}>
+          <div className="room" key={room.gameId}>
             <div className="gr">
               <div className="price">
-                {getPriceContent(room.price, room.currency)}
+                {getPriceContent(room.betAmount, room.betType)}
               </div>
-              <span className="owner_name">{room.owner_name}</span>
+              <span className="owner_name">{room.name}</span>
             </div>
             <div className="info">
               <div className="corner">
-                {room.players_count < room.players_limit ? (
+                {room.type === "CLASSIC" ? (
+                  <IconPlayWhite />
+                ) : room.type === "PODKIDNOY" ? (
+                  <IconArrowDegRight />
+                ) : room.type === "PEREVODNOY" ? (
+                  <IconRefresh />
+                ) : room.type === "SHULLERS" ? (
+                  <IconAlertCircle />
+                ) : null}
+                {/* {room.players_count < room.players_limit ? (
                   <IconArrowDegRight />
                 ) : (
                   <IconPlayWhite />
-                )}
+                )} */}
               </div>
-              <div className="players_count">{`${room.players_count}/${room.players_limit}`}</div>
-              <button className="sign_btn">
+              <div className="players_count">{`${room.players.length}/${
+                room.fieldSize / 6 - 1
+              }`}</div>
+              <button
+                className="sign_btn"
+                onClick={() => connectToGame(room.gameId)}
+              >
                 <IconChevronRight />
               </button>
             </div>

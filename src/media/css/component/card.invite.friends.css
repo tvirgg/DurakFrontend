@@ -1,72 +1,74 @@
-/* / */
 /* card_invite */
-/* / */
 .card_invite {
   display: flex;
   width: 100%;
   position: relative;
   flex-direction: row;
   justify-content: space-between;
-  padding: 12px;
-  background: var(--gradient2);
+  align-items: center;
+  padding: clamp(8px, 2vw, 16px);
+  background: linear-gradient(90deg, #e87328 0%, #c6894c 100%);
   border-radius: var(--br-medium);
   overflow: hidden;
-  max-height: 87px;
-}
-
-.card_invite {
-  background: linear-gradient(90deg, #E87328 0%, #C6894C 100%);
+  max-height: clamp(70px, 15vw, 100px);
 }
 
 .card_invite .texts {
   display: flex;
   flex-direction: column;
   text-align: left;
-  color: var(--white);
-  gap: 13px;
-  padding: 8px;
-  z-index: 2;
-}
-
-.card_invite .texts {
   color: var(--black);
+  padding: clamp(4px, 1vw, 12px);
+  z-index: 2;
 }
 
 .card_invite .texts .title {
   display: flex;
+  align-items: baseline;
   position: relative;
-  font-weight: 200;
+  font-weight: 500;
+  font-size: clamp(18px, 4vw, 28px);
+  line-height: 1.2;
 }
 
 .card_invite .texts .title span {
-  display: block;
-  position: absolute;
-  top: 0;
-  transform: translateY(-25%);
-  left: 75%;
-  padding: 12px 6px;
+  margin-left: clamp(2px, 0.5vw, 6px);
+  padding: clamp(2px, 1vw, 8px) clamp(4px, 1.5vw, 12px);
   background: var(--white);
   border-radius: var(--br-small);
+  white-space: nowrap;
+}
 
+.card_invite .texts .wrapper {
+  display: flex;
+  align-items: center;
+  gap: clamp(6px, 2vw, 16px);
+}
+
+.card_invite .texts .sub {
+  font-size: clamp(10px, 2vw, 14px);
+  font-weight: 700;
 }
 
 .card_invite .texts .prize {
-  display: block;
-  position: absolute;
-  left: 38%;
-  top: 68%;
-  background: #027AFF;
-  padding: 2px 6px;
+  display: inline-block;
+  margin-top: clamp(4px, 1vw, 12px);
+  background: #027aff;
+  padding: clamp(1px, 0.5vw, 3px) clamp(3px, 1vw, 8px);
   border-radius: var(--br-small);
   color: var(--white);
   transform: rotate(2deg);
+  font-size: clamp(8px, 1.5vw, 12px);
+  font-weight: 500;
 }
 
 .card_invite .cardImg {
   display: block;
   position: absolute;
   width: 100%;
+  height: 100%;
   left: 0;
   top: 0;
   z-index: 0;
+  object-fit: cover;
 }

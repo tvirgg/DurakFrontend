@@ -26,10 +26,12 @@ const CardInviteFriends = () => {
             <I18nText path="friends" />
           </span>
         </h1>
-        <h3 className="sub">
-          <I18nText path="invite_friends_subtitle" />
-        </h3>
-        <span className="prize">+40 DUR</span>
+        <div className='wrapper'>
+          <h3 className="sub">
+            <I18nText path="invite_friends_subtitle" />
+          </h3>
+          <span className="prize">+40 DUR</span>
+        </div>
       </div>
       <img
         className="cardImg"
