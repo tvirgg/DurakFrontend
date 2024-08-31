@@ -3,8 +3,10 @@ import "../media/css/page/lobbies.create.css";
 // Import Swiper React components
 import IconEye from "../components/icons/eye";
 // import IconAlertCircle from "../components/icons/alertCircle";
+import IconPlayWhite from "../components/icons/playWhite";
 import IconArrowDegRight from "../components/icons/arrowDegRight";
 import IconRefresh from "../components/icons/refresh";
+import IconAlertCircle from "../components/icons/alertCircle";
 // UI
 import ProgressBar from "../components/ui/progressBar";
 
@@ -12,7 +14,9 @@ import ProgressBar from "../components/ui/progressBar";
 import LobbiesLayout from "../layouts/lobbies.layout";
 // -
 import axios from "axios";
+import ShowPopup from "../ShowPopup";
 import config from "../config";
+import PostRequester from "../PostRequester";
 const bids = [0, 1, 10, 100, 500, 1000, 5000, 10000, 50000, 100000];
 
 const LobbiesCreate = () => {
@@ -24,27 +28,14 @@ const LobbiesCreate = () => {
   const [gameType, setGameType] = React.useState("CLASSIC");
 
   const createGame = async () => {
-    try {
-      const response = await fetch(config.url + "/game/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          fieldSize: (playerAmount + 1) * 6,
-          type: gameType,
-          allowedShullerMoves: gameType === "SHULLER" ? 1 : 0,
-          betAmount: bidCur === "Free" ? 0 : bidAmount,
-          betType: bidCur === "Free" ? "usual" : bidCur,
-          name: name.length > 0 ? name : "Anonimus",
-        }),
-      });
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
-    } catch (err) {
-      console.log(err);
-    }
+    await PostRequester("/game/create", {
+      fieldSize: (playerAmount + 1) * 6,
+      type: gameType,
+      allowedShullerMoves: gameType === "SHULLER" ? 1 : 0,
+      betAmount: bidCur === "Free" ? 0 : bidAmount,
+      betType: bidCur === "Free" ? "usual" : bidCur,
+      name: name.length > 0 ? name : "Anonimus",
+    });
   };
 
   const bidChanger = (value) => {
@@ -118,7 +109,7 @@ const LobbiesCreate = () => {
         <div className="game_type">
           <input type="radio" id="cgt1" name="game_type" />
           <label htmlFor="cgt1" onClick={() => setGameType("CLASSIC")}>
-            Classical <IconArrowDegRight />
+            Classical <IconPlayWhite />
           </label>
           <input type="radio" id="cgt2" name="game_type" />
           <label htmlFor="cgt2" onClick={() => setGameType("PEREVODNOY")}>
@@ -126,11 +117,11 @@ const LobbiesCreate = () => {
           </label>
           <input type="radio" id="cgt2" name="game_type" />
           <label htmlFor="cgt2" onClick={() => setGameType("PODKIDNOY")}>
-            Throwing Extra <IconRefresh />
+            Throwing Extra <IconArrowDegRight />
           </label>
           <input type="radio" id="cgt2" name="game_type" />
           <label htmlFor="cgt2" onClick={() => setGameType("SHULLERS")}>
-            With Shullers <IconRefresh />
+            With Shullers <IconAlertCircle />
           </label>
         </div>
       </div>
