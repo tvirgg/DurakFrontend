@@ -130,17 +130,6 @@
 }
 
 @media (max-width: 768px) {
-  .rooms .header .row {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .rooms .header .right-group {
-    width: 100%;
-    justify-content: space-between;
-    margin-top: 16px;
-  }
-
   .rooms .header .search_bar {
     margin-top: 16px;
   }
@@ -161,16 +150,6 @@
 }
 
 @media (max-width: 480px) {
-  .rooms .header .right-group {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .rooms .header .btns {
-    justify-content: space-between;
-    margin-top: 8px;
-  }
-
   .rooms .header .btn_create {
     width: 100%;
     margin-bottom: 8px;
