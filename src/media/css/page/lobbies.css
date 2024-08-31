@@ -1,26 +1,26 @@
 .lobbies .list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: clamp(5px, 1vw, 10px);
 }
 
 .lobbies .list .header {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: clamp(3px, 0.5vw, 5px);
   align-items: flex-end;
 }
 
 .lobbies .list .header .filter_btn {
   display: flex;
-  padding: 3px 10px;
+  padding: clamp(2px, 0.5vw, 3px) clamp(5px, 1vw, 10px);
   align-items: center;
   justify-content: center;
-  gap: 5px;
-  font-size: 20px;
-  background: #51C4FF80;
+  gap: clamp(3px, 0.5vw, 5px);
+  font-size: clamp(16px, 2vw, 20px);
+  background: #51c4ff80;
   border-radius: var(--br-medium);
-  margin-bottom: 10px;
+  margin-bottom: clamp(5px, 1vw, 10px);
 }
 
 .lobbies .list .header .filter_bar {
@@ -28,23 +28,21 @@
   position: relative;
 }
 
-
-
 /* list */
 .lobbies .list .header .row {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 5px;
+  padding: clamp(3px, 0.5vw, 5px);
   border-radius: var(--br-medium);
-  background: linear-gradient(90deg, #CDCDCD 0%, #676767 100%);
+  background: linear-gradient(90deg, #cdcdcd 0%, #676767 100%);
 }
 
 .lobbies .list .header .row .btn {
   display: block;
-  padding: 5px 12px;
-  font-size: 20px;
+  padding: clamp(3px, 0.5vw, 5px) clamp(8px, 1.2vw, 12px);
+  font-size: clamp(16px, 2vw, 20px);
   border-radius: var(--br-medium);
   color: var(--black);
 }
@@ -53,17 +51,13 @@
   background: var(--blue-light);
 }
 
-
-
 .lobbies .btn_bar .filter_btns {
   display: none;
   flex-direction: row;
   justify-content: space-around;
-  gap: 10px;
+  gap: clamp(5px, 1vw, 10px);
   z-index: 99;
 }
-
-
 
 .lobbies .btn_bar .create_btn,
 .lobbies .btn_bar .filter_btns button {
@@ -74,21 +68,21 @@
   z-index: 99;
   width: 100%;
   background: var(--blue-light);
-  min-height: 50px;
+  min-height: clamp(40px, 5vw, 50px);
   border-radius: var(--br-medium);
-  font-size: 20px;
+  font-size: clamp(16px, 2vw, 20px);
   animation: sjump 0.3s forwards;
 }
 
 .lobbies .btn_bar .filter_btns .reset {
-  background: #2D4F64;
+  background: #2d4f64;
   color: var(--white);
 }
 
 .lobbies .btn_bar .create_btn .icon {
   display: block;
   position: absolute;
-  right: 15px;
+  right: clamp(10px, 1.5vw, 15px);
   height: 65%;
 }
 
