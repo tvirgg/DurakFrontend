@@ -1,16 +1,26 @@
-import * as React from "react";
-const IconArrowTraffic = (props) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={36}
-    height={20}
-    fill="none"
-    {...props}
-  >
-    <path
-      fill="#fff"
-      d="m11.344 13.48 4.587-4.667L17.078 10l-6.553 6.667L3.972 10 5.12 8.813l4.587 4.666V3.333h1.638V13.48ZM26.088 6.52v10.147h-1.639V6.52l-4.587 4.667L18.716 10l6.552-6.667L31.822 10l-1.147 1.188-4.586-4.667Z"
-    />
-  </svg>
-);
-export default IconArrowTraffic;
+import React from 'react'
+
+function IconArrowTraffic(props) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      stroke="#e8eaed"
+      strokeWidth="2"
+      {...props}
+    >
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M11 8L7 4m0 0L3 8m4-4v16m6-4l4 4m0 0l4-4m-4 4V4"
+      ></path>
+    </svg>
+  )
+}
+
+export default IconArrowTraffic

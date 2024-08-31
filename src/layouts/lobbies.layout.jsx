@@ -1,16 +1,17 @@
-import React from "react";
+import React from 'react'
 //
-import Preloader from "../includes/preloader.jsx";
+import Preloader from '../includes/preloader.jsx'
 // import { Outlet } from "react-router-dom";
-import IconCoinDUR from "../components/icons/coinDur";
-import IconCoinPRM from "../components/icons/coinPrm";
-import IconCoinTON from "../components/icons/coinTon";
-import "../media/css/layout/lobbies.layout.css";
+import IconCoinDUR from '../components/icons/coinDur'
+import IconCoinPRM from '../components/icons/coinPrm'
+import IconCoinTON from '../components/icons/coinTon'
+import '../media/css/layout/lobbies.layout.css'
+import { I18nText } from '../components/i18nText.jsx'
 
 const LobbiesLayout = ({
-  tonValue = "0.00",
-  prmValue = "0.00",
-  durValue = "0.00",
+  tonValue = '0.00',
+  prmValue = '0.00',
+  durValue = '0.00',
   children,
 }) => {
   return (
@@ -19,14 +20,6 @@ const LobbiesLayout = ({
       <div className="container">
         {/* check */}
         <div className="check">
-          <div className="vall ton">
-            <IconCoinTON />
-            <span className="value">{tonValue} TON</span>
-          </div>
-          <div className="vall prm">
-            <IconCoinPRM />
-            <span className="value">{prmValue} PRM</span>
-          </div>
           <div className="vall dur">
             <IconCoinDUR />
             <span className="value">{durValue} DUR</span>
@@ -35,15 +28,19 @@ const LobbiesLayout = ({
 
         {/* content */}
         <div className="page_title">
-          <h1 className="title">LOBBIES</h1>
-          <span>Join others or create your own game.</span>
+          <h1 className="title">
+            <I18nText path="lobbies" />
+          </h1>
+          <span>
+            <I18nText path="lobbies_tagline" />
+          </span>
         </div>
 
         {/* Additional content injected through props.children */}
         {children}
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default LobbiesLayout;
+export default LobbiesLayout

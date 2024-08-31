@@ -17,7 +17,10 @@ const CardSubcribePremium = () => {
       onClick={handleClick}
     >
       <div className="texts">
-        <h1 className="title">Premium</h1>
+        <div className='wrapper'>
+          <h1 className="title">Premium</h1>
+          <span className="discount">-25%</span>
+        </div>
         <div className="prices">
           <span className="old">
             60 TON / <I18nText path="year" />
@@ -26,7 +29,6 @@ const CardSubcribePremium = () => {
             45 TON / <I18nText path="year" />
           </span>
         </div>
-        <span className="discount">-25%</span>
       </div>
       <img
         className="cardImg"

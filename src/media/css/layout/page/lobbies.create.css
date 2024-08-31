@@ -1,161 +1,158 @@
- .create_window {
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   gap: 5px;
-   z-index: 100;
-   background: #1E3645;
-   width: 100%;
-   border-radius: var(--br-medium);
-   padding: 10px;
-   transition: all 0.5s ease;
- }
+.create_window {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  z-index: 100;
+  background: #1e3645;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: var(--br-medium);
+  padding: 20px;
+  transition: all 0.5s ease;
+}
 
+.create_window p {
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
 
+.number-cards,
+.bid,
+.game_type {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
 
- .create_window p {
-   display: block;
-   width: 100%;
-   text-align: left;
-   font-size: 20px;
-   padding-left: 20px;
-   margin-bottom: 10px;
- }
+.number-cards input,
+.bid input,
+.game_type input {
+  display: none;
+}
 
- .create_window .lobby_name {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   padding: 5px 20px;
- }
+.number-cards label,
+.bid label,
+.game_type label {
+  flex: 1 0 auto;
+  padding: 10px 15px;
+  background: var(--cb);
+  color: var(--black);
+  font-size: 16px;
+  text-align: center;
+  border-radius: var(--br-small);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
 
- .create_window .lobby_name input {
-   display: block;
-   width: 100%;
-   font-size: 20px;
-   padding: 4px;
-   border-radius: var(--br-extra-small);
-   background: var(--d9);
- }
+.number-cards input:checked + label,
+.bid input:checked + label,
+.game_type input:checked + label {
+  background: var(--d9-50);
+}
 
- .create_window .players_number {
-   display: flex;
-   flex-direction: row;
-   justify-content: center;
-   gap: 4px;
- }
+.game_type label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
 
- .create_window .players_number input,
- .create_window .bid input,
- .create_window .game_type input {
-   display: none;
- }
+.game_type label svg {
+  width: 20px;
+  height: 20px;
+}
 
- .create_window .players_number label {
-   display: block;
-   padding: 2px 22px;
-   background: var(--cb);
-   color: var(--black);
-   font-size: 20px;
-   border-radius: var(--br-small);
- }
+.game_type label svg * {
+  stroke: #000;
+}
 
- .create_window .players_number input:checked+label,
- .create_window .bid input:checked+label,
- .create_window .game_type input:checked+label {
-   background: var(--d9-50);
- }
+.create_window .btns_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.create_window > div:last-child {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
 
- /* bid type */
- .create_window .bid {
-   display: grid;
-   grid-template-columns: 1fr 1fr;
-   gap: 8px;
-   padding: 0 10px;
- }
+.reset_button,
+.apply_button {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: var(--br-small);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
 
- .create_window .bid label,
- .create_window .game_type label {
-   display: block;
-   padding: 5px 12px;
-   background: var(--cb);
-   color: var(--black);
-   font-size: 20px;
-   min-width: 140px;
-   text-align: center;
-   border-radius: var(--br-small);
- }
+.reset_button {
+  background: var(--d9-50);
+}
 
- /* game type */
- .create_window .game_type {
-   display: grid;
-   grid-template-columns: 1fr 1fr;
-   gap: 12px 8px;
-   padding: 0 15px;
-   margin-bottom: 8px;
- }
+.apply_button {
+  background: var(--cb);
+  color: var(--black);
+}
 
- .create_window .game_type label {
-   display: flex;
-   align-items: center;
-   justify-content: flex-start;
-   position: relative;
-   width: 100%;
- }
+.btn_bar {
+  margin-top: 20px;
+  text-align: center;
+}
 
- .create_window .game_type label .icon {
-   display: block;
-   position: absolute;
-   right: 4px;
- }
+.create_btn {
+  padding: 12px 24px;
+  font-size: 18px;
+  background: var(--cb);
+  color: var(--black);
+  border: none;
+  border-radius: var(--br-small);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
 
- .create_window .game_type label svg * {
-   stroke: #000 !important;
- }
+@media (max-width: 768px) {
+  .create_window {
+    padding: 15px;
+  }
 
- /* cheating */
- .create_window .cheating {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   padding: 20px;
-   gap: 25px;
- }
+  .number-cards label,
+  .bid label,
+  .game_type label {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
 
- .create_window .cheating .title {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   gap: 5px;
- }
+  .reset_button,
+  .apply_button,
+  .create_btn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
 
- .create_window .cheating #cheat {
-   display: none;
- }
+@media (max-width: 480px) {
+  .create_window {
+    padding: 10px;
+  }
 
- .create_window .cheating .cheat_label {
-   display: block;
-   padding: 4px;
-   width: 52px;
-   height: auto;
-   border-radius: var(--br-large);
-   background: var(--d9-50);
- }
+  .number-cards,
+  .bid,
+  .game_type {
+    flex-direction: column;
+  }
 
- .create_window .cheating .cheat_label .crc {
-   display: block;
-   width: 25px;
-   height: 25px;
-   border-radius: 50%;
-   background: var(--white);
-   transition: all 0.3s ease;
- }
-
- .create_window .cheating #cheat:checked+label {
-   background: #4F378B;
- }
-
- .create_window .cheating #cheat:checked+label .crc {
-   margin-left: calc(100% - 25px);
- }
+  .number-cards label,
+  .bid label,
+  .game_type label {
+    width: 100%;
+  }
+}
