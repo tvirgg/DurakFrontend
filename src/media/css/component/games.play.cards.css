@@ -10,7 +10,7 @@
   position: relative;
   background: var(--bg-color);
   border-radius: var(--br-medium);
-  padding: clamp(10px, 3vw, 30px);
+  padding: clamp(10px, 3vw, 20px);
   overflow: hidden;
   text-align: left;
 }
