@@ -26,6 +26,7 @@ const Games = () => {
           setLoading(false);
         });
     } catch (e) {
+      alert(e);
       ShowPopup(e.response.data, "Error");
     }
   }, []);
