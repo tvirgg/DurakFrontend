@@ -5,11 +5,8 @@ const PostRequester = async (url, body) => {
   try {
     await axios.post(config.url + url, body, { withCredentials: true });
   } catch (err) {
-    alert(err);
     if (err.response.data) {
       ShowPopup(err.response.data, "Error");
-    } else {
-      ShowPopup(err, "Error");
     }
   }
 };

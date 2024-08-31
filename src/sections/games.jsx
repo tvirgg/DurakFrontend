@@ -23,6 +23,7 @@ const Games = () => {
         .get(config.url + "/game/all-awaiting-games", { withCredentials: true })
         .then((res) => {
           setData(res.data);
+          alert(res.data);
           setLoading(false);
         });
     } catch (e) {
