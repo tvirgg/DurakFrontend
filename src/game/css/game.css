@@ -4,9 +4,10 @@ body {
 }
 
 .game {
-  --button-height: 26px; /* Базовая высота кнопки */
-  --button-margin: 4px; /* Отступ между кнопками */
-  --total-buttons: 4; /* Общее количество кнопок */
+  --button-height: clamp(26px, 5vw, 32px);
+  --button-margin: clamp(2px, 1vw, 4px);
+  --total-buttons: 4;
+  --card-width: clamp(60px, 19.3236714976vw, 100px);
 }
 
 .game {
@@ -18,8 +19,6 @@ body {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  /* 80 : 414 : 100 */
-  --card-width: 19.3236714976vw;
 }
 
 .game .players {
@@ -28,9 +27,9 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 25px;
-  padding-top: 10px;
-  gap: 30px;
+  padding: clamp(10px, 3vw, 25px);
+  padding-top: clamp(5px, 2vw, 10px);
+  gap: clamp(15px, 4vw, 30px);
 }
 
 .game .players .player {
@@ -43,10 +42,9 @@ body {
 
 .game .players .player .picture {
   display: block;
-  width: calc(100vw / 6);
+  width: clamp(40px, calc(100vw / 6), 80px);
   aspect-ratio: 1/1;
-  /* border: 1px solid #0004; */
-  box-shadow: 0 0 10px #0008;
+  box-shadow: 0 0 clamp(5px, 2vw, 10px) rgba(0, 0, 0, 0.5);
   border-radius: 50%;
   position: relative;
 }
@@ -72,14 +70,14 @@ body {
   background: var(--native-blue);
   border-radius: var(--br-extra-large);
   font-family: var(--sfd);
-  font-size: 12px;
-  padding: 2px 0;
+  font-size: clamp(10px, 2vw, 12px);
+  padding: clamp(1px, 0.5vw, 2px) 0;
 }
 
 .game .players .player .player_name {
   font-family: var(--sfd);
-  font-size: 12px;
-  padding-top: 5px;
+  font-size: clamp(10px, 2vw, 12px);
+  padding-top: clamp(3px, 1vw, 5px);
 }
 
 .game .control_btns {
@@ -98,60 +96,37 @@ body {
 .game .control_btns button {
   flex: 0 1 auto;
   height: var(--button-height);
-  min-width: 78px;
+  min-width: clamp(60px, 15vw, 78px);
   max-width: calc(100% / var(--total-buttons) - var(--button-margin) * 2);
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: var(--br-extra-large);
-  font-size: 20px;
+  font-size: clamp(16px, 3vw, 20px);
   font-family: var(--sfd);
-  padding: 0 10px;
+  padding: 0 clamp(5px, 2vw, 10px);
   z-index: 1;
   color: #007aff;
   background-color: #ffffff;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 clamp(1px, 0.5vw, 2px) clamp(1px, 0.5vw, 2px) 0
+    rgba(0, 0, 0, 0.25);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-@media (max-width: 375px) {
-  .game {
-    --button-height: 32px;
-  }
-}
-
-/* .game .control_btns button:disabled {
-  background-color: #0002;
-  color: #fff5;
-} */
-
-/* .game .control_btns .take {
-  background: #ff6464;
-} */
-
-/* .game .control_btns .cheat {
-  background: var(--native-blue);
-} */
-
-/* .game .control_btns .pass {
-  background: var(--white);
-  color: var(--black);
-} */
-
 /* game cards */
 .game .game_card {
   display: block;
-  width: 19.3236714976vw;
+  width: var(--card-width);
   aspect-ratio: 2/3;
   background-size: 100% 100%;
   position: fixed;
-  transform: translate(-35px, calc(50vh - 60px));
+  transform: translate(clamp(-20px, -5vw, -35px), calc(50vh - 60px));
   top: 0;
   left: 0;
-  border-radius: 4px;
+  border-radius: clamp(2px, 1vw, 4px);
   z-index: 100;
 }
 
@@ -166,22 +141,7 @@ body {
   background-size: cover;
   transition: opacity 0.2s ease, background 0.3s ease;
   transition-delay: 0.1s;
-  border-radius: 4px;
-}
-
-.game .open-card::after {
-  opacity: 0;
-  /* background-image: none; */
-}
-
-.game .b-card::after {
-  background-image: none;
-  background: #000;
-  opacity: 0.5;
-}
-
-.game .open-card {
-  box-shadow: 0 0 10px #0005;
+  border-radius: clamp(2px, 1vw, 4px);
 }
 
 /* change_card */
@@ -195,7 +155,163 @@ body {
   background-image: url(../res/cards/changeCard.svg);
   background-size: 100% 100%;
   transform-origin: center center;
-  transform: translate(calc(50vw - 40px), calc(50vh - 60px));
+  transform: translate(calc(50vw - clamp(20px, 5vw, 40px)), calc(50vh - 60px));
+}
+
+/* timer */
+.timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 20vh;
+  width: clamp(40px, 10vw, 52px);
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  margin-top: clamp(30px, 8vh, 50px);
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.3s ease;
+  --timer-dur: 10s;
+}
+
+.timer span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  font-size: clamp(30px, 8vw, 40px);
+  color: #26ff0a;
+  z-index: 2;
+}
+
+.timer span::before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: clamp(20px, 5vw, 26px) solid #d9d9d970;
+  transform: scale(1.2) rotate(45deg);
+  z-index: -1;
+}
+
+/* Emoji styles */
+.game .emoji_popup {
+  position: fixed;
+  bottom: clamp(60px, 15vh, 80px);
+  left: 50%;
+  padding: 1px;
+  transform: translateX(-50%) translateY(20px);
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: clamp(5px, 2vw, 10px);
+  box-shadow: 0 0 clamp(5px, 2vw, 10px) rgba(0, 0, 0, 0.2);
+  display: flex;
+  gap: clamp(5px, 2vw, 10px);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+}
+
+.game .emoji_popup.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  animation: popupAppear 0.3s ease;
+}
+
+.game .emoji_button {
+  background: none;
+  border: none;
+  padding: clamp(5px, 2vw, 10px);
+  border-radius: clamp(6px, 2vw, 12px);
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.game .emoji_button img {
+  width: clamp(30px, 8vw, 40px);
+  height: clamp(30px, 8vw, 40px);
+}
+
+.game .selected_emoji {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  bottom: clamp(100px, 25vh, 140px);
+  z-index: 1001;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.game .selected_emoji.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  animation: emojiAppear 0.3s ease;
+}
+
+.game .selected_emoji.hide {
+  animation: emojiDisappear 0.3s ease forwards;
+}
+
+.game .selected_emoji img {
+  width: clamp(40px, 10vw, 60px);
+  height: clamp(40px, 10vw, 60px);
+}
+
+.player-emoji {
+  position: absolute;
+  top: clamp(-20px, -5vw, -30px);
+  left: 50%;
+  transform: translateX(-50%);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.player-emoji img {
+  width: clamp(20px, 5vw, 30px);
+  height: clamp(20px, 5vw, 30px);
+}
+
+@keyframes popupAppear {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(clamp(10px, 3vw, 20px));
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes emojiAppear {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(clamp(10px, 3vw, 20px)) scale(0.8);
+  }
+  50% {
+    transform: translateX(-50%) translateY(0) scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+@keyframes emojiDisappear {
+  0% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(clamp(-10px, -3vw, -20px)) scale(0.8);
+  }
 }
 
 /* / */
@@ -273,158 +389,4 @@ body {
   100% {
     clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
   }
-}
-
-/* player-self */
-.game .player_self {
-  display: block;
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-}
-
-/* Game.module.css */
-.game .control_btns .react {
-  color: #007aff;
-  background-color: #ffffff;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-}
-
-.game .control_btns .react:focus-within {
-  transform: scale(0.95);
-  background-color: #cbcbcb;
-}
-
-/* Стили для попапа с эмодзи */
-.game .emoji_popup {
-  position: fixed;
-  bottom: 80px;
-  left: 50%;
-  padding: 1px;
-  transform: translateX(-50%) translateY(20px);
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  display: flex;
-  gap: 10px;
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-}
-
-.game .emoji_popup.show {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0);
-  animation: popupAppear 0.3s ease;
-}
-
-@keyframes popupAppear {
-  0% {
-    opacity: 0;
-    transform: translateX(-50%) translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-}
-
-.game .emoji_button {
-  background: none;
-  border: none;
-  padding: 10px;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.game .emoji_button:hover {
-  background-color: #54a0f6;
-}
-
-.game .emoji_button:active {
-  transform: scale(0.95);
-  opacity: 0.8;
-}
-
-.game .emoji_button img {
-  width: 40px;
-  height: 40px;
-}
-
-/* Стили для выбранного emoji */
-.game .selected_emoji {
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%) translateY(20px);
-  bottom: 140px;
-  z-index: 1001;
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.game .selected_emoji.show {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-  animation: emojiAppear 0.3s ease;
-}
-
-.game .selected_emoji.hide {
-  animation: emojiDisappear 0.3s ease forwards;
-}
-
-.game .selected_emoji img {
-  width: 60px;
-  height: 60px;
-}
-
-@keyframes emojiAppear {
-  0% {
-    opacity: 0;
-    transform: translateX(-50%) translateY(20px) scale(0.8);
-  }
-  50% {
-    transform: translateX(-50%) translateY(0) scale(1.2);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0) scale(1);
-  }
-}
-
-@keyframes emojiDisappear {
-  0% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(-50%) translateY(-20px) scale(0.8);
-  }
-}
-
-.player-emoji {
-  position: absolute;
-  top: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.player-emoji.show {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-.player-emoji.hide {
-  opacity: 0;
-  transform: translateX(-50%) translateY(-20px);
-}
-
-.player-emoji img {
-  width: 30px;
-  height: 30px;
 }

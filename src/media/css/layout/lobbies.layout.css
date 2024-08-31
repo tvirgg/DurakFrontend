@@ -6,7 +6,7 @@
 }
 
 .lobbies .page_title span {
-  font-size: 18px;
+  font-size: clamp(16px, 2vw, 18px);
 }
 
 .lobbies .check {
@@ -14,7 +14,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  margin-bottom: 10px;
+  margin-bottom: clamp(5px, 1vw, 10px);
 }
 
 .lobbies .check .vall {
@@ -22,18 +22,18 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
   font-weight: 500;
 }
 
 .lobbies .check .vall .icon {
-  width: 40px;
+  width: clamp(30px, 4vw, 40px);
   height: auto;
 }
 
 .number-cards {
   display: flex;
-  gap: 8px;
+  gap: clamp(4px, 1vw, 8px);
   width: 100%;
   justify-content: space-around;
 }
@@ -47,17 +47,15 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  min-width: 80px;
-  height: 40px;
-  padding: 5px 12px;
+  min-width: clamp(60px, 8vw, 80px);
+  height: clamp(30px, 4vw, 40px);
+  padding: clamp(3px, 0.5vw, 5px) clamp(8px, 1.2vw, 12px);
   background: var(--cb);
   color: var(--black);
-  font-size: 20px;
+  font-size: clamp(16px, 2vw, 20px);
   text-align: center;
   border-radius: var(--br-small);
 }
-
-/* / */
 
 .progress-bar {
   touch-action: none;
@@ -66,7 +64,7 @@
   flex-direction: column;
   width: 100%;
   align-items: center;
-  padding: 10px 20px;
+  padding: clamp(5px, 1vw, 10px) clamp(10px, 2vw, 20px);
 }
 
 .progress-bar .progress-track,
@@ -76,22 +74,22 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 4px;
+  padding: clamp(2px, 0.4vw, 4px);
 }
 
 .progress-bar .progress-track {
   position: relative;
   background: var(--white);
   border-radius: 4px 12px 12px 4px;
-  padding: 8px 4px;
+  padding: clamp(4px, 0.8vw, 8px) clamp(2px, 0.4vw, 4px);
 }
 
 .progress-bar .progress-track .dot {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 4px;
-  height: 4px;
+  width: clamp(2px, 0.4vw, 4px);
+  height: clamp(2px, 0.4vw, 4px);
   background: var(--black);
   border-radius: var(--br-full);
 }
@@ -111,8 +109,8 @@
   display: block;
   position: absolute;
   margin-left: -4px;
-  width: 6px;
-  height: 35px;
+  width: clamp(4px, 0.6vw, 6px);
+  height: clamp(25px, 3.5vw, 35px);
   border-radius: var(--br-small);
   background: var(--black);
 }
@@ -121,11 +119,83 @@
 .lobbies .btn_bar {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: clamp(5px, 1vw, 10px);
   position: fixed;
   bottom: 0;
   left: 0;
-  padding: 7px;
+  padding: clamp(5px, 0.7vw, 7px);
   width: 100%;
   z-index: 90;
+}
+
+.create_window {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.5vw, 20px);
+  padding: clamp(10px, 2vw, 20px);
+}
+
+.create_window p {
+  font-size: clamp(14px, 1.8vw, 18px);
+  font-weight: 500;
+}
+
+.bid, .game_type {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(5px, 1vw, 10px);
+}
+
+.bid input, .game_type input {
+  display: none;
+}
+
+.bid label, .game_type label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(5px, 1vw, 10px) clamp(10px, 2vw, 20px);
+  background: var(--cb);
+  color: var(--black);
+  font-size: clamp(14px, 1.8vw, 18px);
+  border-radius: var(--br-small);
+  cursor: pointer;
+}
+
+.game_type label {
+  flex: 1 1 calc(50% - clamp(5px, 1vw, 10px));
+}
+
+.btns_wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: clamp(10px, 2vw, 20px);
+}
+
+.reset_button, .apply_button {
+  flex: 1;
+  padding: clamp(8px, 1.5vw, 15px);
+  font-size: clamp(14px, 1.8vw, 18px);
+  border-radius: var(--br-small);
+  cursor: pointer;
+}
+
+.reset_button {
+  background: var(--cb);
+  color: var(--black);
+}
+
+.apply_button {
+  background: var(--blue-light);
+  color: var(--white);
+}
+
+.create_btn {
+  width: 100%;
+  padding: clamp(10px, 2vw, 20px);
+  font-size: clamp(16px, 2vw, 20px);
+  background: var(--blue-light);
+  color: var(--white);
+  border-radius: var(--br-medium);
+  cursor: pointer;
 }
