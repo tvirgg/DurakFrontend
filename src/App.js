@@ -23,6 +23,9 @@ function App({ intlProviderValue }) {
       let response;
 
       try {
+        if (loading === false) {
+          return;
+        }
         await initUser().then(() => {
           setLoading(false);
         });
