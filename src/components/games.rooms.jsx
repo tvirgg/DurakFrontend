@@ -1,38 +1,38 @@
-import React from "react";
-import "../media/css/component/games.rooms.css";
-import "../media/css/component/rooms.list.css";
-import IconSearch from "../components/icons/search";
-import IconFilter from "../components/icons/filter";
-import IconChevronRight from "./icons/chevronRight";
-import IconArrowDegRight from "./icons/arrowDegRight";
-import IconPlayWhite from "./icons/playWhite";
-import IconDur from "./icons/dur";
-import IconAlertCircle from "./icons/alertCircle";
-import IconRefresh from "./icons/refresh";
-import IconCoin from "./icons/coin";
-import PostRequester from "../PostRequester";
+import React from 'react'
+import '../media/css/component/games.rooms.css'
+import '../media/css/component/rooms.list.css'
+import IconSearch from '../components/icons/search'
+import IconFilter from '../components/icons/filter'
+import IconChevronRight from './icons/chevronRight'
+import IconArrowDegRight from './icons/arrowDegRight'
+import IconPlayWhite from './icons/playWhite'
+import IconDur from './icons/dur'
+import IconAlertCircle from './icons/alertCircle'
+import IconRefresh from './icons/refresh'
+import IconCoin from './icons/coin'
+import PostRequester from '../PostRequester'
 //
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 //
-import FilterWindow from "../components/lobbies.filter.window";
+import FilterWindow from '../components/lobbies.filter.window'
 
 //
 const GamesRooms = ({ roomsData }) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const connectToGame = async (id) => {
-    console.log(id, "connectToGame");
-    await PostRequester("/game/connect", { gameId: id });
-  };
+    console.log(id, 'connectToGame')
+    await PostRequester('/game/connect', { gameId: id })
+  }
 
   const linkLobbies = () => {
-    navigate("/lobbies");
-  };
+    navigate('/lobbies')
+  }
 
   const toggleSearchBar = () => {
-    const bar = document.querySelector(".search_bar");
-    bar.classList.toggle("search_bar_active");
-  };
+    const bar = document.querySelector('.search_bar')
+    bar.classList.toggle('search_bar_active')
+  }
 
   // const roomsData = [
   //   {
@@ -92,45 +92,56 @@ const GamesRooms = ({ roomsData }) => {
   // ];
 
   const getPriceContent = (price, currency) => {
-    if (price === null || price === 0) return "Free";
-    if (currency === "premium")
+    if (price === null || price === 0) return 'Free'
+    if (currency === 'premium')
       return (
         <>
           {price}
           <IconDur />
         </>
-      );
-    if (currency === "usual")
+      )
+    if (currency === 'usual')
       return (
         <>
           {price}
           <IconCoin />
         </>
-      );
-    return price;
-  };
+      )
+    return price
+  }
   const toggleFilter = () => {
-    let w = document.querySelector(".filter_window"),
-      btns = document.querySelector(".btn_bar");
-    w.classList.toggle("filter_window_active");
-    btns.classList.toggle("fmode");
-  };
+    let w = document.querySelector('.filter_window'),
+      btns = document.querySelector('.btn_bar')
+    w.classList.toggle('filter_window_active')
+    btns.classList.toggle('fmode')
+  }
   return (
     <div className="rooms">
       {/* Header */}
       <header className="header anim_sjump">
         <div className="row">
           <h2 className="title">Rooms:</h2>
-          <button className="btn_create" onClick={linkLobbies}>
-            Create game
-          </button>
-          <div className="btns">
-            <button className="btn_search" onClick={toggleSearchBar}>
-              <IconSearch />
+          <div className="right-group">
+            <button
+              className="btn_create"
+              onClick={linkLobbies}
+            >
+              Create game
             </button>
-            <button className="btn_filter" onClick={toggleFilter}>
-              <IconFilter />
-            </button>
+            <div className="btns">
+              <button
+                className="btn_search"
+                onClick={toggleSearchBar}
+              >
+                <IconSearch />
+              </button>
+              <button
+                className="btn_filter"
+                onClick={toggleFilter}
+              >
+                <IconFilter />
+              </button>
+            </div>
           </div>
         </div>
         <div className="search_bar">
@@ -147,7 +158,10 @@ const GamesRooms = ({ roomsData }) => {
       {/* list */}
       <div className="rooms_list anim_sjump">
         {roomsData.map((room) => (
-          <div className="room" key={room.gameId}>
+          <div
+            className="room"
+            key={room.gameId}
+          >
             <div className="gr">
               <div className="price">
                 {getPriceContent(room.betAmount, room.betType)}
@@ -156,13 +170,13 @@ const GamesRooms = ({ roomsData }) => {
             </div>
             <div className="info">
               <div className="corner">
-                {room.type === "CLASSIC" ? (
+                {room.type === 'CLASSIC' ? (
                   <IconPlayWhite />
-                ) : room.type === "PODKIDNOY" ? (
+                ) : room.type === 'PODKIDNOY' ? (
                   <IconArrowDegRight />
-                ) : room.type === "PEREVODNOY" ? (
+                ) : room.type === 'PEREVODNOY' ? (
                   <IconRefresh />
-                ) : room.type === "SHULLERS" ? (
+                ) : room.type === 'SHULLERS' ? (
                   <IconAlertCircle />
                 ) : null}
                 {/* {room.players_count < room.players_limit ? (
@@ -186,7 +200,7 @@ const GamesRooms = ({ roomsData }) => {
       </div>
       {/* / */}
     </div>
-  );
-};
+  )
+}
 
-export default GamesRooms;
+export default GamesRooms

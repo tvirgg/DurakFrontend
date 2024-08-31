@@ -1,7 +1,14 @@
 /* rooms css */
 .rooms {
-  --btn-bg: #D8D8D8;
-  --name-color: #ADADAD;
+  --btn-bg: #d8d8d8;
+  --name-color: #adadad;
+  --bg-color: #333333;
+  --text-color: #ffffff;
+  --accent-color: #4caf50;
+  --input-bg-color: rgba(255, 255, 255, 0.1);
+  --input-border-color: rgba(255, 255, 255, 0.2);
+  --placeholder-color: rgba(255, 255, 255, 0.5);
+  --btn-bg-hover: #bdbdbd;
   display: flex;
   flex-direction: column;
   padding: 8px;
@@ -11,6 +18,8 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 7px;
+  padding: 16px;
+  border-radius: var(--br-medium);
 }
 
 .rooms .header .row {
@@ -26,6 +35,13 @@
   display: flex;
   font-size: 40px;
   font-weight: 400;
+  color: var(--text-color);
+}
+
+.rooms .header .right-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .rooms .header .btns {
@@ -35,12 +51,18 @@
 
 .rooms .header .btn_create {
   display: block;
-  width: 100%;
-  height: 100%;
   font-size: 20px;
-  padding: 6px;
+  padding: 6px 12px;
   border-radius: var(--br-medium);
   background: var(--btn-bg);
+  color: #000;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.rooms .header .btn_create:hover {
+  background-color: var(--btn-bg-hover);
 }
 
 .rooms .header .btn_search,
@@ -51,10 +73,16 @@
   width: auto;
   height: 100%;
   padding: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--br-small);
+  transition: background-color 0.3s ease;
 }
 
-.rooms .header .btn_filter {
-  height: 100%;
+.rooms .header .btn_search:hover,
+.rooms .header .btn_filter:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .rooms .header .btn_filter svg {
@@ -67,17 +95,84 @@
   max-height: 0;
   overflow: hidden;
   position: relative;
-  transition: max-height 1s ease-in-out;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out,
+    margin-top 0.3s ease-out;
+  opacity: 0;
+  margin-top: 0;
 }
 
 .rooms .header .search_bar_active {
-  max-height: 1000px;
+  max-height: 50px;
+  opacity: 1;
+  margin-top: 16px;
 }
 
 .rooms .header .search_input {
   display: block;
   width: 100%;
-  padding: 10px;
-  font-size: 20px;
+  padding: 12px 16px;
+  font-size: 16px;
   border-radius: var(--br-medium);
+  background-color: var(--input-bg-color);
+  border: 1px solid var(--input-border-color);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.rooms .header .search_input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.rooms .header .search_input::placeholder {
+  color: var(--placeholder-color);
+}
+
+@media (max-width: 768px) {
+  .rooms .header .row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .rooms .header .right-group {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 16px;
+  }
+
+  .rooms .header .search_bar {
+    margin-top: 16px;
+  }
+
+  .rooms .header .title {
+    font-size: 32px;
+  }
+
+  .rooms .header .btn_create {
+    font-size: 16px;
+    padding: 8px 12px;
+  }
+
+  .rooms .header .btn_search,
+  .rooms .header .btn_filter {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rooms .header .right-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .rooms .header .btns {
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+
+  .rooms .header .btn_create {
+    width: 100%;
+    margin-bottom: 8px;
+  }
 }
