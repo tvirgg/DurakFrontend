@@ -1,24 +1,66 @@
 import React from 'react'
 import '../media/css/page/lobbies.create.css'
 // import IconAlertCircle from "../components/icons/alertCircle";
+<<<<<<< HEAD
 import IconArrowDegRight from '../components/icons/arrowDegRight'
 import IconRefresh from '../components/icons/refresh'
+=======
+import IconPlayWhite from "../components/icons/playWhite";
+import IconArrowDegRight from "../components/icons/arrowDegRight";
+import IconRefresh from "../components/icons/refresh";
+import IconAlertCircle from "../components/icons/alertCircle";
+>>>>>>> 4eda6d4edbcd88f9da5bc8973adad68d170f1463
 // UI
 import ProgressBar from '../components/ui/progressBar'
 
 // data
 import LobbiesLayout from '../layouts/lobbies.layout'
 // -
+import axios from "axios";
+import ShowPopup from "../ShowPopup";
+import config from "../config";
+import PostRequester from "../PostRequester";
+const bids = [0, 1, 10, 100, 500, 1000, 5000, 10000, 50000, 100000];
+
 const LobbiesCreate = () => {
+  const [playerAmount, setPlayerAmount] = React.useState(1);
+  const [bidCur, setBidCur] = React.useState("Free");
+  const [bidAmount, setBidAmount] = React.useState(0);
+  const [progress, setProgress] = React.useState(0);
+  const [name, setName] = React.useState("Anonim");
+  const [gameType, setGameType] = React.useState("CLASSIC");
+
+  const createGame = async () => {
+    await PostRequester("/game/create", {
+      fieldSize: (playerAmount + 1) * 6,
+      type: gameType,
+      allowedShullerMoves: gameType === "SHULLER" ? 1 : 0,
+      betAmount: bidCur === "Free" ? 0 : bidAmount,
+      betType: bidCur === "Free" ? "usual" : bidCur,
+      name: name.length > 0 ? name : "Anonimus",
+    });
+  };
+
+  const bidChanger = (value) => {
+    setBidAmount(bids[value]);
+    setProgress(value);
+  };
   return (
     <LobbiesLayout>
       <div className="create_window">
         <p>Choose number of cards</p>
         <div className="number-cards">
           <input
+<<<<<<< HEAD
             type="radio"
             id="cards1"
             name="card"
+=======
+            type="text"
+            placeholder="Enter lobby name..."
+            name="lobby_name"
+            onChange={(e) => setName(e.target.value)}
+>>>>>>> 4eda6d4edbcd88f9da5bc8973adad68d170f1463
           />
           <label htmlFor="cards1">24</label>
           <input
@@ -35,6 +77,7 @@ const LobbiesCreate = () => {
           <label htmlFor="cards3">52</label>
         </div>
         {/* players / progress-bar */}
+<<<<<<< HEAD
         <p>Amount of players</p>
         <ProgressBar values={[1, 2, 3, 4, 5, 6]} />
         {/* bid */}
@@ -52,15 +95,66 @@ const LobbiesCreate = () => {
             name="bid"
           />
           <label htmlFor="cbid2">Coins</label>
+=======
+        <p>Choose number of players</p>
+        <div className="players_number">
+          <input type="radio" id="pn1" name="players_number" />
+          <label htmlFor="pn1" onClick={() => setPlayerAmount(1)}>
+            1
+          </label>
+          <input type="radio" id="pn2" name="players_number" />
+          <label htmlFor="pn2" onClick={() => setPlayerAmount(2)}>
+            2
+          </label>
+          <input type="radio" id="pn3" name="players_number" />
+          <label htmlFor="pn3" onClick={() => setPlayerAmount(3)}>
+            3
+          </label>
+          <input type="radio" id="pn4" name="players_number" />
+          <label htmlFor="pn4" onClick={() => setPlayerAmount(4)}>
+            4
+          </label>
+          <input type="radio" id="pn5" name="players_number" />
+          <label htmlFor="pn5" onClick={() => setPlayerAmount(5)}>
+            5
+          </label>
+          <input type="radio" id="pn6" name="players_number" />
+          <label htmlFor="pn6" onClick={() => setPlayerAmount(6)}>
+            6
+          </label>
+        </div>
+        {/* bid */}
+        <p>Bids currency</p>
+        <div className="bid">
+          <input type="radio" id="cbid1" name="bid" />
+          <label htmlFor="cbid1" onClick={() => setBidCur("Free")}>
+            Free
+          </label>
+          <input type="radio" id="cbid2" name="bid" />
+          <label htmlFor="cbid2" onClick={() => setBidCur("premium")}>
+            DUR
+          </label>
+          <input type="radio" id="cbid3" name="bid" />
+          <label htmlFor="cbid3" onClick={() => setBidCur("usual")}>
+            Usual
+          </label>
+>>>>>>> 4eda6d4edbcd88f9da5bc8973adad68d170f1463
         </div>
         {/* bids */}
         <p>Bids amount</p>
         <ProgressBar
+<<<<<<< HEAD
           values={[0, 1, 10, 100, 500, '1k', '5k', '10k', '50k', '100k']}
+=======
+          values={[0, 1, 10, 100, 500, "1k", "5k", "10k", "50k", "100k"]}
+          progress={progress}
+          setProgress={bidChanger}
+>>>>>>> 4eda6d4edbcd88f9da5bc8973adad68d170f1463
         />
         {/* Game Type */}
         <p>Game Type</p>
         <div className="game_type">
+<<<<<<< HEAD
           <input
             type="radio"
             id="cgt1"
@@ -97,10 +191,30 @@ const LobbiesCreate = () => {
         <div className="btns_wrapper">
           <button className="reset_button">Reset</button>
           <button className="apply_button">Apply</button>
+=======
+          <input type="radio" id="cgt1" name="game_type" />
+          <label htmlFor="cgt1" onClick={() => setGameType("CLASSIC")}>
+            Classical <IconPlayWhite />
+          </label>
+          <input type="radio" id="cgt2" name="game_type" />
+          <label htmlFor="cgt2" onClick={() => setGameType("PEREVODNOY")}>
+            Passing <IconRefresh />
+          </label>
+          <input type="radio" id="cgt2" name="game_type" />
+          <label htmlFor="cgt2" onClick={() => setGameType("PODKIDNOY")}>
+            Throwing Extra <IconArrowDegRight />
+          </label>
+          <input type="radio" id="cgt2" name="game_type" />
+          <label htmlFor="cgt2" onClick={() => setGameType("SHULLERS")}>
+            With Shullers <IconAlertCircle />
+          </label>
+>>>>>>> 4eda6d4edbcd88f9da5bc8973adad68d170f1463
         </div>
       </div>
       <div className="btn_bar">
-        <button className="create_btn">Create game</button>
+        <button className="create_btn" onClick={createGame}>
+          Create game
+        </button>
       </div>
     </LobbiesLayout>
   )
