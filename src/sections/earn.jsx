@@ -85,7 +85,7 @@ const Earn = () => {
               alt="imgCoins"
             />
             <p className="coins">
-              <I18nText path="earn_progress" /> <IconCoin />
+              115/200 <IconCoin />
             </p>
             <span className="per">
               10/

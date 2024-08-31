@@ -1,16 +1,15 @@
-import * as React from "react";
+import * as React from 'react'
 const IconAdd = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={23}
-    height={20}
-    fill="none"
-    {...props}
+    height="24px"
+    viewBox="0 -960 960 960"
+    width="24px"
+    fill="#e8eaed"
+    stroke="#e8eaed"
+    strokeWidth="2"
   >
-    <path
-      fill="#fff"
-      d="M10.541 10.833h-5.75V9.167h5.75v-5h1.917v5h5.75v1.666h-5.75v5h-1.917v-5Z"
-    />
+    <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" />
   </svg>
-);
-export default IconAdd;
+)
+export default IconAdd

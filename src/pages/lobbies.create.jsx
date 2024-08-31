@@ -1,17 +1,13 @@
-import React from "react";
-import "../media/css/page/lobbies.create.css";
-// Import Swiper React components
-import IconEye from "../components/icons/eye";
+import React from 'react'
+import '../media/css/page/lobbies.create.css'
 // import IconAlertCircle from "../components/icons/alertCircle";
-import IconPlayWhite from "../components/icons/playWhite";
-import IconArrowDegRight from "../components/icons/arrowDegRight";
-import IconRefresh from "../components/icons/refresh";
-import IconAlertCircle from "../components/icons/alertCircle";
+import IconArrowDegRight from '../components/icons/arrowDegRight'
+import IconRefresh from '../components/icons/refresh'
 // UI
-import ProgressBar from "../components/ui/progressBar";
+import ProgressBar from '../components/ui/progressBar'
 
 // data
-import LobbiesLayout from "../layouts/lobbies.layout";
+import LobbiesLayout from '../layouts/lobbies.layout'
 // -
 import axios from "axios";
 import ShowPopup from "../ShowPopup";
@@ -45,84 +41,90 @@ const LobbiesCreate = () => {
   return (
     <LobbiesLayout>
       <div className="create_window">
-        <div className="lobby_name">
+        <p>Choose number of cards</p>
+        <div className="number-cards">
           <input
-            type="text"
-            placeholder="Enter lobby name..."
-            name="lobby_name"
-            onChange={(e) => setName(e.target.value)}
+            type="radio"
+            id="cards1"
+            name="card"
           />
+          <label htmlFor="cards1">24</label>
+          <input
+            type="radio"
+            id="cards2"
+            name="card"
+          />
+          <label htmlFor="cards2">36</label>
+          <input
+            type="radio"
+            id="cards3"
+            name="card"
+          />
+          <label htmlFor="cards3">52</label>
         </div>
         {/* players / progress-bar */}
-        <p>Choose number of players</p>
-        <div className="players_number">
-          <input type="radio" id="pn1" name="players_number" />
-          <label htmlFor="pn1" onClick={() => setPlayerAmount(1)}>
-            1
-          </label>
-          <input type="radio" id="pn2" name="players_number" />
-          <label htmlFor="pn2" onClick={() => setPlayerAmount(2)}>
-            2
-          </label>
-          <input type="radio" id="pn3" name="players_number" />
-          <label htmlFor="pn3" onClick={() => setPlayerAmount(3)}>
-            3
-          </label>
-          <input type="radio" id="pn4" name="players_number" />
-          <label htmlFor="pn4" onClick={() => setPlayerAmount(4)}>
-            4
-          </label>
-          <input type="radio" id="pn5" name="players_number" />
-          <label htmlFor="pn5" onClick={() => setPlayerAmount(5)}>
-            5
-          </label>
-          <input type="radio" id="pn6" name="players_number" />
-          <label htmlFor="pn6" onClick={() => setPlayerAmount(6)}>
-            6
-          </label>
-        </div>
+        <p>Amount of players</p>
+        <ProgressBar values={[1, 2, 3, 4, 5, 6]} />
         {/* bid */}
         <p>Bids currency</p>
         <div className="bid">
-          <input type="radio" id="cbid1" name="bid" />
-          <label htmlFor="cbid1" onClick={() => setBidCur("Free")}>
-            Free
-          </label>
-          <input type="radio" id="cbid2" name="bid" />
-          <label htmlFor="cbid2" onClick={() => setBidCur("premium")}>
-            DUR
-          </label>
-          <input type="radio" id="cbid3" name="bid" />
-          <label htmlFor="cbid3" onClick={() => setBidCur("usual")}>
-            Usual
-          </label>
+          <input
+            type="radio"
+            id="cbid1"
+            name="bid"
+          />
+          <label htmlFor="cbid1">DUR</label>
+          <input
+            type="radio"
+            id="cbid2"
+            name="bid"
+          />
+          <label htmlFor="cbid2">Coins</label>
         </div>
         {/* bids */}
         <p>Bids amount</p>
         <ProgressBar
-          values={[0, 1, 10, 100, 500, "1k", "5k", "10k", "50k", "100k"]}
-          progress={progress}
-          setProgress={bidChanger}
+          values={[0, 1, 10, 100, 500, '1k', '5k', '10k', '50k', '100k']}
         />
         {/* Game Type */}
-        <p>Type</p>
+        <p>Game Type</p>
         <div className="game_type">
-          <input type="radio" id="cgt1" name="game_type" />
-          <label htmlFor="cgt1" onClick={() => setGameType("CLASSIC")}>
-            Classical <IconPlayWhite />
+          <input
+            type="radio"
+            id="cgt1"
+            name="game_type"
+          />
+          <label htmlFor="cgt1">
+            Classical <IconArrowDegRight />
           </label>
-          <input type="radio" id="cgt2" name="game_type" />
-          <label htmlFor="cgt2" onClick={() => setGameType("PEREVODNOY")}>
+          <input
+            type="radio"
+            id="cgt2"
+            name="game_type"
+          />
+          <label htmlFor="cgt2">
             Passing <IconRefresh />
           </label>
-          <input type="radio" id="cgt2" name="game_type" />
-          <label htmlFor="cgt2" onClick={() => setGameType("PODKIDNOY")}>
-            Throwing Extra <IconArrowDegRight />
+          <input
+            type="radio"
+            id="cgt2"
+            name="game_type"
+          />
+          <label htmlFor="cgt2">
+            Throwing extra <IconRefresh />
           </label>
-          <input type="radio" id="cgt2" name="game_type" />
-          <label htmlFor="cgt2" onClick={() => setGameType("SHULLERS")}>
-            With Shullers <IconAlertCircle />
+          <input
+            type="radio"
+            id="cgt2"
+            name="game_type"
+          />
+          <label htmlFor="cgt2">
+            With schullers <IconRefresh />
           </label>
+        </div>
+        <div className="btns_wrapper">
+          <button className="reset_button">Reset</button>
+          <button className="apply_button">Apply</button>
         </div>
       </div>
       <div className="btn_bar">
@@ -131,7 +133,7 @@ const LobbiesCreate = () => {
         </button>
       </div>
     </LobbiesLayout>
-  );
-};
+  )
+}
 
-export default LobbiesCreate;
+export default LobbiesCreate

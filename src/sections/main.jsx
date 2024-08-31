@@ -10,8 +10,9 @@ import Preloader from '../includes/preloader'
 // NavBar
 import NavBar from '../components/nav.bar'
 import MenuCarousel from '../components/menu.carousel'
+import LanguageSwitcher from '../components/language.switcher'
 
-const Main = () => {
+const Main = ({ intlProviderValue }) => {
   return (
     <section className="page menu_section">
       <Preloader />
