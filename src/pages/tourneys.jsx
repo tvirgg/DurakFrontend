@@ -8,6 +8,7 @@ import IconCoin2 from '../components/icons/coin2'
 import IconCoinDUR from '../components/icons/coinDur'
 import IconChevronRightBlack from '../components/icons/chevronRightBlack'
 import IconTelegram from '../components/icons/telegram'
+import { I18nText } from '../components/i18nText'
 
 const Tourneys = () => {
   const user = {
@@ -95,8 +96,12 @@ const Tourneys = () => {
         </div>
         {/* content */}
         <div className="page_title">
-          <h1 className="title">TORNEYS</h1>
-          <span>compete and win BIG prizes</span>
+          <h1 className="title">
+            <I18nText path="torneys" />
+          </h1>
+          <span>
+            <I18nText path="torneys_desc" />
+          </span>
         </div>
         {/* list */}
         <div className="list">
@@ -120,7 +125,7 @@ const Tourneys = () => {
             className="submit_btn"
             onClick={handleJoinClick}
           >
-            Join tourney - Bid {selectedTourney?.price}
+            <I18nText path="join_torney" /> {selectedTourney?.price}
             <IconCoin2 />
             <IconChevronRightBlack className="chevron" />
           </button>
@@ -148,7 +153,7 @@ const Tourneys = () => {
               className="close_btn"
               onClick={handleCloseModal}
             >
-              Close
+              <I18nText path="user_profile_close" />
             </button>
           </div>
         </div>

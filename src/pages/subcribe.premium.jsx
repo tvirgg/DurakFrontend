@@ -8,6 +8,7 @@ import IconCheck from '../components/icons/check'
 import IconBigBlueChek from '../components/icons/bigBlueCheck'
 // img
 import ImgPremium from '../media/svg/premium.svg'
+import { I18nText } from '../components/i18nText'
 //
 
 const PagePremium = () => {
@@ -63,22 +64,29 @@ const PagePremium = () => {
                 <IconCheck />
               </div>
               <div className="title">
-                <p>6 Months</p>
+                <p>
+                  6 <I18nText path="months" />
+                </p>
                 <div className="subtext">
                   <span
                     className="old"
                     style={{ textDecoration: 'line-through' }}
                   >
-                    30 TON/half a year
+                    30 TON/
+                    <I18nText path="half_a_year" />
                   </span>
                   <br />
-                  <span className="new">25 TON/half a year</span>
+                  <span className="new">
+                    25 TON/
+                    <I18nText path="half_a_year" />
+                  </span>
                 </div>
               </div>
             </div>
             <div className="price">
               <span className="installment">-15%</span>
-              4.16 TON/month
+              4.16 TON/
+              <I18nText path="month" />
             </div>
           </label>
 
@@ -94,78 +102,100 @@ const PagePremium = () => {
                 <IconCheck />
               </div>
               <div className="title">
-                <p>Annual</p>
+                <p>
+                  <I18nText path="annual" />
+                </p>
                 <div className="subtext">
                   <span
                     className="old"
                     style={{ textDecoration: 'line-through' }}
                   >
-                    60 TON/year
+                    60 TON/
+                    <I18nText path="year" />
                   </span>
                   <br />
-                  <span className="new">45 TON/year</span>
+                  <span className="new">
+                    45 TON/
+                    <I18nText path="year" />
+                  </span>
                 </div>
               </div>
             </div>
             <div className="price">
               <span className="installment">-25%</span>
-              3.75 TON/month
+              3.75 TON/
+              <I18nText path="month" />
             </div>
           </label>
         </div>
         {/* Features */}
         <div className="group anim_sjump">
-          <p className="card_title">Features</p>
+          <p className="card_title">
+            <I18nText path="features" />
+          </p>
           <div className="card features">
             {/* rows */}
             <div className="row">
               <IconBigBlueChek />
               <div className="title">
                 <p>+100% XP</p>
-                <span className="subtext">Get +100% Rating for each game</span>
-              </div>
-            </div>
-            <div className="row">
-              <IconBigBlueChek />
-              <div className="title">
-                <p>+50% XP for all players</p>
                 <span className="subtext">
-                  Every player in the room with you gets +50% Rating for each
-                  game
+                  <I18nText path="100_percent_xp" />
                 </span>
               </div>
             </div>
             <div className="row">
               <IconBigBlueChek />
               <div className="title">
-                <p>Priority</p>
+                <p>
+                  <I18nText path="50_percent_xp" />
+                </p>
                 <span className="subtext">
-                  Your rooms are always at the top of the list of games
+                  <I18nText path="50_percent_buff" />
                 </span>
               </div>
             </div>
             <div className="row">
               <IconBigBlueChek />
               <div className="title">
-                <p>Help during games</p>
+                <p>
+                  <I18nText path="priority" />
+                </p>
                 <span className="subtext">
-                  We help you with the best advice on how to play
+                  <I18nText path="always_on_top" />
                 </span>
               </div>
             </div>
             <div className="row">
               <IconBigBlueChek />
               <div className="title">
-                <p>Bonuses for friends</p>
+                <p>
+                  <I18nText path="help_games" />
+                </p>
                 <span className="subtext">
-                  Invite friends and get more bonuses for yourself and them
+                  <I18nText path="help_desc" />
+                </span>
+              </div>
+            </div>
+            <div className="row">
+              <IconBigBlueChek />
+              <div className="title">
+                <p>
+                  {' '}
+                  <I18nText path="friend_bonuses" />
+                </p>
+                <span className="subtext">
+                  <I18nText path="friend_desc" />
                 </span>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <button className="subcribe_btn anim_sjump">Subcribe</button>
+      <button className="subcribe_btn anim_sjump">
+        {' '}
+        <I18nText path="subscribe" />
+      </button>
     </section>
   )
 }
