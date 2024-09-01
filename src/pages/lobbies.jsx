@@ -24,6 +24,7 @@ const Lobbies = () => {
   }
 
   const [filter, setFilter] = useState('open')
+  const [isFilterOpen, setIsFilterOpen] = useState(false)
 
   const getPriceLabel = (price, currency) => {
     if (price === null) return 'Free'
@@ -38,6 +39,7 @@ const Lobbies = () => {
       btns = document.querySelector('.btn_bar')
     w.classList.toggle('filter_window_active')
     btns.classList.toggle('fmode')
+    setIsFilterOpen(!isFilterOpen)
   }
 
   return (
@@ -59,7 +61,10 @@ const Lobbies = () => {
           {/* / */}
           {/* filter window */}
           {/* / */}
-          <FilterWindow />
+          <FilterWindow
+            isOpen={isFilterOpen}
+            onClose={() => setIsFilterOpen(false)}
+          />
           {/* / */}
           {/* / */}
           {/* / */}
@@ -114,15 +119,18 @@ const Lobbies = () => {
       </div>
       {/* / */}
       {/* btn_bar */}
-      <div className="btn_bar">
-        <button
-          className="create_btn"
-          onClick={linkLobbiesCreate}
-        >
-          <I18nText path="create_lobby_button" />
-          <IconChevronRightBlack />
-        </button>
-      </div>
+      {/* btn_bar */}
+      {!isFilterOpen && (
+        <div className="btn_bar">
+          <button
+            className="create_btn"
+            onClick={linkLobbiesCreate}
+          >
+            <I18nText path="create_lobby_button" />
+            <IconChevronRightBlack />
+          </button>
+        </div>
+      )}
     </LobbiesLayout>
   )
 }

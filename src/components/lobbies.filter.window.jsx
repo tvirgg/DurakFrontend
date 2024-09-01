@@ -7,7 +7,7 @@ import ProgressBar from './ui/progressBar'
 import { XLg } from 'react-bootstrap-icons'
 import { I18nText } from './i18nText'
 
-const FilterWindow = ({ isOpen, onClose }) => {
+const FilterWindow = ({ isOpen, onClose, onReset, onApply }) => {
   return (
     <div className={`filter_window ${isOpen ? 'filter_window_active' : ''}`}>
       <button
