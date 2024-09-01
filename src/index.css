@@ -92,7 +92,7 @@ body {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  overscroll-behavior: none;
+  overscroll-behavior: contain;
   /* Отключение горизонтальной прокрутки */
   overflow-x: hidden;
   /* Для плавного скролла на iOS */
@@ -146,11 +146,12 @@ button:active {
 
 .container {
   display: flex;
-  position: relative;
   flex-direction: column;
   gap: 12px;
   width: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
+  flex: 1;
+  position: relative;
   padding: var(--container-padding) var(--container-padding) 0px
     var(--container-padding);
 }
@@ -314,6 +315,12 @@ button:active {
 .page .profile_section {
   display: flex;
   flex: 1 1 0%;
+}
+
+.page .menu_section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .row_container {
