@@ -45,14 +45,7 @@ const Games = () => {
               {/* rooms */}
               <GamesRooms roomsData={data} />
               {/* / */}
-              <div className="btn_bar">
-                <button className="reset">
-                  <I18nText path="reset_button" />
-                </button>
-                <button className="apply">
-                  <I18nText path="apply_button" />
-                </button>
-              </div>
+
               {/* nav */}
             </div>
           </section>

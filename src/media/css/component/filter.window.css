@@ -8,7 +8,7 @@
   position: fixed;
   background: #1e3645;
   width: 100%;
-  max-width: 600px;
+  max-width: 95vw;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -55,6 +55,17 @@
   gap: clamp(5px, 2vw, 10px);
 }
 
+.filter_window .bid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-inline: 2vw;
+}
+
+.filter_window .bid label {
+  width: 10vw !important;
+}
+
 .filter_window .cards_number input {
   display: none;
 }
@@ -65,7 +76,23 @@
   flex: 1 1 auto;
   min-width: clamp(60px, 20vw, 140px);
   padding: clamp(8px, 2vw, 12px) clamp(15px, 4vw, 30px);
-  font-size: clamp(16px, 3vw, 20px);
+  font-size: clamp(14px, 3vw, 18px);
+  text-align: center;
+  background-color: #cbcbcb;
+  border-radius: 6px;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(6px, 1vw, 12px);
+}
+
+.filter_window .cards_number label {
+  flex: 0 1 auto;
+  width: clamp(40px, calc(15vw + 40px), 140px);
+  height: clamp(20px, calc(12.5vw + 20px), 60px);
+  padding: 0;
+  font-size: clamp(14px, calc(1vw + 10px), 18px);
   text-align: center;
   background-color: #cbcbcb;
   border-radius: 6px;
@@ -85,7 +112,7 @@
 }
 
 .filter_window .game_type {
-  padding: 0 clamp(5px, 2vw, 15px);
+  padding-inline: 2vw;
   margin-bottom: clamp(5px, 2vh, 8px);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -145,7 +172,6 @@
   .filter_window .bid label,
   .filter_window .game_type label {
     padding: 8px 15px;
-    font-size: 16px;
     min-width: 80px;
   }
 

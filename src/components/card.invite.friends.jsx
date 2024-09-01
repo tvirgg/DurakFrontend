@@ -26,7 +26,7 @@ const CardInviteFriends = () => {
             <I18nText path="friends" />
           </span>
         </h1>
-        <div className='wrapper'>
+        <div className="wrapper">
           <h3 className="sub">
             <I18nText path="invite_friends_subtitle" />
           </h3>
