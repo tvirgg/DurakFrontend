@@ -42,17 +42,18 @@
 
 .user_info {
   flex: 1;
-  min-width: 200px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   font-size: 15px;
+  width: fit-content;
 }
 
 .user_name {
   position: relative;
   display: flex;
   align-items: center;
+  width: fit-content;
 }
 
 .user_name .icon {
@@ -62,6 +63,7 @@
 .user_status {
   display: flex;
   align-items: center;
+  width: fit-content;
 }
 
 .user_status svg {
@@ -70,7 +72,7 @@
 
 .balance_info {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   align-items: center;
 }
 
@@ -84,13 +86,14 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: clamp(12px, 2vw, 14px);
+  font-size: clamp(11px, 2vw, 14px);
 }
 
 .premium_usdt {
   display: flex;
   gap: 6px;
   align-items: center;
+  width: fit-content;
 }
 
 .user_profile .user_info .cancel_premium {
@@ -104,11 +107,12 @@
   border-radius: var(--br-medium);
   color: var(--white);
   padding: 2px 12px;
-  font-size: clamp(12px, 2vw, 14px);
+  font-size: clamp(11px, 2vw, 14px);
 }
 
 .usdt {
-  font-size: clamp(12px, 2vw, 14px);
+  font-size: clamp(11px, 2vw, 14px);
+  width: fit-content;
 }
 
 .usdt span {

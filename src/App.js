@@ -3,7 +3,6 @@ import './app.css'
 import './media/css/animations.css'
 // Routes
 import Routes from './router/routes'
-import LanguageSwitcher from './components/language.switcher'
 import Providers from './Prodivers'
 import Preloader from './includes/preloader'
 import initUser from './initUser'

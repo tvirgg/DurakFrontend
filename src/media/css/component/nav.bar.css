@@ -1,7 +1,6 @@
 .navbar {
   display: flex;
   justify-content: space-around;
-  padding: 5px 10px;
   position: fixed;
   margin-top: auto;
   bottom: 7px;
@@ -11,7 +10,8 @@
   border-radius: var(--br-extra-large);
   overflow: hidden;
   z-index: 100;
-  margin-inline: 0.375rem;
+  max-width: 600px;
+  margin-inline: auto;
   margin-bottom: 0.625rem;
 }
 
