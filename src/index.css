@@ -182,7 +182,7 @@ button:active {
 /** lang switcher */
 .lang-switcher {
   position: absolute;
-  z-index: 9999;
+  z-index: 999;
   right: 10px;
   top: 10px;
 }
