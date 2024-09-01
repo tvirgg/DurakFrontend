@@ -3,7 +3,7 @@
   --btn-active-bg: #7b878e;
   --btn-submit-bg: #51c4ff;
 
-  min-height: 100vh;
+  min-height: 100dvh;
   font-size: clamp(16px, 2vw, 20px);
 }
 

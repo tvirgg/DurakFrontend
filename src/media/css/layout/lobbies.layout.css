@@ -2,7 +2,7 @@
   display: block;
   width: 100%;
   background: var(--gradient-p);
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .lobbies .page_title span {
@@ -140,17 +140,20 @@
   font-weight: 500;
 }
 
-.bid, .game_type {
+.bid,
+.game_type {
   display: flex;
   flex-wrap: wrap;
   gap: clamp(5px, 1vw, 10px);
 }
 
-.bid input, .game_type input {
+.bid input,
+.game_type input {
   display: none;
 }
 
-.bid label, .game_type label {
+.bid label,
+.game_type label {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -172,7 +175,8 @@
   gap: clamp(10px, 2vw, 20px);
 }
 
-.reset_button, .apply_button {
+.reset_button,
+.apply_button {
   flex: 1;
   padding: clamp(8px, 1.5vw, 15px);
   font-size: clamp(14px, 1.8vw, 18px);

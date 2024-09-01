@@ -1,11 +1,17 @@
 .premium {
-  --bg-gradien: linear-gradient(0deg, #1D323F, #347CA2);
-  --card-bg: #1F3F52;
-  --subtext-color: #DEDEDE;
-  --btn-gradient: linear-gradient(90deg, #737BDB 0%, #818DF8 23.5%, #7167FF 62.5%, #AC71FF 96%);
+  --bg-gradien: linear-gradient(0deg, #1d323f, #347ca2);
+  --card-bg: #1f3f52;
+  --subtext-color: #dedede;
+  --btn-gradient: linear-gradient(
+    90deg,
+    #737bdb 0%,
+    #818df8 23.5%,
+    #7167ff 62.5%,
+    #ac71ff 96%
+  );
   background: var(--bg-gradien);
   display: block;
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .premium .container {
@@ -53,12 +59,12 @@
   display: none;
 }
 
-.premium .container .offers input:checked+label .crc {
+.premium .container .offers input:checked + label .crc {
   border: 2px solid var(--native-blue);
   background: var(--native-blue);
 }
 
-.premium .container .offers input:checked+label .crc svg {
+.premium .container .offers input:checked + label .crc svg {
   transform: scale(1);
 }
 
@@ -152,8 +158,6 @@
   gap: 0;
 }
 
-
-
 .premium .container .features .row {
   display: flex;
   flex-direction: row;
@@ -193,5 +197,4 @@
   letter-spacing: 1px;
   bottom: 7px;
   left: 7px;
-
 }

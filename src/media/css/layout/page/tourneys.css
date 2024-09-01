@@ -1,13 +1,13 @@
 .tourneys {
   --bg-color: var(--gradient-p);
-  --card-color1: #78BBB4;
-  --card-color2: #A14DBE;
-  --btn-submit-bg: #51C4FF;
+  --card-color1: #78bbb4;
+  --card-color2: #a14dbe;
+  --btn-submit-bg: #51c4ff;
   display: block;
   width: 100%;
   height: auto;
   background: var(--bg-color);
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .tourneys .container {
@@ -133,8 +133,6 @@
 .tourneys .modal_active {
   display: flex;
 }
-
-
 
 .tourneys .modal .window {
   display: flex;
