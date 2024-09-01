@@ -127,7 +127,7 @@ const PageWithDraw = () => {
               className="btn_submit"
               type="submit"
             >
-              Sell
+              <I18nText path="sell" />
             </button>
           </div>
         </form>
