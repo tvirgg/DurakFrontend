@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 // css
 import '../media/css/profile.css'
 // components
@@ -18,13 +18,14 @@ import { useIntlProvider } from '../Prodivers'
 
 const Profile = () => {
   const intlProviderValue = useIntlProvider()
+  const [navBarVisible, setNavBarVisible] = useState(true)
 
   return (
     <>
       <section className="page profile_section pb-80">
         <Preloader />
         <div className="container">
-        <LanguageSwitcher onChange={intlProviderValue.setLocale} />
+          <LanguageSwitcher onChange={intlProviderValue.setLocale} />
           {/* profile */}
           <CardUserProfile />
           {/* customs bar */}
@@ -36,11 +37,10 @@ const Profile = () => {
           {/* friends */}
           <ProfileFriends />
           {/* modal / windows */}
-          <ProfileWindows />
-          {/* navbar */}
+          <ProfileWindows setNavBarVisible={setNavBarVisible} />
         </div>
       </section>
-      <NavBar />
+      {navBarVisible && <NavBar />}
     </>
   )
 }
