@@ -1,10 +1,8 @@
 .profile_section .profile_customs {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(clamp(80px, 45%, 150px), 1fr)
-  );
+  grid-template-columns: repeat(4, 1fr);
   gap: clamp(5px, 1vw, 10px);
+  width: 100%;
 }
 
 .profile_section .profile_customs .btn {
@@ -17,15 +15,17 @@
   background: var(--bg4);
   border-radius: var(--br-small);
   aspect-ratio: 1 / 1;
+  padding: 10%;
 }
 
 .profile_section .profile_customs .btn img {
   display: block;
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: auto;
+  left: 10%; /* Отступ слева */
+  top: 10%; /* Отступ сверху */
+  width: 80%; /* Уменьшаем ширину изображения */
+  height: 80%; /* Уменьшаем высоту изображения */
+  object-fit: contain; /* Сохраняем пропорции изображения */
 }
 
 .profile_section .profile_friends {

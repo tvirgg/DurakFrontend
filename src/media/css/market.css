@@ -88,21 +88,20 @@
 
 .market .products {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   gap: clamp(5px, 2vw, 10px);
-  font-size: clamp(14px, 2.5vw, 16px);
   justify-content: center;
 }
 
-@media (min-width: 380px) {
+@media (min-width: 480px) {
   .market .products {
-    grid-template-columns: repeat(2, 1fr); /* Две колонки */
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 768px) {
   .market .products {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   }
 }
 
@@ -111,10 +110,12 @@
   position: relative;
   flex-direction: column;
   width: 100%;
-  border-radius: var(--br-large);
+  border-radius: var(--br-medium);
   overflow: hidden;
   aspect-ratio: 1/1;
   background: var(--card-bg);
+  max-width: 180px; /* Увеличиваем максимальную ширину */
+  margin: 0 auto;
 }
 
 .market .products .product .img {
@@ -131,8 +132,8 @@
   position: relative;
   flex-direction: column;
   justify-content: flex-end;
-  padding: clamp(3px, 1vw, 5px);
-  gap: clamp(1px, 0.5vw, 2px);
+  padding: clamp(5px, 1.5vw, 8px);
+  gap: clamp(2px, 0.5vw, 3px);
   width: 100%;
   height: 100%;
   background: linear-gradient(0deg, #0009, transparent);
@@ -148,7 +149,7 @@
 }
 
 .market .products .product .content .title {
-  font-size: clamp(16px, 3vw, 20px);
+  font-size: clamp(16px, 3vw, 18px);
 }
 
 .market .products .product .content .price {
