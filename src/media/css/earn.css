@@ -96,6 +96,11 @@
   text-align-last: left;
 }
 
+.earn .tasks .task svg {
+  position: absolute;
+  right: clamp(3px, 1vw, 7px);
+}
+
 .earn .tasks h2 {
   padding: clamp(5px, 1.5vw, 15px);
 }
