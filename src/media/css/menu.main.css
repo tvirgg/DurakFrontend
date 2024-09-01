@@ -11,7 +11,7 @@
   background: var(--gradient2);
   border-radius: var(--br-medium);
   overflow: hidden;
-  max-height: clamp(70px, 15vw, 100px);
+  max-height: clamp(88px, 15vw, 120px);
 }
 
 .menu_section .card_premium .texts {
@@ -94,6 +94,7 @@
   border-radius: var(--br-medium);
   min-height: var(--min-height);
   color: var(--white);
+  gap: 8px;
 }
 
 .menu_section .double .card_user_rate h1,
@@ -105,8 +106,8 @@
   line-height: clamp(28px, 5vw, 40px);
   width: 100%;
   text-align: center;
-  font-size: clamp(18px, 3.5vw, 28px);
-  font-weight: 400;
+  font-size: clamp(20px, 3.5vw, 28px);
+  font-weight: 500;
 }
 
 .menu_section .double .card_user_rate img {
