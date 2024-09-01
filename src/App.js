@@ -46,7 +46,21 @@ function App({ intlProviderValue }) {
 
     auth()
     tgReady()
-  })
+
+    document.body.addEventListener('touchmove', function(e) {
+      if (e.target === document.body) {
+        e.preventDefault()
+      }
+    }, { passive: false })
+
+    return () => {
+      document.body.removeEventListener('touchmove', function(e) {
+        if (e.target === document.body) {
+          e.preventDefault()
+        }
+      })
+    }
+  }, [])
 
   return <>{loading === true ? <Preloader /> : <Routes />}</>
 }
