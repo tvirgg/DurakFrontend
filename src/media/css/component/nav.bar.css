@@ -3,7 +3,7 @@
   justify-content: space-around;
   position: fixed;
   margin-top: auto;
-  bottom: 5px;
+  bottom: 2px;
   left: 7px;
   right: 7px;
   background: var(--bg3);
@@ -25,9 +25,9 @@
   color: var(--white);
   font-weight: 400;
   flex: 1;
+  padding: 5px;
   font-size: 12px;
   margin: 0;
-  padding: 0;
 }
 
 .navbar button span {
@@ -37,7 +37,7 @@
 }
 
 .navbar button .icon {
-  max-width: 2.55rem;
+  max-width: 36px;
 }
 
 body.filter-open .navbar {
