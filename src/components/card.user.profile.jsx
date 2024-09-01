@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 // css
 import '../media/css/component/card.user.profile.css'
 // icons
@@ -19,6 +19,7 @@ import { I18nText } from './i18nText'
 const CardUserProfile = () => {
   const navigate = useNavigate()
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const modalRef = useRef(null)
 
   // Navigation handlers
   const linkeDeposit = () => navigate('/deposit')
@@ -28,6 +29,22 @@ const CardUserProfile = () => {
   // Modal handlers
   const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        closeModal()
+      }
+    }
+
+    if (isModalOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isModalOpen])
 
   return (
     <div className="card user_profile anim_sjump">
@@ -100,23 +117,26 @@ const CardUserProfile = () => {
         </button>
       </div>
       {isModalOpen && (
-        <div className="premium_cancel_modal">
-          <h2>
-            {' '}
-            <I18nText path="user_profile_cancel_subscription" />
-          </h2>
-          <div className="btns">
-            <button
-              className="btn cancel"
-              onClick={closeModal}
-            >
-              <I18nText path="user_profile_cancel" />
-            </button>
+        <div className="premium_cancel_modal_overlay">
+          <div
+            className="premium_cancel_modal"
+            ref={modalRef}
+          >
+            <h2>
+              <I18nText path="user_profile_cancel_subscription" />
+            </h2>
+            <div className="btns">
+              <button
+                className="btn cancel"
+                onClick={closeModal}
+              >
+                <I18nText path="user_profile_cancel" />
+              </button>
+            </div>
+            <h3>
+              <I18nText path="user_profile_are_you_sure" />
+            </h3>
           </div>
-          <h3>
-            {' '}
-            <I18nText path="user_profile_are_you_sure" />
-          </h3>
         </div>
       )}
     </div>
