@@ -322,7 +322,3 @@ button:active {
   flex-direction: column;
   gap: clamp(5px, 1vw, 10px);
 }
-
-.btn_earn {
-  padding: 4px;
-}
