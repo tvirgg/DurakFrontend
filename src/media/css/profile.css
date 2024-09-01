@@ -1,6 +1,9 @@
 .profile_section .profile_customs {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(clamp(80px, 20%, 150px), 1fr));
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(clamp(80px, 45%, 150px), 1fr)
+  );
   gap: clamp(5px, 1vw, 10px);
 }
 
