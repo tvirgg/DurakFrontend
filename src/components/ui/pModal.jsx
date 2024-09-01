@@ -4,6 +4,7 @@ import '../../media/css/ui/pModal.css'
 // Assume pSucces and pFail are imported images
 import pSucces from '../../media/img/profile/pSucces.png'
 import pFail from '../../media/img/icons/coinGold.png'
+import { I18nText } from '../i18nText'
 
 const PModal = ({ isActive, type, closeModal, succesText }) => {
   const modalRef = useRef(null)
@@ -35,13 +36,17 @@ const PModal = ({ isActive, type, closeModal, succesText }) => {
               src={pSucces}
               alt="Success"
             />
-            <h1>Congratulations</h1>
-            <h2>{succesText}</h2>
+            <h1>
+              <I18nText path="congratulations" />
+            </h1>
+            <h2>
+              <I18nText path="new_item" />
+            </h2>
             <button
               className="close_btn"
               onClick={closeModal}
             >
-              Close
+              <I18nText path="user_profile_close" />
             </button>
           </div>
         ) : (
@@ -50,13 +55,17 @@ const PModal = ({ isActive, type, closeModal, succesText }) => {
               src={pFail}
               alt="Fail"
             />
-            <h1>Sorry, you can't buy this</h1>
-            <h2>Insufficient balance</h2>
+            <h1>
+              <I18nText path="sorry_message" />
+            </h1>
+            <h2>
+              <I18nText path="insufficient_balance" />
+            </h2>
             <button
               className="close_btn"
               onClick={closeModal}
             >
-              Close
+              <I18nText path="user_profile_close" />
             </button>
           </div>
         )}

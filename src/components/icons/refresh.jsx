@@ -1,27 +1,13 @@
-import * as React from "react";
+import * as React from 'react'
 const IconRefresh = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={27}
-    height={27}
-    fill="none"
-    className="icon iconRefresh"
-    {...props}
+    height={24}
+    viewBox="0 -960 960 960"
+    width={24}
+    fill="currentColor"
   >
-    <g clipPath="url(#a)">
-      <path
-        stroke="#F3F3F3"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={4}
-        d="M25.875 4.5v6.75m0 0h-6.75m6.75 0-5.22-4.905a10.125 10.125 0 0 0-16.706 3.78M1.125 22.5v-6.75m0 0h6.75m-6.75 0 5.22 4.905a10.125 10.125 0 0 0 16.706-3.78"
-      />
-    </g>
-    <defs>
-      <clipPath id="a">
-        <path fill="#fff" d="M0 0h27v27H0z" />
-      </clipPath>
-    </defs>
+    <path d="M482-160q-134 0-228-93t-94-227v-7l-64 64-56-56 160-160 160 160-56 56-64-64v7q0 100 70.5 170T482-240q26 0 51-6t49-18l60 60q-38 22-78 33t-82 11Zm278-161L600-481l56-56 64 64v-7q0-100-70.5-170T478-720q-26 0-51 6t-49 18l-60-60q38-22 78-33t82-11q134 0 228 93t94 227v7l64-64 56 56-160 160Z" />
   </svg>
-);
-export default IconRefresh;
+)
+export default IconRefresh

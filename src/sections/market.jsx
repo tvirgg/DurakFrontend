@@ -13,6 +13,7 @@ import catFrame from '../media/img/catFrame.png'
 import catTable from '../media/img/catTable.png'
 import catCard from '../media/img/catCard.png'
 import catEmoji from '../media/img/catEmoji.png'
+import { I18nText } from '../components/i18nText'
 
 const Market = () => {
   const user = {
@@ -85,7 +86,7 @@ const Market = () => {
                 }`}
                 onClick={() => handleTypeClick('frame')}
               >
-                <span>Frames</span>
+                <I18nText path="frames" />
                 <img
                   src={catFrame}
                   alt="category"
@@ -97,7 +98,7 @@ const Market = () => {
                 }`}
                 onClick={() => handleTypeClick('table')}
               >
-                Tables
+                <I18nText path="tables" />
                 <img
                   src={catTable}
                   alt="category"
@@ -109,7 +110,7 @@ const Market = () => {
                 }`}
                 onClick={() => handleTypeClick('card')}
               >
-                Cards
+                <I18nText path="cards" />
                 <img
                   src={catCard}
                   alt="category"
@@ -121,7 +122,7 @@ const Market = () => {
                 }`}
                 onClick={() => handleTypeClick('emoji')}
               >
-                Emojis
+                <I18nText path="emojis" />
                 <img
                   src={catEmoji}
                   alt="category"
@@ -135,7 +136,7 @@ const Market = () => {
                 }`}
                 onClick={() => handleCategoryClick('standart')}
               >
-                Standart
+                <I18nText path="standart" />
               </button>
               <button
                 className={`btn special ${
@@ -143,7 +144,7 @@ const Market = () => {
                 }`}
                 onClick={() => handleCategoryClick('special')}
               >
-                Special
+                <I18nText path="special" />
               </button>
               <button
                 className={`btn rare ${
@@ -151,7 +152,7 @@ const Market = () => {
                 }`}
                 onClick={() => handleCategoryClick('rare')}
               >
-                Rare
+                <I18nText path="rare" />
               </button>
               <button
                 className={`btn relic ${
@@ -159,7 +160,7 @@ const Market = () => {
                 }`}
                 onClick={() => handleCategoryClick('relic')}
               >
-                Relic
+                <I18nText path="relic" />
               </button>
             </div>
           </header>
@@ -181,7 +182,7 @@ const Market = () => {
                     className="buy_btn"
                     onClick={() => handleBuy(product.price)}
                   >
-                    Buy
+                    <I18nText path="buy" />
                   </button>
                 </div>
               </div>

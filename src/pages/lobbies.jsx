@@ -115,14 +115,6 @@ const Lobbies = () => {
       {/* / */}
       {/* btn_bar */}
       <div className="btn_bar">
-        <div className="filter_btns">
-          <button className="reset">
-            <I18nText path="reset_button" />
-          </button>
-          <button className="apply">
-            <I18nText path="apply_button" />
-          </button>
-        </div>
         <button
           className="create_btn"
           onClick={linkLobbiesCreate}

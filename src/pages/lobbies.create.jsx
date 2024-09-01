@@ -41,11 +41,13 @@ const LobbiesCreate = () => {
   return (
     <LobbiesLayout>
       <div className="create_window">
-        <input
-          type="text"
-          placeholder="Enter lobby name..."
-          name="lobby_name"
-        />
+        <div className="lobby_name">
+          <input
+            type="text"
+            placeholder="Enter lobby name..."
+            name="lobby_name"
+          />
+        </div>
         {/* players / progress-bar */}
         <p>Choose number of players</p>
         <div className="players_number">

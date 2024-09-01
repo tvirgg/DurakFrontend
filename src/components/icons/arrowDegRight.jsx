@@ -1,20 +1,13 @@
-import * as React from "react";
+import * as React from 'react'
 const IconArrowDegRight = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={29}
-    height={27}
-    className="icon iconArrowDegRight"
-    fill="none"
-    {...props}
+    height={28}
+    viewBox="0 -960 960 960"
+    width={28}
+    fill="currentColor"
   >
-    <path
-      stroke="#F3F3F3"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={4}
-      d="m17.944 15.75 5.879-5.625m0 0L17.943 4.5m5.88 5.625H9.713a4.813 4.813 0 0 0-3.326 1.318 4.404 4.404 0 0 0-1.378 3.182V22.5"
-    />
+    <path d="M200-160v-480h447L503-783l57-57 240 240-241 241-56-57 144-144H280v400h-80Z" />
   </svg>
-);
-export default IconArrowDegRight;
+)
+export default IconArrowDegRight

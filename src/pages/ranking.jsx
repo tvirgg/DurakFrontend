@@ -9,6 +9,7 @@ import NavBar from "../components/nav.bar";
 import IconCoin from "../components/icons/coin";
 import IconStarPremium from "../components/icons/starPremium";
 import ImgProfile from "../media/img/avatar.png";
+import { I18nText } from "../components/i18nText";
 
 // Array of user data
 const users = [
@@ -33,7 +34,7 @@ const PageRanking = () => {
     <section className="page ranking pb-80">
       <Preloader />
       <div className="container">
-        <h1 className="page_title">Ranking</h1>
+        <h1 className="page_title"><I18nText path="ranking" /></h1>
         <div className="wrap">
           {/* rate_list */}
           <div className="rate_list">

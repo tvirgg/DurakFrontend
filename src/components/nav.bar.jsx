@@ -15,7 +15,7 @@ import earnActiveIcon from '../media/navbar/earnActive.png'
 import marketIcon from '../media/navbar/market.png'
 import marketActiveIcon from '../media/navbar/marketActive.png'
 
-const NavBar = () => {
+const NavBar = ({ isHidden }) => {
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -54,6 +54,11 @@ const NavBar = () => {
     setActiveIndex(index)
     navigate(path)
   }
+
+  if (isHidden) {
+    return null
+  }
+
 
   return (
     <div className="navbar">

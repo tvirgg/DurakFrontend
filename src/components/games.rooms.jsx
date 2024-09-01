@@ -15,9 +15,11 @@ import PostRequester from '../PostRequester'
 import { useNavigate } from 'react-router-dom'
 //
 import FilterWindow from '../components/lobbies.filter.window'
+import { I18nText } from './i18nText'
 
 //
 const GamesRooms = ({ roomsData }) => {
+  const [isFilterOpen, setIsFilterOpen] = React.useState(false)
   const navigate = useNavigate()
 
   const connectToGame = async (id) => {
@@ -110,23 +112,27 @@ const GamesRooms = ({ roomsData }) => {
     return price
   }
   const toggleFilter = () => {
+    setIsFilterOpen(!isFilterOpen)
     let w = document.querySelector('.filter_window'),
       btns = document.querySelector('.btn_bar')
     w.classList.toggle('filter_window_active')
     btns.classList.toggle('fmode')
+    document.body.classList.toggle('filter-open', !isFilterOpen)
   }
   return (
     <div className="rooms">
       {/* Header */}
       <header className="header anim_sjump">
         <div className="row">
-          <h2 className="title">Rooms:</h2>
+          <h2 className="title">
+            <I18nText path="rooms" />:
+          </h2>
           <div className="right-group">
             <button
               className="btn_create"
               onClick={linkLobbies}
             >
-              Create game
+              <I18nText path="create_game" />
             </button>
             <div className="btns">
               <button
@@ -153,7 +159,10 @@ const GamesRooms = ({ roomsData }) => {
           />
         </div>
       </header>
-      <FilterWindow />
+      <FilterWindow
+        isOpen={isFilterOpen}
+        onClose={toggleFilter}
+      />
 
       {/* list */}
       <div className="rooms_list anim_sjump">

@@ -40,13 +40,14 @@
 }
 
 .p_verify_modal .modal h1 {
-  font-size: clamp(20px, 5vw, 35px);
+  font-size: 1.5rem;
+  font-weight: 500;
   text-align: center;
   margin: 0;
 }
 
 .p_verify_modal .modal h2 {
-  font-size: clamp(16px, 4vw, 24px);
+  font-size: 1rem;
   text-align: center;
   margin: 0;
 }

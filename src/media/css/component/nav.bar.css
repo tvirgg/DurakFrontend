@@ -37,3 +37,7 @@
 .navbar button .icon {
   max-width: 2.55rem;
 }
+
+body.filter-open .navbar {
+  display: none;
+}

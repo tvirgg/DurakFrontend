@@ -4,13 +4,10 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: min-content;
   gap: 7px;
-  position: fixed;
   top: calc(100% - 80px);
   height: 100%;
   left: 0;
   z-index: 101;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   /* Для Safari */
   width: 100%;
   padding: 15px 7px;
@@ -28,11 +25,18 @@
 
 .games .btn_bar button {
   display: block;
-  padding: 12px 20px;
+  padding: 16px 20px;
   font-size: 20px;
   color: var(--white);
-  background: var(--native-blue);
   border-radius: var(--br-medium);
+}
+
+.games .btn_bar .reset {
+  background-color: #2d4f64;
+}
+
+.games .btn_bar .apply {
+  background-color: #51c4ff;
 }
 
 .games .fmode {

@@ -196,7 +196,7 @@ const ProfileWindows = () => {
                   cursor: present.cat ? 'pointer' : 'not-allowed',
                 }}
               >
-                Go further
+                <I18nText path="go_further" />
               </button>
               <button
                 className="cancel_btn"
@@ -236,7 +236,7 @@ const ProfileWindows = () => {
                   cursor: present.lvl ? 'pointer' : 'not-allowed',
                 }}
               >
-                Go further
+                <I18nText path="go_further" />
               </button>
               <button
                 className="cancel_btn"
