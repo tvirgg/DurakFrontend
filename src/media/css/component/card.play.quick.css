@@ -35,6 +35,7 @@
 .card_play_custom p {
   font-weight: 500;
   font-size: clamp(16px, 2vw, 20px);
+  color: var(--black) !important;
 }
 
 .card_play_custom .title {

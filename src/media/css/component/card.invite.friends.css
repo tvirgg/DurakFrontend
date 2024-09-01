@@ -10,7 +10,7 @@
   background: linear-gradient(90deg, #e87328 0%, #c6894c 100%);
   border-radius: var(--br-medium);
   overflow: hidden;
-  max-height: clamp(88px, 15vw, 120px);
+  height: clamp(88px, 15vw, 120px);
 }
 
 .card_invite .texts {
