@@ -221,12 +221,14 @@ button:active {
   transform: translateY(-10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
   pointer-events: none;
+  display: none;
 }
 
 .lang-switcher.open .lang-switcher__dropdown {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
+  display: block;
 }
 
 .lang-switcher__option {
