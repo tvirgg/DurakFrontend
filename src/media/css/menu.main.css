@@ -77,8 +77,15 @@
 .menu_section .double {
   --min-height: 160px;
   display: flex;
+  flex-direction: column;
   gap: 10px;
   height: 100%;
+}
+
+@media screen and (min-width: 500px) {
+  .menu_section .double {
+    flex-direction: row;
+  }
 }
 
 /* rate */
