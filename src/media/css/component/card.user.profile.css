@@ -10,7 +10,7 @@
 .user_info_container {
   display: flex;
   align-items: flex-start;
-  gap: 20px;
+  gap: 12px;
 }
 
 .user_picture {
@@ -46,7 +46,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  font-size: 17px;
+  font-size: 15px;
 }
 
 .user_name {
@@ -70,9 +70,13 @@
 
 .balance_info {
   display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
+  gap: 8px;
   align-items: center;
+}
+
+.balance_info img {
+  width: clamp(18px, 2vw, 24px);
+  height: clamp(18px, 2vw, 24px);
 }
 
 .coins_count,
@@ -80,19 +84,13 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  font-size: clamp(10px, 2vw, 14px);
 }
 
 .premium_usdt {
   display: flex;
-  flex-direction: column;
-  gap: 15px;
-  align-items: flex-start;
-}
-
-@media screen and (min-width: 360px) {
-  .premium_usdt {
-    flex-direction: row;
-  }
+  gap: 6px;
+  align-items: center;
 }
 
 .user_profile .user_info .cancel_premium {
@@ -106,11 +104,11 @@
   border-radius: var(--br-medium);
   color: var(--white);
   padding: 2px 12px;
+  font-size: clamp(12px, 2vw, 14px);
 }
 
 .usdt {
-  font-family: var(--sfd);
-  font-size: 14px;
+  font-size: clamp(12px, 2vw, 14px);
 }
 
 .usdt span {
@@ -123,7 +121,7 @@
   }
 
   .user_info {
-    font-size: 15px;
+    font-size: 12px;
   }
 
   .btns button {
@@ -146,7 +144,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(14px, 2vw, 18px);
+  font-size: clamp(12px, 2vw, 16px);
   font-weight: 500;
   padding: 10px;
   border-radius: var(--br-small);
@@ -173,9 +171,8 @@
 
 .user_profile .btns button svg {
   flex-shrink: 0;
-  width: 18.5px;
   height: auto;
-  margin-right: 2px;
+  margin-right: clamp(2px, 1vw, 8px);
 }
 
 .user_profile .btns .btn_withdraw svg {
@@ -201,44 +198,68 @@
   gap: 15px;
   text-align: center;
   position: fixed;
-  width: calc(100% - 20px);
+  width: calc(
+    100% - 40px
+  ); /* Увеличен отступ, чтобы избежать переполнения на мобильных */
+  max-width: 500px; /* Максимальная ширина модалки */
   height: auto;
   background: #fff;
   color: var(--black);
   padding: 20px;
   border-radius: var(--br-medium);
-  left: 10px;
+  left: 50%;
   top: 50%;
-  transform: translate(0%, -50%) scale(0.8);
+  transform: translate(-50%, -50%) scale(0.8);
   opacity: 0;
   z-index: 100;
   animation: openM 0.3s 1 forwards;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Добавлено тень для глубины */
+  overflow: hidden; /* Скрытие переполнения */
 }
 
+/* Анимация открытия модалки */
 @keyframes openM {
   from {
-    transform: translate(0%, -50%) scale(0.8);
+    transform: translate(-50%, -50%) scale(0.8);
     opacity: 0;
   }
 
   to {
-    transform: translate(0%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
     opacity: 1;
   }
+}
+
+.user_profile .premium_cancel_modal h2 {
+  font-size: clamp(
+    20px,
+    5vw + 10px,
+    24px
+  ); /* Адаптивный размер шрифта заголовка */
+  margin: 0; /* Убираем отступы для заголовка */
+}
+
+.user_profile .premium_cancel_modal h3 {
+  font-size: clamp(16px, 4vw + 5px, 20px);
+  margin: 0;
 }
 
 .user_profile .premium_cancel_modal .btns {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 10px;
+  width: 100%;
 }
 
 .user_profile .premium_cancel_modal .btn {
-  padding: 5px 30px;
-  font-size: 30px;
+  padding: 10px 20px;
+  font-size: clamp(16px, 4vw + 8px, 20px);
   border-radius: var(--br-medium);
   background: var(--d9);
   color: var(--black);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .user_profile .premium_cancel_modal .btns .cancel {
@@ -246,7 +267,12 @@
   color: var(--white);
 }
 
-.user_profile .premium_cancel_modal .close {
+.user_profile .premium_cancel_modal .btns .cancel:hover {
+  background: #3a9ddc;
+}
+
+.user_profile .premium_cancel_modal .btns .close {
   display: block;
   width: 100%;
+  background: var(--d9);
 }

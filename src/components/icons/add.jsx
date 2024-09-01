@@ -2,9 +2,9 @@ import * as React from 'react'
 const IconAdd = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height="24px"
+    height={20}
     viewBox="0 -960 960 960"
-    width="24px"
+    width={20}
     fill="#e8eaed"
     stroke="#e8eaed"
     strokeWidth="2"

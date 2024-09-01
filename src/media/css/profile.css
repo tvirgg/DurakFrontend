@@ -1,7 +1,7 @@
 .profile_section .profile_customs {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(clamp(80px, 20%, 150px), 1fr));
+  gap: clamp(5px, 1vw, 10px);
 }
 
 .profile_section .profile_customs .btn {
@@ -12,8 +12,8 @@
   color: var(--white);
   width: 100%;
   background: var(--bg4);
-  aspect-ratio: 1/1;
   border-radius: var(--br-small);
+  aspect-ratio: 1 / 1;
 }
 
 .profile_section .profile_customs .btn img {
@@ -29,7 +29,7 @@
   display: flex;
   width: 100%;
   flex-direction: column;
-  gap: 8px;
+  gap: clamp(4px, 0.5vw, 6px);
 }
 
 .profile_section .profile_friends .row {
@@ -37,24 +37,25 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  max-height: 58px;
-  padding: 9px;
+  max-height: clamp(50px, 8vw, 58px);
+  padding: clamp(6px, 0.5vw, 8px);
   background: var(--gradient1);
   border-radius: var(--br-large);
   width: 100%;
+  font-size: clamp(14px, 2vw, 18px);
 }
 
 .profile_section .profile_friends .row .user {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: clamp(5px, 1vw, 8px);
   align-items: center;
 }
 
 .profile_section .profile_friends .row .user .picture {
   display: block;
   aspect-ratio: 1 / 1;
-  width: 40px;
+  width: clamp(30px, 2vw, 35px);
   height: auto;
 }
 
@@ -68,9 +69,8 @@
 .profile_section .profile_friends .row .user .info .status {
   display: flex;
   flex-direction: row;
-  gap: 2px;
+  gap: clamp(1px, 0.25vw, 1.5px);
 }
-
 
 .profile_section .profile_friends .row .btns {
   display: flex;
@@ -85,7 +85,6 @@
   justify-content: center;
 }
 
-/* windows */
 .profile_section .windows {
   display: none;
   position: fixed;
@@ -107,80 +106,71 @@
 .profile_section .windows .window {
   display: block;
   width: 90vw;
+  max-width: 600px;
   background: var(--d9);
   border-radius: var(--br-large);
   overflow: hidden;
 }
 
-.profile_section .windows .window .cancel_btn {
-  display: block;
+.profile_section .windows .window .button_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(10px, 1vw, 15px);
   width: 90%;
-  margin-left: 5%;
-  background: #ccc;
-  border-radius: var(--br-large);
-  font-size: 30px;
-  padding: 5px;
-  margin-bottom: 12px;
+  margin: 0 auto;
+  margin-bottom: clamp(8px, 1vw, 10px);
 }
-
-/* .profile_section .w_present {
-  display: none !important;
-} */
 
 .profile_section .windows .window .w_container {
   display: flex;
   flex-direction: row;
   width: 2000px;
   transition: margin-left 0.3s ease;
-  /* margin-left: calc(-2*90vw); */
 }
 
-/* Slide Container */
-.profile_section .windows .window .w_container .slide {
+.profile_section .windows .window .slide {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 90vw;
-  padding: 20px;
-  padding-bottom: 5px;
+  gap: clamp(16px, 2vw, 32px);
+  max-width: 600px;
+  padding: clamp(10px, 2vw, 15px);
 }
 
-/* Slide Title */
 .profile_section .windows .window .title {
   display: block;
-  font-size: 30px;
+  font-size: clamp(18px, 2.5vw, 24px);
   font-weight: 400;
-  line-height: 22px;
+  line-height: 1.2;
   color: var(--black);
   text-align: center;
 }
 
-/* Grid Layout for Buttons */
 .profile_section .windows .window .w_container .btns {
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-content: space-between;
-  gap: 20px;
+  gap: clamp(10px, 1.5vw, 15px);
 }
 
-/* Individual Button Styling */
 .profile_section .windows .window .w_container .choose_cat .btns {
-  padding: 20px;
+  padding: clamp(10px, 1.5vw, 15px);
 }
 
 .profile_section .windows .window .w_container .choose_cat .btns button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2px 20px;
+  padding: clamp(2px, 0.5vw, 4px) clamp(10px, 1.5vw, 15px);
   border-radius: var(--br-large);
 }
 
-/* Button Text */
 .profile_section .windows .window .w_container .choose_cat .btns button span {
   display: block;
   width: 100%;
-  font-size: 25px;
+  font-size: clamp(14px, 1.5vw, 20px);
   text-align: center;
 }
 
@@ -188,74 +178,72 @@
   background: var(--blue-light);
 }
 
-/* Button Image */
 .profile_section .windows .window .choose_cat .btns button img {
   display: block;
   width: 100%;
 }
 
-/* Next Button Styling */
 .profile_section .windows .window .sbtn {
   display: block;
   width: 100%;
   background: var(--blue-light);
-  padding: 5px;
-  font-size: 30px;
+  padding: clamp(3px, 0.5vw, 4px);
+  font-size: clamp(16px, 2vw, 24px);
   border-radius: var(--br-large);
 }
 
-/* - */
-
-
+.profile_section .windows .window .cancel_btn {
+  display: block;
+  width: 100%;
+  padding: clamp(3px, 0.5vw, 4px);
+  font-size: clamp(16px, 2vw, 24px);
+  border-radius: var(--br-large);
+}
 
 .profile_section .windows .window .w_container .choose_lvl .btns {
-  gap: 50px 15px;
+  gap: clamp(15px, 2vw, 25px) clamp(10px, 1vw, 12px);
 }
 
 .profile_section .windows .window .w_container .choose_lvl .btns button {
   display: block;
   width: 100%;
   background: #0004;
-  font-size: 25px;
-  width: 100%;
-  padding: 5px;
+  font-size: clamp(14px, 1.5vw, 20px);
+  padding: clamp(3px, 0.5vw, 4px);
   border-radius: var(--br-small);
   border: 5px solid transparent;
   box-sizing: border-box;
 }
 
 .profile_section .windows .window .w_container .choose_lvl .btns .standart {
-  background: #69AFFF;
+  background: #69afff;
 }
 
 .profile_section .windows .window .w_container .choose_lvl .btns .special {
-  background: #6CFF6C;
+  background: #6cff6c;
 }
 
 .profile_section .windows .window .w_container .choose_lvl .btns .relic {
-  background: #FFD037;
+  background: #ffd037;
 }
 
 .profile_section .windows .window .w_container .choose_lvl .btns .rare {
-  background: #FF5B5B;
+  background: #ff5b5b;
 }
 
 .profile_section .windows .window .w_container .choose_lvl .btns .lvl_active {
-  border: 5px solid var(--blue-light);
+  border: 2px solid #8d8888;
 }
-
-/*  */
 
 .profile_section .windows .window .w_container .choose_present .presents {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  width: calc(100% + 40px);
-  margin-left: -20px;
-  padding: 0 10px;
+  gap: clamp(5px, 0.5vw, 8px);
+  width: calc(100% + clamp(20px, 3vw, 30px));
+  margin-left: clamp(-10px, -1.5vw, -15px);
+  padding: 0 clamp(5px, 1vw, 8px);
   box-sizing: border-box;
   overflow: auto;
-
 }
 
 .profile_section .windows .window .w_container .choose_present .presents .row {
@@ -270,27 +258,52 @@
   flex-direction: column;
   border: none;
   background: transparent;
-  padding: 10px;
-  border-radius: var(--br-medium)
+  padding: clamp(5px, 0.5vw, 8px);
+  border-radius: var(--br-medium);
 }
 
-
-
-.profile_section .windows .window .w_container .choose_present .presents .pbtn img {
+.profile_section
+  .windows
+  .window
+  .w_container
+  .choose_present
+  .presents
+  .pbtn
+  img {
   display: block;
-  width: 80px;
-  height: 80px;
+  width: clamp(50px, 4vw, 70px);
+  height: clamp(50px, 4vw, 70px);
   object-fit: cover;
 }
 
-.profile_section .windows .window .w_container .choose_present .presents .pbtn span {
+.profile_section
+  .windows
+  .window
+  .w_container
+  .choose_present
+  .presents
+  .pbtn
+  span {
   opacity: 0;
 }
 
-.profile_section .windows .window .w_container .choose_present .presents .p_active {
+.profile_section
+  .windows
+  .window
+  .w_container
+  .choose_present
+  .presents
+  .p_active {
   background: var(--blue-light);
 }
 
-.profile_section .windows .window .w_container .choose_present .presents .p_active span {
+.profile_section
+  .windows
+  .window
+  .w_container
+  .choose_present
+  .presents
+  .p_active
+  span {
   opacity: 1;
 }

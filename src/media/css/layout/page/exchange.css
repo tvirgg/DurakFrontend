@@ -1,7 +1,7 @@
 .exchange .echange {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 5px;
 }
 
@@ -9,7 +9,7 @@
   display: none;
 }
 
-.exchange .echange input:checked+label svg {
+.exchange .echange input:checked + label svg {
   transform: rotate(180deg);
 }
 

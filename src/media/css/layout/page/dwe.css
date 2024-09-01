@@ -1,7 +1,7 @@
 .dwe {
-  --btn-bg: #D9D9D9;
-  --btn-active-bg: #7B878E;
-  --btn-submit-bg: #51C4FF;
+  --btn-bg: #d9d9d9;
+  --btn-active-bg: #7b878e;
+  --btn-submit-bg: #51c4ff;
 
   min-height: 100vh;
   font-size: 20px;
@@ -55,14 +55,21 @@
 .dwe .choose .list {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  max-width: 400px;
   gap: 5px;
+}
+
+@media (min-width: 500px) {
+  .dwe .choose .list {
+    max-width: 600px;
+  }
 }
 
 .dwe .choose .list input {
   display: none;
 }
 
-.dwe .choose .list input[type="radio"]:checked+label {
+.dwe .choose .list input[type='radio']:checked + label {
   background: var(--btn-active-bg);
 }
 
@@ -130,7 +137,7 @@
   padding: 5px 10px;
   border-radius: var(--br-medium);
   font-size: 20px;
-  background: linear-gradient(253.01deg, #235975 2.81%, #1D303C 100%);
+  background: linear-gradient(253.01deg, #235975 2.81%, #1d303c 100%);
   max-height: 35px;
 }
 

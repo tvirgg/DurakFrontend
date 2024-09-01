@@ -29,7 +29,7 @@
   padding: clamp(1px, 0.5vw, 2px) clamp(6px, 2vw, 12px);
   border-radius: var(--br-small);
   color: var(--white);
-  font-size: clamp(12px, 2vw, 16px);
+  font-size: clamp(15px, 2vw, 20px);
 }
 
 .market .header_menu .type_btns .btn img {
@@ -62,7 +62,7 @@
   width: 100%;
   text-align: center;
   color: var(--black);
-  font-size: clamp(12px, 2vw, 14px);
+  font-size: clamp(14px, 2vw, 16px);
 }
 
 .standart {
@@ -88,9 +88,22 @@
 
 .market .products {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(1, 1fr);
   gap: clamp(5px, 2vw, 10px);
   font-size: clamp(14px, 2.5vw, 16px);
+  justify-content: center;
+}
+
+@media (min-width: 380px) {
+  .market .products {
+    grid-template-columns: repeat(2, 1fr); /* Две колонки */
+  }
+}
+
+@media (min-width: 600px) {
+  .market .products {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .market .products .product {

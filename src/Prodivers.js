@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import React, { createContext, useContext, useState, useMemo } from 'react'
 import { IntlProvider } from 'react-intl'
 import enMessages from './static/locales/en.json'
 import ruMessages from './static/locales/ru.json'
@@ -7,6 +7,10 @@ const messages = {
   en: enMessages,
   ru: ruMessages,
 }
+
+const IntlContext = createContext()
+
+export const useIntlProvider = () => useContext(IntlContext)
 
 const Providers = ({ children }) => {
   const [locale, setLocale] = useState(() => {
@@ -30,16 +34,14 @@ const Providers = ({ children }) => {
   )
 
   return (
-    <IntlProvider
-      locale={locale}
-      messages={messages[locale]}
-    >
-      {React.Children.map(children, (child) =>
-        React.isValidElement(child)
-          ? React.cloneElement(child, { intlProviderValue: providerValue })
-          : child,
-      )}
-    </IntlProvider>
+    <IntlContext.Provider value={providerValue}>
+      <IntlProvider
+        locale={locale}
+        messages={messages[locale]}
+      >
+        {children}
+      </IntlProvider>
+    </IntlContext.Provider>
   )
 }
 

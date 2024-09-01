@@ -12,26 +12,28 @@ const TransactionHistory = () => {
   return (
     <div className="transaction_history">
       <h2>Transaction history:</h2>
-      <div className="row">
-        <span className="date">13.08.24 - 14:31</span>
-        <div className="vall">
-          <IconPlusB />
-          100 DUR (6-TON)
+      <div className="row_container">
+        <div className="row">
+          <span className="date">13.08.24 - 14:31</span>
+          <div className="vall">
+            <IconPlusB />
+            100 DUR (6-TON)
+          </div>
         </div>
-      </div>
-      <div className="row">
-        <span className="date">13.08.24 - 14:31</span>
-        <div className="vall">
-          <IconArrowFb />
-          100DUR (5.7 TON)
+        <div className="row">
+          <span className="date">13.08.24 - 14:31</span>
+          <div className="vall">
+            <IconArrowFb />
+            100DUR (5.7 TON)
+          </div>
         </div>
-      </div>
-      <div className="row">
-        <span className="date">13.08.24 - 14:31</span>
-        <div className="vall">
-          100DUR
-          <IconTraficB />
-          6000 gold
+        <div className="row">
+          <span className="date">13.08.24 - 14:31</span>
+          <div className="vall">
+            100DUR
+            <IconTraficB />
+            6000 gold
+          </div>
         </div>
       </div>
     </div>

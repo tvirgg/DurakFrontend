@@ -11,6 +11,7 @@
 
 .exchange .echange .btn_change {
   display: flex;
+  font-weight: 500;
   position: relative;
   padding: 4px;
   align-items: center;

@@ -1,11 +1,14 @@
 .ranking {
-  --row-bg: linear-gradient(253.01deg, #235975 9.13%, #1D303C 100%);
-  --bg-gold: -webkit-linear-gradient(90deg, #FFD943 0%, #FBAE23 68.5%, #F18B24 95.5%);
-  --bg-silver: linear-gradient(90deg, #EEEEEE 36%, #999999 90%);
-  --bg-bronze: linear-gradient(90deg, #B97B4F 0%, #BF855C 73%, #EAE1DA 98.5%);
-  --bg-self: linear-gradient(90deg, #5DB3DF 0%, #4BA3D1 100%);
-
-
+  --row-bg: linear-gradient(253.01deg, #235975 9.13%, #1d303c 100%);
+  --bg-gold: -webkit-linear-gradient(
+    90deg,
+    #ffd943 0%,
+    #fbae23 68.5%,
+    #f18b24 95.5%
+  );
+  --bg-silver: linear-gradient(90deg, #eeeeee 36%, #999999 90%);
+  --bg-bronze: linear-gradient(90deg, #b97b4f 0%, #bf855c 73%, #eae1da 98.5%);
+  --bg-self: linear-gradient(90deg, #5db3df 0%, #4ba3d1 100%);
 }
 
 .ranking .page_title {
@@ -59,7 +62,7 @@
 
 .ranking .wrap .rate_list .self {
   background: var(--bg-self);
-  box-shadow: 0px 4px 4px 0px #FFFFFF40;
+  box-shadow: 0px 4px 4px 0px #ffffff40;
 }
 
 .ranking .wrap .rate_list .user_name {

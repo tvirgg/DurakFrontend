@@ -130,12 +130,9 @@
 }
 
 /* earn */
-.menu_section .double .card_user_earn {
-  justify-content: flex-end;
-}
-
 .menu_section .double .card_user_earn .progress_bar {
   display: block;
+  margin-top: 12px;
   width: 100%;
   min-height: 30px;
   background-color: var(--f5);
@@ -154,21 +151,22 @@
   box-shadow: 0px 4px 4px 0px #ffffff80 inset;
 }
 
+.menu_section .double .card_user_earn .earn_info {
+  display: flex;
+  flex-direction: column;
+}
+
 .menu_section .double .card_user_earn .earn_check {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   position: relative;
-  font-size: 18px;
+  font-size: clamp(18px, 2vw, 26px);
   margin-bottom: 5px;
-  padding-right: 10px;
 }
 
 .menu_section .double .card_user_earn .earn_check .icon {
   display: block;
-  position: absolute;
-  right: -20px;
-  top: -1px;
-  width: 30px;
-  height: 30px;
 }
 
 .menu_section .double .card_user_earn .perhour {
@@ -177,5 +175,4 @@
   line-height: 22px;
   text-align: center;
   color: #bebebe;
-  margin-bottom: 18px;
 }

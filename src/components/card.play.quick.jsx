@@ -23,7 +23,9 @@ const CardPlayQuick = () => {
         <h1 className="title">
           <I18nText path="quick_game_title" />
         </h1>
-        <h1>play</h1>
+        <h1>
+          <I18nText path="quick_game_play" />
+        </h1>
       </div>
       <img
         className="cardImg"

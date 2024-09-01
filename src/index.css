@@ -119,7 +119,6 @@ span {
 h1,
 h2 {
   font-weight: 400;
-  line-height: 22px;
 }
 
 h1 {
@@ -162,7 +161,7 @@ button:active {
 }
 
 .pb-80 {
-  padding-bottom: 80px;
+  padding-bottom: 120px;
 }
 
 .page_title {
@@ -296,4 +295,27 @@ button:active {
 
 .lang-switcher:not(.open) .lang-switcher__dropdown {
   animation: fadeOut 0.3s ease forwards;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.page .menu_section,
+.page .ranking,
+.page .earn,
+.page .games,
+.page .market,
+.page .profile_section {
+  display: flex;
+  flex: 1 1 0%;
+}
+
+.row_container {
+  display: flex;
+  margin-top: 0.75rem;
+  flex-direction: column;
+  gap: clamp(5px, 1vw, 10px);
 }

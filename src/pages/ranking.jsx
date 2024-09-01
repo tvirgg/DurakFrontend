@@ -29,6 +29,7 @@ const users = [
 
 const PageRanking = () => {
   return (
+    <>
     <section className="page ranking pb-80">
       <Preloader />
       <div className="container">
@@ -58,9 +59,10 @@ const PageRanking = () => {
           </div>
         </div>
         {/* NavBar */}
-        <NavBar />
       </div>
     </section>
+        <NavBar />
+        </>
   );
 };
 

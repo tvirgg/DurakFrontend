@@ -117,13 +117,6 @@ const CardUserProfile = () => {
             {' '}
             <I18nText path="user_profile_are_you_sure" />
           </h3>
-          <button
-            className="btn close"
-            onClick={closeModal}
-            style={{ textTransform: 'uppercase' }}
-          >
-            <I18nText path="user_profile_close" />
-          </button>
         </div>
       )}
     </div>

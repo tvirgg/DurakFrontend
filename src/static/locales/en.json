@@ -117,5 +117,6 @@
   "cheat_button": "cheat",
   "take_button": "take",
   "pass_button": "pass",
-  "react_button": "react"
+  "react_button": "react",
+  "loading": "LOADING"
 }

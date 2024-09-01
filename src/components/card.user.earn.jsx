@@ -12,14 +12,16 @@ const CardUserEarn = () => {
       <div className="progress_bar">
         <div className="progress"></div>
       </div>
-      <div className="earn_check">
-        115/200
-        <IconCoin />
+      <div className='earn_info'>
+        <div className="earn_check">
+          115/200
+          <IconCoin />
+        </div>
+        <span className="perhour">
+          10/
+          <I18nText path="per_hour" />
+        </span>
       </div>
-      <span className="perhour">
-        10/
-        <I18nText path="per_hour" />
-      </span>
     </div>
   )
 }

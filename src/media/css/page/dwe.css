@@ -1,10 +1,10 @@
 .dwe {
-  --btn-bg: #D9D9D9;
-  --btn-active-bg: #7B878E;
-  --btn-submit-bg: #51C4FF;
+  --btn-bg: #d9d9d9;
+  --btn-active-bg: #7b878e;
+  --btn-submit-bg: #51c4ff;
 
   min-height: 100vh;
-  font-size: 20px;
+  font-size: clamp(16px, 2vw, 20px);
 }
 
 .dwe h1,
@@ -17,22 +17,23 @@
 }
 
 .dwe h2 {
-  font-size: 30px;
+  font-size: clamp(24px, 4vw, 30px);
 }
 
 .dwe .page_title h1 {
-  font-size: 40px;
+  font-size: clamp(30px, 5vw, 40px);
   font-weight: 400;
 }
 
 .dwe .page_title p {
-  font-size: 20px;
+  font-size: clamp(12px, 3vw, 16px);
   font-weight: 300;
 }
 
 .dwe .page_title {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .dwe .wrap {
@@ -40,8 +41,8 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
-  gap: 14px;
-  padding: 0 4px;
+  gap: clamp(10px, 2vw, 14px);
+  padding: 0 clamp(2px, 1vw, 12px);
 }
 
 .dwe .choose {
@@ -49,28 +50,41 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: clamp(8px, 2vw, 10px);
 }
 
 .dwe .choose .list {
   display: grid;
+  gap: clamp(4px, 1vw, 5px);
+  width: 100%;
   grid-template-columns: 1fr 1fr;
-  gap: 5px;
+}
+
+@media (min-width: 500px) {
+  .dwe .choose .list {
+    max-width: 600px;
+  }
+}
+
+@media (min-width: 768px) {
+  .dwe .choose .list {
+    max-width: 1000px;
+  }
 }
 
 .dwe .choose .list input {
   display: none;
 }
 
-.dwe .choose .list input[type="radio"]:checked+label {
+.dwe .choose .list input[type='radio']:checked + label {
   background: var(--btn-active-bg);
 }
 
 .dwe .choose .list label {
   display: block;
-  min-width: 130px;
   text-align: center;
-  padding: 5px 12px;
+  font-weight: 500;
+  padding: clamp(4px, 1vw, 5px) clamp(10px, 2vw, 12px);
   background: var(--btn-bg);
   color: var(--black);
   border-radius: var(--br-small);
@@ -82,7 +96,7 @@
   flex-direction: column;
   justify-content: center;
   position: relative;
-  padding: 10px;
+  padding: clamp(8px, 2vw, 10px);
 }
 
 .dwe .convert .list span,
@@ -97,15 +111,16 @@
   position: fixed;
   left: 0;
   bottom: 0;
-  padding: 7px;
+  padding: clamp(5px, 1vw, 12px);
 }
 
 .dwe .btn_submit {
   display: block;
-  width: 100%;
+  width: 50%;
+  margin-inline: auto;
   background: var(--btn-submit-bg);
-  padding: 8px 15px;
-  min-height: 50px;
+  padding: clamp(6px, 1vw, 8px) clamp(12px, 2vw, 15px);
+  min-height: clamp(45px, 6vw, 50px);
   border-radius: var(--br-medium);
 }
 
@@ -114,33 +129,25 @@
 }
 
 /* transaction_history */
-.dwe .transaction_history {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 10px;
-}
-
 .dwe .transaction_history .row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 10px;
+  padding: clamp(4px, 1vw, 5px) clamp(8px, 2vw, 10px);
   border-radius: var(--br-medium);
-  font-size: 20px;
-  background: linear-gradient(253.01deg, #235975 2.81%, #1D303C 100%);
-  max-height: 35px;
+  font-size: clamp(12px, 3vw, 16px);
+  background: linear-gradient(253.01deg, #235975 2.81%, #1d303c 100%);
+  max-height: clamp(30px, 5vw, 35px);
 }
 
 .dwe .transaction_history .row .date {
-  padding-left: 20px;
+  padding-left: clamp(12px, 3vw, 16px);
 }
 
 .dwe .transaction_history .row .vall {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 5px;
+  gap: clamp(4px, 1vw, 5px);
 }

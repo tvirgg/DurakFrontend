@@ -117,5 +117,6 @@
   "cheat_button": "мухлевать",
   "take_button": "взять",
   "pass_button": "сбросить",
-  "react_button": "реакция"
+  "react_button": "реакция",
+  "loading": "ЗАГРУЗКА"
 }
