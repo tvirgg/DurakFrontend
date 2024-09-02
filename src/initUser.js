@@ -7,10 +7,11 @@ async function initUser() {
       config.url + "/users/init",
       {
         initData: window.Telegram.WebApp.initData,
-      },
-      { withCredentials: true }
+      }
     )
     .then((res) => {
+      console.log(res.headers);
+      localStorage.setItem("session_key", res.headers.get("X-Session"));
       localStorage.setItem("user", JSON.stringify(res.data));
     });
   // const response = await fetch(`${config.url}/users/init`, {
