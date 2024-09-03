@@ -1,0 +1,161 @@
+ .create_window {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   gap: 5px;
+   z-index: 100;
+   background: #1E3645;
+   width: 100%;
+   border-radius: var(--br-medium);
+   padding: 10px;
+   transition: all 0.5s ease;
+ }
+
+
+
+ .create_window p {
+   display: block;
+   width: 100%;
+   text-align: left;
+   font-size: 20px;
+   padding-left: 20px;
+   margin-bottom: 10px;
+ }
+
+ .create_window .lobby_name {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 5px 20px;
+ }
+
+ .create_window .lobby_name input {
+   display: block;
+   width: 100%;
+   font-size: 20px;
+   padding: 4px;
+   border-radius: var(--br-extra-small);
+   background: var(--d9);
+ }
+
+ .create_window .players_number {
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   gap: 4px;
+ }
+
+ .create_window .players_number input,
+ .create_window .bid input,
+ .create_window .game_type input {
+   display: none;
+ }
+
+ .create_window .players_number label {
+   display: block;
+   padding: 2px 22px;
+   background: var(--cb);
+   color: var(--black);
+   font-size: 20px;
+   border-radius: var(--br-small);
+ }
+
+ .create_window .players_number input:checked+label,
+ .create_window .bid input:checked+label,
+ .create_window .game_type input:checked+label {
+   background: var(--d9-50);
+ }
+
+
+ /* bid type */
+ .create_window .bid {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 8px;
+   padding: 0 10px;
+ }
+
+ .create_window .bid label,
+ .create_window .game_type label {
+   display: block;
+   padding: 5px 12px;
+   background: var(--cb);
+   color: var(--black);
+   font-size: 20px;
+   min-width: 140px;
+   text-align: center;
+   border-radius: var(--br-small);
+ }
+
+ /* game type */
+ .create_window .game_type {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 12px 8px;
+   padding: 0 15px;
+   margin-bottom: 8px;
+ }
+
+ .create_window .game_type label {
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   position: relative;
+   width: 100%;
+ }
+
+ .create_window .game_type label .icon {
+   display: block;
+   position: absolute;
+   right: 4px;
+ }
+
+ .create_window .game_type label svg * {
+   stroke: #000 !important;
+ }
+
+ /* cheating */
+ .create_window .cheating {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 20px;
+   gap: 25px;
+ }
+
+ .create_window .cheating .title {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 5px;
+ }
+
+ .create_window .cheating #cheat {
+   display: none;
+ }
+
+ .create_window .cheating .cheat_label {
+   display: block;
+   padding: 4px;
+   width: 52px;
+   height: auto;
+   border-radius: var(--br-large);
+   background: var(--d9-50);
+ }
+
+ .create_window .cheating .cheat_label .crc {
+   display: block;
+   width: 25px;
+   height: 25px;
+   border-radius: 50%;
+   background: var(--white);
+   transition: all 0.3s ease;
+ }
+
+ .create_window .cheating #cheat:checked+label {
+   background: #4F378B;
+ }
+
+ .create_window .cheating #cheat:checked+label .crc {
+   margin-left: calc(100% - 25px);
+ }

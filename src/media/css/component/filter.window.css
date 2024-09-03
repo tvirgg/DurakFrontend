@@ -1,0 +1,186 @@
+.filter_window {
+  display: none;
+  touch-action: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: clamp(2px, 1vh, 10px);
+  padding: clamp(6px, 2vh, 20px);
+  position: fixed;
+  background: #1e3645;
+  width: 100%;
+  max-width: 95vw;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: var(--br-medium) var(--br-medium) 0 0;
+  transition: all 0.5s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.filter_window_active {
+  display: flex;
+  animation: fopen 0.3s forwards;
+}
+
+@keyframes fopen {
+  from {
+    transform: translateX(-50%) translateY(100%);
+  }
+  to {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.filter_window .close_btn {
+  position: absolute;
+  right: clamp(10px, 3vw, 20px);
+  top: 10px;
+  padding: clamp(10px, 2vw, 15px);
+}
+
+.filter_window p {
+  font-size: clamp(16px, 4vw, 20px);
+  padding-left: clamp(10px, 3vw, 20px);
+  margin-bottom: clamp(5px, 2vh, 10px);
+}
+
+.filter_window .cards_number,
+.filter_window .bid,
+.filter_window .game_type {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: clamp(5px, 2vw, 10px);
+}
+
+.filter_window .bid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-inline: 2vw;
+}
+
+.filter_window .bid label {
+  width: 10vw !important;
+}
+
+.filter_window .cards_number input {
+  display: none;
+}
+
+.filter_window .cards_number label,
+.filter_window .bid label,
+.filter_window .game_type label {
+  flex: 1 1 auto;
+  min-width: clamp(60px, 20vw, 140px);
+  padding: clamp(8px, 2vw, 12px) clamp(15px, 4vw, 30px);
+  font-size: clamp(14px, 3vw, 18px);
+  text-align: center;
+  background-color: #cbcbcb;
+  border-radius: 6px;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(6px, 1vw, 12px);
+}
+
+.filter_window .cards_number label {
+  flex: 0 1 auto;
+  width: clamp(40px, calc(15vw + 40px), 140px);
+  height: clamp(20px, calc(12.5vw + 20px), 60px);
+  padding: 0;
+  font-size: clamp(14px, calc(1vw + 10px), 18px);
+  text-align: center;
+  background-color: #cbcbcb;
+  border-radius: 6px;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(6px, 1vw, 12px);
+}
+
+.filter_window .cards_number input:checked + label,
+.filter_window .bid input:checked + label,
+.filter_window .game_type input:checked + label {
+  background-color: #ffffff;
+  color: #000000;
+  box-shadow: 0 4px 4px 0 rgba(255, 255, 255, 0.25);
+}
+
+.filter_window .game_type {
+  padding-inline: 2vw;
+  margin-bottom: clamp(5px, 2vh, 8px);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(10px, 2vw, 20px);
+}
+
+.filter_window .game_type div {
+  display: flex;
+  align-items: center;
+}
+
+.filter_window .game_type label .icon {
+  right: clamp(2px, 1vw, 4px);
+}
+
+/* Стили для кнопок */
+.filter_window .btn_bar {
+  display: flex;
+  justify-content: space-between;
+  gap: clamp(10px, 2vw, 20px);
+  margin-top: clamp(10px, 2vh, 20px);
+  padding: clamp(10px, 2vh, 20px) clamp(10px, 2vw, 20px);
+  width: 100%;
+}
+
+.filter_window .btn_bar button {
+  flex: 1;
+  padding: clamp(10px, 2vh, 15px);
+  font-size: clamp(16px, 3vw, 20px);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filter_window .btn_bar .reset {
+  background-color: #2d4f64;
+  color: white;
+}
+
+.filter_window .btn_bar .apply {
+  background-color: #51c4ff;
+  color: white;
+}
+
+@media (max-width: 480px) {
+  .filter_window {
+    padding: 10px;
+  }
+
+  .filter_window p {
+    font-size: 16px;
+    padding-left: 10px;
+  }
+
+  .filter_window .cards_number label,
+  .filter_window .bid label,
+  .filter_window .game_type label {
+    padding: 8px 15px;
+    min-width: 80px;
+  }
+
+  .filter_window .btn_bar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filter_window .btn_bar button {
+    width: 100%;
+  }
+}

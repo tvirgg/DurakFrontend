@@ -1,0 +1,199 @@
+.premium {
+  --bg-gradien: linear-gradient(0deg, #1d323f, #347ca2);
+  --card-bg: #1f3f52;
+  --subtext-color: #dedede;
+  --btn-gradient: linear-gradient(
+    90deg,
+    #737bdb 0%,
+    #818df8 23.5%,
+    #7167ff 62.5%,
+    #ac71ff 96%
+  );
+  background: var(--bg-gradien);
+  display: block;
+  min-height: 100dvh;
+}
+
+.premium .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: clamp(15px, 5vw, 30px);
+}
+
+.premium .container .banner {
+  display: block;
+  margin-bottom: clamp(20px, 5vw, 40px);
+}
+
+.premium .container .banner img {
+  margin-top: clamp(-30px, -5vw, -60px);
+}
+
+.premium .container .page_title {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: clamp(24px, 5vw + 16px, 48px);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-top: clamp(-30px, -5vw, -60px);
+}
+
+.premium .container .card {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  background: var(--card-bg);
+  border-radius: var(--br-extra-large);
+}
+
+.premium .container .offers {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  padding: clamp(10px, 2vw, 20px);
+}
+
+.premium .container .offers input {
+  display: none;
+}
+
+.premium .container .offers input:checked + label .crc {
+  border: 2px solid var(--native-blue);
+  background: var(--native-blue);
+}
+
+.premium .container .offers input:checked + label .crc svg {
+  transform: scale(1);
+}
+
+.premium .container .offers label:first-of-type {
+  align-items: center;
+}
+
+.premium .container .offers label {
+  display: flex;
+  position: relative;
+  padding: clamp(5px, 2vw, 10px);
+  gap: clamp(10px, 2vw, 20px);
+  width: 100%;
+  font-family: var(--sfd);
+  font-size: clamp(15px, 2vw + 10px, 20px);
+}
+
+.premium .container .offers label .offer-container {
+  display: flex;
+  width: 100%;
+  gap: 12px;
+}
+
+.premium .container .offers label .crc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(20px, 2vw, 30px);
+  height: clamp(20px, 2vw, 30px);
+  border-radius: 50%;
+  border: 2px solid var(--secondary-hint-color);
+}
+
+.premium .container .offers label .crc svg {
+  display: block;
+  padding-top: 0.5px;
+  transition: transform 0.2s ease;
+  transform: scale(0);
+}
+
+.premium .container .offers label .title {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4px, 1vw, 10px);
+}
+
+.premium .container .offers label .title .subtext {
+  font-size: clamp(11px, 1vw + 8px, 15px);
+  color: var(--subtext-color);
+}
+
+.premium .container .offers label .title .subtext span {
+  margin-right: 4px;
+}
+
+.premium .container .offers label .price {
+  display: flex;
+  justify-content: space-between;
+  font-size: clamp(12px, 1vw + 10px, 20px);
+  gap: clamp(4px, 2vw, 24px);
+}
+
+.premium .container .offers label .installment {
+  margin-left: clamp(8px, 1vw, 12px);
+  height: fit-content;
+  background-color: var(--native-blue);
+  padding: clamp(2px, 1vw, 4px) clamp(8px, 6px, 12px);
+  border-radius: var(--br-extra-small);
+  font-size: clamp(12px, 1vw + 8px, 16px);
+  color: var(--white);
+}
+
+.premium .container .group {
+  display: block;
+  width: 100%;
+}
+
+.premium .container .card_title {
+  display: block;
+  width: 100%;
+  font-size: clamp(20px, 2vw + 10px, 24px);
+  padding: clamp(5px, 1vw, 10px);
+}
+
+.premium .container .features {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(12px, 2vw, 20px) 0;
+  overflow: hidden;
+  gap: clamp(0px, 1vw, 10px);
+}
+
+.premium .container .features .row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: clamp(4px, 1vw, 8px) clamp(12px, 2vw, 20px);
+  gap: clamp(10px, 2vw, 20px);
+  border-bottom: 1px solid var(--subtext-color);
+  width: 100%;
+}
+
+.premium .container .features :last-child {
+  border-bottom: none !important;
+}
+
+.premium .container .features .row .title p {
+  font-family: var(--sfd);
+  font-size: clamp(13px, 1vw + 8px, 16px);
+}
+
+.premium .container .features .row .title .subtext {
+  font-family: var(--sf);
+  font-size: clamp(11px, 1vw + 4px, 14px);
+  color: var(--subtext-color);
+}
+
+.premium .subcribe_btn {
+  display: block;
+  position: absolute;
+  background: var(--btn-gradient);
+  width: calc(100% - clamp(14px, 2vw, 28px));
+  height: clamp(54px, 8vw, 70px);
+  border-radius: 10px;
+  color: var(--white);
+  font-size: clamp(24px, 2vw + 8px, 32px);
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: 1px;
+  bottom: clamp(7px, 2vw, 14px);
+  left: clamp(7px, 2vw, 14px);
+}

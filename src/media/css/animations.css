@@ -1,0 +1,19 @@
+/* animations */
+/* .page-loaded .anim_sjump {
+  animation: sjump 0.4s forwards;
+  animation-delay: 1.7s;
+} */
+
+@keyframes sjump {
+  from {
+    transform: scale(0.8);
+  }
+
+  50% {
+    transform: scale(1.03);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,312 @@
+.profile_section .profile_customs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(5px, 1vw, 10px);
+  width: 100%;
+}
+
+.profile_section .profile_customs .btn {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  width: 100%;
+  background: var(--bg4);
+  border-radius: var(--br-small);
+  aspect-ratio: 1 / 1;
+  padding: 10%;
+}
+
+.profile_section .profile_customs .btn img {
+  display: block;
+  position: absolute;
+  left: 10%; /* Отступ слева */
+  top: 10%; /* Отступ сверху */
+  width: 80%; /* Уменьшаем ширину изображения */
+  height: 80%; /* Уменьшаем высоту изображения */
+  object-fit: contain; /* Сохраняем пропорции изображения */
+}
+
+.profile_section .profile_friends {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: clamp(4px, 0.5vw, 6px);
+}
+
+.profile_section .profile_friends .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  max-height: clamp(50px, 8vw, 58px);
+  padding: clamp(6px, 0.5vw, 8px);
+  background: var(--gradient1);
+  border-radius: var(--br-large);
+  width: 100%;
+  font-size: clamp(14px, 2vw, 18px);
+}
+
+.profile_section .profile_friends .row .user {
+  display: flex;
+  flex-direction: row;
+  gap: clamp(5px, 1vw, 8px);
+  align-items: center;
+}
+
+.profile_section .profile_friends .row .user .picture {
+  display: block;
+  aspect-ratio: 1 / 1;
+  width: clamp(30px, 2vw, 35px);
+  height: auto;
+}
+
+.profile_section .profile_friends .row .user .info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.profile_section .profile_friends .row .user .info .status {
+  display: flex;
+  flex-direction: row;
+  gap: clamp(1px, 0.25vw, 1.5px);
+}
+
+.profile_section .profile_friends .row .btns {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile_section .profile_friends .row .btns .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile_section .windows {
+  display: none;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px);
+  z-index: 100;
+}
+
+.profile_section .windows_active {
+  display: flex;
+  animation: sjump 0.3s 1 forwards;
+}
+
+.profile_section .windows .window {
+  display: block;
+  width: 90vw;
+  max-width: 600px;
+  background: var(--d9);
+  border-radius: var(--br-large);
+  overflow: hidden;
+}
+
+.profile_section .windows .window .button_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(10px, 1vw, 15px);
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: clamp(8px, 1vw, 10px);
+}
+
+.profile_section .windows .window .w_container {
+  display: flex;
+  flex-direction: row;
+  width: 2000px;
+  transition: margin-left 0.3s ease;
+}
+
+.profile_section .windows .window .slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 90vw;
+  gap: clamp(16px, 2vw, 32px);
+  max-width: 600px;
+  padding: clamp(10px, 2vw, 15px);
+}
+
+.profile_section .windows .window .title {
+  display: block;
+  font-size: clamp(18px, 2.5vw, 24px);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--black);
+  text-align: center;
+}
+
+.profile_section .windows .window .w_container .btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: space-between;
+  gap: clamp(10px, 1.5vw, 15px);
+}
+
+.profile_section .windows .window .w_container .choose_cat .btns {
+  padding: clamp(10px, 1.5vw, 15px);
+}
+
+.profile_section .windows .window .w_container .choose_cat .btns button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(2px, 0.5vw, 4px) clamp(10px, 1.5vw, 15px);
+  border-radius: var(--br-large);
+}
+
+.profile_section .windows .window .w_container .choose_cat .btns button span {
+  display: block;
+  width: 100%;
+  font-size: clamp(14px, 1.5vw, 20px);
+  text-align: center;
+}
+
+.profile_section .windows .window .w_container .choose_cat .btns .cat_active {
+  background: var(--blue-light);
+}
+
+.profile_section .windows .window .choose_cat .btns button img {
+  display: block;
+  width: 100%;
+}
+
+.profile_section .windows .window .sbtn {
+  display: block;
+  width: 100%;
+  background: var(--blue-light);
+  padding: clamp(3px, 0.5vw, 4px);
+  font-size: clamp(16px, 2vw, 24px);
+  border-radius: var(--br-large);
+}
+
+.profile_section .windows .window .cancel_btn {
+  display: block;
+  width: 100%;
+  padding: clamp(3px, 0.5vw, 4px);
+  font-size: clamp(16px, 2vw, 24px);
+  border-radius: var(--br-large);
+}
+
+.profile_section .windows .window .w_container .choose_lvl .btns {
+  gap: clamp(15px, 2vw, 25px) clamp(10px, 1vw, 12px);
+}
+
+.profile_section .windows .window .w_container .choose_lvl .btns button {
+  display: block;
+  width: 100%;
+  background: #0004;
+  font-size: clamp(14px, 1.5vw, 20px);
+  padding: clamp(3px, 0.5vw, 4px);
+  border-radius: var(--br-small);
+  border: 5px solid transparent;
+  box-sizing: border-box;
+}
+
+.profile_section .windows .window .w_container .choose_lvl .btns .standart {
+  background: #69afff;
+}
+
+.profile_section .windows .window .w_container .choose_lvl .btns .special {
+  background: #6cff6c;
+}
+
+.profile_section .windows .window .w_container .choose_lvl .btns .relic {
+  background: #ffd037;
+}
+
+.profile_section .windows .window .w_container .choose_lvl .btns .rare {
+  background: #ff5b5b;
+}
+
+.profile_section .windows .window .w_container .choose_lvl .btns .lvl_active {
+  border: 2px solid #8d8888;
+}
+
+.profile_section .windows .window .w_container .choose_present .presents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(5px, 0.5vw, 8px);
+  width: calc(100% + clamp(20px, 3vw, 30px));
+  margin-left: clamp(-10px, -1.5vw, -15px);
+  padding: 0 clamp(5px, 1vw, 8px);
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.profile_section .windows .window .w_container .choose_present .presents .row {
+  display: flex;
+  flex-direction: row;
+}
+
+.profile_section .windows .window .w_container .choose_present .presents .pbtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: none;
+  background: transparent;
+  padding: clamp(5px, 0.5vw, 8px);
+  border-radius: var(--br-medium);
+}
+
+.profile_section
+  .windows
+  .window
+  .w_container
+  .choose_present
+  .presents
+  .pbtn
+  img {
+  display: block;
+  width: clamp(50px, 4vw, 70px);
+  height: clamp(50px, 4vw, 70px);
+  object-fit: cover;
+}
+
+.profile_section
+  .windows
+  .window
+  .w_container
+  .choose_present
+  .presents
+  .pbtn
+  span {
+  opacity: 0;
+}
+
+.profile_section
+  .windows
+  .window
+  .w_container
+  .choose_present
+  .presents
+  .p_active {
+  background: var(--blue-light);
+}
+
+.profile_section
+  .windows
+  .window
+  .w_container
+  .choose_present
+  .presents
+  .p_active
+  span {
+  opacity: 1;
+}

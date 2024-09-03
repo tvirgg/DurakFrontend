@@ -1,0 +1,48 @@
+.games .btn_bar {
+  touch-action: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: min-content;
+  gap: 7px;
+  top: calc(100% - 80px);
+  height: 100%;
+  left: 0;
+  z-index: 101;
+  /* Для Safari */
+  width: 100%;
+  padding: 15px 7px;
+  transform: translate(0, 80px);
+  -webkit-transform: translate(0, 80px);
+  /* Для Safari и старых версий Chrome */
+  -ms-transform: translate(0, 80px);
+  /* Для IE 9 */
+  transition: transform 0.3s ease;
+  -webkit-transition: -webkit-transform 0.3s ease;
+  /* Для Safari и старых версий Chrome */
+  -ms-transition: -ms-transform 0.3s ease;
+  /* Для IE 9 */
+}
+
+.games .btn_bar button {
+  display: block;
+  padding: 16px 20px;
+  font-size: 20px;
+  color: var(--white);
+  border-radius: var(--br-medium);
+}
+
+.games .btn_bar .reset {
+  background-color: #2d4f64;
+}
+
+.games .btn_bar .apply {
+  background-color: #51c4ff;
+}
+
+.games .fmode {
+  transform: translate(0, 0);
+  -webkit-transform: translate(0, 0);
+  /* Для Safari и старых версий Chrome */
+  -ms-transform: translate(0, 0);
+  /* Для IE 9 */
+}

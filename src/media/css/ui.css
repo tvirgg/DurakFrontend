@@ -1,0 +1,23 @@
+.ui_xWindow {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.ui_xWindow .close_btn {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(30%, -30%);
+  border-radius: 50%;
+  background: var(--d9);
+  z-index: 99;
+  padding: 1px;
+}
+
+.ui_xWindow .close_btn svg {
+  display: block;
+}

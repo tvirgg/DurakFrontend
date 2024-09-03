@@ -1,0 +1,7 @@
+.menu_carousel {
+  width: 100%;
+}
+
+.menu_carousel .slide {
+  display: block;
+}

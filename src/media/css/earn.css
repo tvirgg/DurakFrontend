@@ -1,0 +1,150 @@
+.earn .header_bar {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.earn .header_bar .content {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: clamp(20px, 5vw, 50px);
+}
+
+.earn .page_title {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 500;
+  padding: clamp(6px, 2vw, 12px) clamp(8px, 2vw, 16px);
+}
+
+.earn .header_bar .content .coins {
+  display: flex;
+  position: relative;
+  align-items: center;
+  font-size: clamp(24px, 5vw, 40px);
+}
+
+.earn .header_bar .content .coins .icon {
+  width: clamp(24px, 4vw, 40px);
+  height: auto;
+  aspect-ratio: 1/1;
+}
+
+.earn .header_bar .content .per {
+  position: relative;
+  font-size: clamp(18px, 3vw, 26px);
+  color: var(--be);
+}
+
+.earn .content .back_img {
+  display: block;
+  position: absolute;
+  left: clamp(-15px, -2vw, -25px);
+  top: 0;
+  height: 100%;
+  z-index: 0;
+  padding: clamp(6px, 2vw, 12px) clamp(8px, 2vw, 16px);
+}
+
+/* buffs */
+.earn .header_bar .buffs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding: clamp(5px, 1.5vw, 15px) 0;
+}
+
+.earn .header_bar .buffs button {
+  display: block;
+  padding: clamp(2px, 0.75vw, 6px) clamp(5px, 1.5vw, 15px);
+  background: #e8d0ae;
+  border: 2px solid #ffc26d;
+  color: var(--black);
+  border-radius: var(--br-large);
+  min-width: clamp(70px, 15vw, 100px);
+  text-align: center;
+  font-weight: 500;
+  font-size: clamp(14px, 2.5vw, 18px);
+}
+
+.earn .tasks {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(5px, 1.5vw, 15px);
+  width: 100%;
+}
+
+.earn .tasks .task {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  min-height: clamp(70px, 15vw, 90px);
+  padding: clamp(3px, 1vw, 7px);
+  background: linear-gradient(253.01deg, #235975 2.81%, #1d303c 100%);
+  border-radius: var(--br-medium);
+  color: var(--white);
+  text-align-last: left;
+}
+
+.earn .tasks .task svg {
+  position: absolute;
+  right: clamp(3px, 1vw, 7px);
+}
+
+.earn .tasks h2 {
+  padding: clamp(5px, 1.5vw, 15px);
+}
+
+.earn .tasks .task .picture {
+  display: block;
+  width: clamp(60px, 12vw, 80px);
+  aspect-ratio: 1/1;
+}
+
+.earn .tasks .task .content {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(3px, 1vw, 7px);
+}
+
+.earn .tasks .task .content .title {
+  font-size: clamp(18px, 3vw, 24px);
+}
+
+.earn .tasks .task .content .info {
+  font-size: clamp(14px, 2vw, 18px);
+  color: #d4d4d4;
+  width: clamp(200px, 45vw, 500px);
+  text-align: left;
+}
+
+.earn .tasks .task .content .prize {
+  display: flex;
+  position: relative;
+  gap: clamp(1px, 0.5vw, 3px);
+  align-items: center;
+  font-size: clamp(14px, 2.5vw, 22px);
+  margin-top: 4px;
+}
+
+.earn .tasks .task .iconChevronRight {
+  display: block;
+  position: absolute;
+  right: clamp(3px, 1vw, 7px);
+  width: clamp(20px, 3vw, 30px);
+  height: auto;
+}
+
+.earn .tasks .task .iconChevronRight path {
+  fill: #d4d4d4;
+}

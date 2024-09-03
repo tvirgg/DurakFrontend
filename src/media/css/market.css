@@ -1,0 +1,207 @@
+.market {
+  --card-bg: #1f3f52;
+  --active-type-bg: #668ba1;
+}
+
+.market .header_menu {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3px, 1vw, 5px);
+  font-family: var(--sfd);
+}
+
+.market .header_menu .type_btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: clamp(1px, 0.5vw, 2px);
+  padding: clamp(2px, 1vw, 4px);
+  background: var(--card-bg);
+  border-radius: var(--br-small);
+}
+
+.market .header_menu .type_btns .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(3px, 1vw, 5px);
+  position: relative;
+  padding: clamp(1px, 0.5vw, 2px) clamp(6px, 2vw, 12px);
+  border-radius: var(--br-small);
+  color: var(--white);
+  font-size: clamp(15px, 2vw, 20px);
+}
+
+.market .header_menu .type_btns .btn img {
+  display: block;
+  width: clamp(30%, 5vw, 40%);
+  height: auto;
+}
+
+.market .header_menu .type_btns .active-type {
+  background: var(--active-type-bg);
+}
+
+.market .header_menu .category_btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-content: space-between;
+  gap: clamp(2px, 1vw, 4px);
+  padding: clamp(3px, 1vw, 5px);
+}
+
+.market .header_menu .category_btns input {
+  display: none;
+}
+
+.market .header_menu .category_btns .btn {
+  display: block;
+  padding: clamp(3px, 1vw, 5px) clamp(4px, 1.5vw, 8px);
+  border-radius: var(--br-small);
+  background: #919191;
+  width: 100%;
+  text-align: center;
+  color: var(--black);
+  font-size: clamp(14px, 2vw, 16px);
+}
+
+.standart {
+  --color: #69afff;
+}
+
+.special {
+  --color: #6cff6c;
+}
+
+.rare {
+  --color: #ff5b5b;
+}
+
+.relic {
+  --color: #ffd037;
+}
+
+.market .header_menu .category_btns .active {
+  background: var(--color);
+  box-shadow: 0 3px 4px var(--color);
+}
+
+.market .products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: clamp(5px, 2vw, 10px);
+  justify-content: center;
+}
+
+@media (min-width: 480px) {
+  .market .products {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+}
+
+@media (min-width: 768px) {
+  .market .products {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}
+
+.market .products .product {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 100%;
+  border-radius: var(--br-medium);
+  overflow: hidden;
+  aspect-ratio: 1/1;
+  background: var(--card-bg);
+  max-width: 180px; /* Увеличиваем максимальную ширину */
+  margin: 0 auto;
+}
+
+.market .products .product .img {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.market .products .product .content {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(5px, 1.5vw, 8px);
+  gap: clamp(2px, 0.5vw, 3px);
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, #0009, transparent);
+  z-index: 10;
+}
+
+.market .products .product .content .title,
+.market .products .product .content .price {
+  display: block;
+  font-family: var(--sfd);
+  color: var(--white);
+  text-shadow: 0 0 10px #000;
+}
+
+.market .products .product .content .title {
+  font-size: clamp(16px, 3vw, 18px);
+}
+
+.market .products .product .content .price {
+  font-size: clamp(12px, 2vw, 14px);
+}
+
+.market .products .product .content .buy_btn {
+  display: block;
+  width: 100%;
+  background: var(--native-blue);
+  border-radius: var(--br-small);
+  font-family: var(--sfd);
+  font-size: clamp(14px, 2.5vw, 16px);
+  color: var(--white);
+  padding: clamp(3px, 1vw, 5px);
+}
+
+.image {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.image-preloader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--card-bg);
+  z-index: 1;
+  animation: imgLoad 0.8s infinite;
+}
+
+.img .hidden {
+  display: none;
+}
+
+@keyframes imgLoad {
+  0% {
+    background: #1f3f52;
+  }
+
+  50% {
+    background: #2a5168;
+  }
+
+  100% {
+    background: #1f3f52;
+  }
+}

@@ -1,0 +1,46 @@
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  position: fixed;
+  margin-top: auto;
+  bottom: 2px;
+  left: 7px;
+  padding-inline: 12px;
+  right: 7px;
+  background: var(--bg3);
+  border-radius: var(--br-extra-large);
+  overflow: hidden;
+  z-index: 100;
+  max-width: 600px;
+  margin-inline: auto;
+  margin-bottom: 0.625rem;
+  max-height: 67px;
+}
+
+.navbar button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--white);
+  font-weight: 400;
+  flex: 1;
+  padding: 5px;
+  font-size: 12px;
+  margin: 0;
+}
+
+.navbar button span {
+  display: block;
+  margin-top: 5px;
+  font-weight: 400;
+}
+
+.navbar button .icon {
+  max-width: 36px;
+}
+
+body.filter-open .navbar {
+  display: none;
+}
