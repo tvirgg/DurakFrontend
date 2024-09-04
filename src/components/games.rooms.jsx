@@ -1,40 +1,44 @@
-import React from 'react'
-import '../media/css/component/games.rooms.css'
-import '../media/css/component/rooms.list.css'
-import IconSearch from '../components/icons/search'
-import IconFilter from '../components/icons/filter'
-import IconChevronRight from './icons/chevronRight'
-import IconArrowDegRight from './icons/arrowDegRight'
-import IconPlayWhite from './icons/playWhite'
-import IconDur from './icons/dur'
-import IconAlertCircle from './icons/alertCircle'
-import IconRefresh from './icons/refresh'
-import IconCoin from './icons/coin'
-import PostRequester from '../PostRequester'
+import React from "react";
+import "../media/css/component/games.rooms.css";
+import "../media/css/component/rooms.list.css";
+import IconSearch from "../components/icons/search";
+import IconFilter from "../components/icons/filter";
+import IconChevronRight from "./icons/chevronRight";
+import IconArrowDegRight from "./icons/arrowDegRight";
+import IconPlayWhite from "./icons/playWhite";
+import IconDur from "./icons/dur";
+import IconAlertCircle from "./icons/alertCircle";
+import IconRefresh from "./icons/refresh";
+import IconCoin from "./icons/coin";
+import PostRequester from "../PostRequester";
 //
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 //
-import FilterWindow from '../components/lobbies.filter.window'
-import { I18nText } from './i18nText'
+import FilterWindow from "../components/lobbies.filter.window";
+import { I18nText } from "./i18nText";
+import { useIntl } from "react-intl";
 
 //
 const GamesRooms = ({ roomsData }) => {
-  const [isFilterOpen, setIsFilterOpen] = React.useState(false)
-  const navigate = useNavigate()
+  const [isFilterOpen, setIsFilterOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   const connectToGame = async (id) => {
-    console.log(id, 'connectToGame')
-    await PostRequester('/game/connect', { gameId: id })
-  }
+    console.log(id, "connectToGame");
+    await PostRequester("/game/connect", { gameId: id });
+  };
 
   const linkLobbies = () => {
-    navigate('/lobbies')
-  }
+    navigate("/lobbies");
+  };
 
   const toggleSearchBar = () => {
-    const bar = document.querySelector('.search_bar')
-    bar.classList.toggle('search_bar_active')
-  }
+    const bar = document.querySelector(".search_bar");
+    bar.classList.toggle("search_bar_active");
+  };
+
+  const intl = useIntl();
+  const placeholder = intl.formatMessage({ id: "search_room" });
 
   // const roomsData = [
   //   {
@@ -94,31 +98,31 @@ const GamesRooms = ({ roomsData }) => {
   // ];
 
   const getPriceContent = (price, currency) => {
-    if (price === null || price === 0) return 'Free'
-    if (currency === 'premium')
+    if (price === null || price === 0) return "Free";
+    if (currency === "premium")
       return (
         <>
           {price}
           <IconDur />
         </>
-      )
-    if (currency === 'usual')
+      );
+    if (currency === "usual")
       return (
         <>
           {price}
           <IconCoin />
         </>
-      )
-    return price
-  }
+      );
+    return price;
+  };
   const toggleFilter = () => {
-    setIsFilterOpen(!isFilterOpen)
-    let w = document.querySelector('.filter_window'),
-      btns = document.querySelector('.btn_bar')
-    w.classList.toggle('filter_window_active')
-    btns.classList.toggle('fmode')
-    document.body.classList.toggle('filter-open', !isFilterOpen)
-  }
+    setIsFilterOpen(!isFilterOpen);
+    let w = document.querySelector(".filter_window"),
+      btns = document.querySelector(".btn_bar");
+    w.classList.toggle("filter_window_active");
+    btns.classList.toggle("fmode");
+    document.body.classList.toggle("filter-open", !isFilterOpen);
+  };
   return (
     <div className="rooms">
       {/* Header */}
@@ -128,23 +132,14 @@ const GamesRooms = ({ roomsData }) => {
             <I18nText path="rooms" />:
           </h2>
           <div className="right-group">
-            <button
-              className="btn_create"
-              onClick={linkLobbies}
-            >
+            <button className="btn_create" onClick={linkLobbies}>
               <I18nText path="create_game" />
             </button>
             <div className="btns">
-              <button
-                className="btn_search"
-                onClick={toggleSearchBar}
-              >
+              <button className="btn_search" onClick={toggleSearchBar}>
                 <IconSearch />
               </button>
-              <button
-                className="btn_filter"
-                onClick={toggleFilter}
-              >
+              <button className="btn_filter" onClick={toggleFilter}>
                 <IconFilter />
               </button>
             </div>
@@ -155,22 +150,16 @@ const GamesRooms = ({ roomsData }) => {
             type="text"
             name="search"
             className="search_input"
-            placeholder="Search room"
+            placeholder={placeholder}
           />
         </div>
       </header>
-      <FilterWindow
-        isOpen={isFilterOpen}
-        onClose={toggleFilter}
-      />
+      <FilterWindow isOpen={isFilterOpen} onClose={toggleFilter} />
 
       {/* list */}
       <div className="rooms_list anim_sjump">
         {roomsData.map((room) => (
-          <div
-            className="room"
-            key={room.gameId}
-          >
+          <div className="room" key={room.gameId}>
             <div className="gr">
               <div className="price">
                 {getPriceContent(room.betAmount, room.betType)}
@@ -179,13 +168,13 @@ const GamesRooms = ({ roomsData }) => {
             </div>
             <div className="info">
               <div className="corner">
-                {room.type === 'CLASSIC' ? (
+                {room.type === "CLASSIC" ? (
                   <IconPlayWhite />
-                ) : room.type === 'PODKIDNOY' ? (
+                ) : room.type === "PODKIDNOY" ? (
                   <IconArrowDegRight />
-                ) : room.type === 'PEREVODNOY' ? (
+                ) : room.type === "PEREVODNOY" ? (
                   <IconRefresh />
-                ) : room.type === 'SHULLERS' ? (
+                ) : room.type === "SHULLERS" ? (
                   <IconAlertCircle />
                 ) : null}
                 {/* {room.players_count < room.players_limit ? (
@@ -209,7 +198,7 @@ const GamesRooms = ({ roomsData }) => {
       </div>
       {/* / */}
     </div>
-  )
-}
+  );
+};
 
-export default GamesRooms
+export default GamesRooms;

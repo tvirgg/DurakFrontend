@@ -1,14 +1,14 @@
-import React from 'react'
+import React from "react";
 //
-import Preloader from '../includes/preloader'
+import Preloader from "../includes/preloader";
 // css
-import '../media/css/page/exchange.css'
+import "../media/css/page/exchange.css";
 //icons
-import IconArrowRight from '../components/icons/arrowRight'
-import IconCoin from '../components/icons/coin'
+import IconArrowRight from "../components/icons/arrowRight";
+import IconCoin from "../components/icons/coin";
 //
-import TransactionHistory from '../components/transaction.history'
-import { I18nText } from '../components/i18nText'
+import TransactionHistory from "../components/transaction.history";
+import { I18nText } from "../components/i18nText";
 //
 const PageExchange = () => {
   return (
@@ -30,14 +30,8 @@ const PageExchange = () => {
               <I18nText path="user_profile_exchange" />:
             </h2>
             <div className="change">
-              <input
-                type="checkbox"
-                id="change_dur"
-              />
-              <label
-                className="btn_change"
-                htmlFor="change_dur"
-              >
+              <input type="checkbox" id="change_dur" />
+              <label className="btn_change" htmlFor="change_dur">
                 DUR <IconArrowRight />
                 <IconCoin />
               </label>
@@ -48,67 +42,29 @@ const PageExchange = () => {
               <I18nText path="choose_amount" />:
             </h2>
             <div className="list">
-              <input
-                type="radio"
-                id="v1"
-                name="choose"
-              />
+              <input type="radio" id="v1" name="choose" />
               <label htmlFor="v1">1 DUR</label>
-              <input
-                type="radio"
-                id="v2"
-                name="choose"
-              />
+              <input type="radio" id="v2" name="choose" />
               <label htmlFor="v2">2 DUR</label>
-              <input
-                type="radio"
-                id="v3"
-                name="choose"
-              />
+              <input type="radio" id="v3" name="choose" />
               <label htmlFor="v3">3 DUR</label>
-              <input
-                type="radio"
-                id="v4"
-                name="choose"
-              />
+              <input type="radio" id="v4" name="choose" />
               <label htmlFor="v4">4 DUR</label>
-              <input
-                type="radio"
-                id="v5"
-                name="choose"
-              />
+              <input type="radio" id="v5" name="choose" />
               <label htmlFor="v5">5 DUR</label>
               {/* 5 */}
-              <input
-                type="radio"
-                id="v6"
-                name="choose"
-              />
+              <input type="radio" id="v6" name="choose" />
               <label htmlFor="v6">6 DUR</label>
-              <input
-                type="radio"
-                id="v7"
-                name="choose"
-              />
+              <input type="radio" id="v7" name="choose" />
               <label htmlFor="v7">7 DUR</label>
-              <input
-                type="radio"
-                id="v8"
-                name="choose"
-              />
+              <input type="radio" id="v8" name="choose" />
               <label htmlFor="v8">8 DUR</label>
-              <input
-                type="radio"
-                id="v9"
-                name="choose"
-              />
+              <input type="radio" id="v9" name="choose" />
               <label htmlFor="v9">9 DUR</label>
-              <input
-                type="radio"
-                id="v10"
-                name="choose"
-              />
-              <label htmlFor="v10">All DUR</label>
+              <input type="radio" id="v10" name="choose" />
+              <label htmlFor="v10">
+                <I18nText path="all" /> DUR
+              </label>
             </div>
           </div>
           {/* conversion */}
@@ -138,16 +94,13 @@ const PageExchange = () => {
           <TransactionHistory />
           {/* submit */}
           <div className="bar_btn">
-            <button
-              className="btn_submit"
-              type="submit"
-            >
+            <button className="btn_submit" type="submit">
               <I18nText path="user_profile_exchange" />
             </button>
           </div>
         </form>
       </div>
     </section>
-  )
-}
-export default PageExchange
+  );
+};
+export default PageExchange;

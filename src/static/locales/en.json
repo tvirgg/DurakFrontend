@@ -18,8 +18,8 @@
   "coins_label": "Coins",
   "per_hour": "per hour",
   "buff_collect": "collect",
-  "buff_speed": "+20% speed",
-  "buff_capacity": "X2 capacity",
+  "buff_speed": "speed",
+  "buff_capacity": "capacity",
   "basic_tasks": "Basic tasks",
   "special_tasks": "Special tasks",
   "rare_tasks": "Rare tasks",
@@ -32,6 +32,8 @@
   "relic_card_pattern": "Relic card pattern",
   "rare_avatar": "Rare avatar frame",
   "special_table": "Special table background",
+  "speed_increased": "speed increased",
+  "capacity_increased": "capacity increased",
 
   "task_daily_login_title": "Daily Login",
   "task_daily_login_info": "Login in to the game 7 days in a row",
@@ -74,6 +76,7 @@
   "task_get_the_collection_info": "Collect 10 different items",
   "task_golden_player_title": "Golden player",
   "task_golden_player_info": "Earn 1.000.000 coins",
+  "player_title": "Player",
 
   "invite": "Invite",
   "friends": "friends",
@@ -138,6 +141,7 @@
   "insufficient_balance": "Insufficient balance",
   "congratulations": "Congratulations",
   "new_item": "You bought a new item",
+  "buy_for": "Buy for",
 
   "deposit_title": "Deposit",
   "deposit_desc": "buy DUR tokens for TON",
@@ -170,5 +174,13 @@
   "friend_bonuses": "Bonuses for friends",
   "friend_desc": "Invite friends and get more bonuses for yourself and them",
   "subscribe": "Subscribe",
-  "sell": "Sell"
+  "sell": "Sell",
+  "search_room": "Search room",
+  "all": "All",
+  "player_cards": "cards",
+
+  "welcome_tournament": "Welcome Tournament",
+  "main_prize": "Main prize",
+  "requirement_tournament": "Requirement - be in game at the start of event",
+  "aug": "Aug"
 }

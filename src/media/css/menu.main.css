@@ -82,7 +82,11 @@
   height: 100%;
 }
 
+<<<<<<< HEAD
 @media screen and (min-width: 500px) {
+=======
+@media screen and (min-width: 340px) {
+>>>>>>> cactus
   .menu_section .double {
     flex-direction: row;
   }

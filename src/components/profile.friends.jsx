@@ -8,14 +8,15 @@ import IconPlayArrow from "../components/icons/playArrow";
 import IconChat from "../components/icons/chat";
 import IconAddFriends from "../components/icons/addFriends";
 import IconPresent from "../components/icons/present";
+import { I18nText } from "./i18nText";
 
 const ProfileFriends = () => {
   const friends = [
-    { name: "PAULINA", status: "In Game" },
-    { name: "PAULINA", status: "In Game" },
-    { name: "PAULINA", status: "In Game" },
-    { name: "PAULINA", status: "In Game" },
-    { name: "PAULINA", status: "In Game" },
+    { name: "PAULINA", status: <I18nText path="user_profile_in_game" /> },
+    { name: "PAULINA", status: <I18nText path="user_profile_in_game" /> },
+    { name: "PAULINA", status: <I18nText path="user_profile_in_game" /> },
+    { name: "PAULINA", status: <I18nText path="user_profile_in_game" /> },
+    { name: "PAULINA", status: <I18nText path="user_profile_in_game" /> },
   ];
 
   const openWindows = () => {

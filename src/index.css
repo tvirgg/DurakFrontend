@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -12,16 +12,17 @@ code {
   --bg4: #224e65;
 
   /* fonts */
-  --nats: 'NATS', sans-serif;
-  --cruin: 'Cruin Regular', sans-serif;
-  --cruin-bold: 'Cruin Bold', sans-serif;
-  --cruin-medium: 'Cruin Medium', sans-serif;
-  --cruin-light: 'Cruin Light', sans-serif;
-  --sf: 'SF-Pro Rounded', sans-serif;
-  --sfd: 'SF-Pro Display', sans-serif;
-  --sfd-bold: 'SF-Pro Display Bold', sans-serif;
-  --sfd-medium: 'SF-Pro Display Medium', sans-serif;
-  --sfd-light: 'SF-Pro Display Light', sans-serif;
+  --nats: "NATS", sans-serif;
+  --ttHoves: "TTHoves", sans-serif;
+  --cruin: "Cruin Regular", sans-serif;
+  --cruin-bold: "Cruin Bold", sans-serif;
+  --cruin-medium: "Cruin Medium", sans-serif;
+  --cruin-light: "Cruin Light", sans-serif;
+  --sf: "SF-Pro Rounded", sans-serif;
+  --sfd: "SF-Pro Display", sans-serif;
+  --sfd-bold: "SF-Pro Display Bold", sans-serif;
+  --sfd-medium: "SF-Pro Display Medium", sans-serif;
+  --sfd-light: "SF-Pro Display Light", sans-serif;
 
   /* font-colors */
   --fcolor1: #e1e1e1;
@@ -80,7 +81,6 @@ code {
 html,
 body {
   width: 100%;
-  font-family: 'Inter', sans-serif;
   position: relative;
   font-weight: 400;
   margin: 0;

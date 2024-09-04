@@ -2,13 +2,26 @@
 
 /* NATS */
 @font-face {
+<<<<<<< HEAD
   font-family: 'NATS';
   src: url('../fonts/NATS-Regular.ttf') format('truetype');
+=======
+  font-family: "NATS";
+  src: url("../fonts/NATS-Regular.ttf") format("truetype");
+}
+
+/* TT Hoves */
+
+@font-face {
+  font-family: "TTHoves";
+  src: url("../fonts/TTHoves-Medium.ttf") format("truetype");
+>>>>>>> cactus
 }
 
 /* Cruin */
 
 @font-face {
+<<<<<<< HEAD
   font-family: 'Cruin Regular';
   src: url('../fonts/Cruinn\ Regular.ttf') format('truetype');
 }
@@ -26,18 +39,43 @@
 @font-face {
   font-family: 'Cruin Light';
   src: url('../fonts/Cruinn\ Light.ttf') format('truetype');
+=======
+  font-family: "Cruin Regular";
+  src: url("../fonts/Cruinn\ Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Cruin Bold";
+  src: url("../fonts/Cruinn\ Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Cruin Medium";
+  src: url("../fonts/Cruinn\ Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Cruin Light";
+  src: url("../fonts/Cruinn\ Light.ttf") format("truetype");
+>>>>>>> cactus
 }
 
 /* SF-Pro Rounded */
 
 @font-face {
+<<<<<<< HEAD
   font-family: 'SF-Pro Rounded';
   src: url('../fonts/SF_Pro_Rounded_Regular.ttf') format('truetype');
+=======
+  font-family: "SF-Pro Rounded";
+  src: url("../fonts/SF_Pro_Rounded_Regular.ttf") format("truetype");
+>>>>>>> cactus
 }
 
 /* SF-Pro Display */
 
 @font-face {
+<<<<<<< HEAD
   font-family: 'SF-Pro Display';
   src: url('../fonts/SF-Pro-Display-Regular.otf') format('truetype');
 }
@@ -55,4 +93,23 @@
 @font-face {
   font-family: 'SF-Pro Display Light';
   src: url('../fonts/SF-Pro-Display-Light.otf') format('truetype');
+=======
+  font-family: "SF-Pro Display";
+  src: url("../fonts/SF-Pro-Display-Regular.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "SF-Pro Display Bold";
+  src: url("../fonts/SF-Pro-Display-Bold.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "SF-Pro Display Medium";
+  src: url("../fonts/SF-Pro-Display-Medium.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "SF-Pro Display Light";
+  src: url("../fonts/SF-Pro-Display-Light.otf") format("truetype");
+>>>>>>> cactus
 }

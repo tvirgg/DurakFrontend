@@ -16,10 +16,10 @@
 
   "earn_title": "Доход",
   "coins_label": "монет",
-  "per_hour": "в час",
+  "per_hour": "час",
   "buff_collect": "собрать",
-  "buff_speed": "+20% скорость",
-  "buff_capacity": "X2 ёмкость",
+  "buff_speed": "скорость",
+  "buff_capacity": "ёмкость",
   "basic_tasks": "Основные задания",
   "special_tasks": "Специальные задания",
   "rare_tasks": "Редкие задания",
@@ -32,6 +32,8 @@
   "relic_card_pattern": "Реликтовый шаблон карты",
   "rare_avatar": "Редкий аватар",
   "special_table": "Специальный шаблон стола",
+  "speed_increased": "скорость увеличена",
+  "capacity_increased": "ёмкость увеличена",
 
   "task_daily_login_title": "Ежедневный вход",
   "task_daily_login_info": "Входите в игру 7 дней подряд",
@@ -74,6 +76,7 @@
   "task_get_the_collection_info": "Соберите 10 различных предметов",
   "task_golden_player_title": "Золотой игрок",
   "task_golden_player_info": "Заработайте 1.000.000 монет",
+  "player_title": "Игрок",
 
   "invite": "Пригласите",
   "friends": "друзей",
@@ -87,7 +90,7 @@
   "user_profile_in_game": "В игре",
   "user_profile_premium": "Премиум",
   "user_profile_usdt_balance": "USDT: 10.99$",
-  "user_profile_deposit": "Депозит",
+  "user_profile_deposit": "Пополнить",
   "user_profile_withdraw": "Вывести",
   "user_profile_exchange": "Обменять",
   "user_profile_cancel_subscription": "Отменить подписку",
@@ -120,9 +123,9 @@
   "profile_windows_fail": "Недостаточно средств",
 
   "cheat_button": "мухлевать",
-  "take_button": "взять",
-  "pass_button": "сбросить",
-  "react_button": "реакция",
+  "take_button": "беру",
+  "pass_button": "пропустить",
+  "react_button": "реакции",
   "loading": "ЗАГРУЗКА",
   "ranking": "Рейтинг",
   "frames": "Рамки",
@@ -138,8 +141,9 @@
   "insufficient_balance": "Недостаточно средств",
   "congratulations": "Поздравляем",
   "new_item": "Вы купили новый предмет",
+  "buy_for": "Купить за",
 
-  "deposit_title": "Депозит",
+  "deposit_title": "Пополнить",
   "deposit_desc": "Вы можете внести средства в свой аккаунт по кнопке ниже",
   "connect_wallet": "Подключить кошелек",
   "choose_amount": "Выберите сумму",
@@ -170,5 +174,13 @@
   "friend_bonuses": "Бонусы для друзей",
   "friend_desc": "Пригласите друзей и получите больше бонусов для себя и их",
   "subscribe": "Подписаться",
-  "sell": "Продать"
+  "sell": "Продать",
+  "search_room": "Поиск комнаты",
+  "all": "Все",
+  "player_cards": "карт",
+
+  "welcome_tournament": "Приветственный турнир",
+  "main_prize": "Главный приз",
+  "requirement_tournament": "Требование - быть в игре к началу события",
+  "aug": "Авг"
 }
