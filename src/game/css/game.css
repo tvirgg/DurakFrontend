@@ -110,11 +110,7 @@ body {
   border-radius: var(--br-extra-large);
   font-size: var(--font-size-medium);
   font-family: var(--sfd);
-<<<<<<< HEAD
-  padding: 0 var(--spacing-small);
-=======
   padding: 0 5vh;
->>>>>>> cactus
   z-index: 1;
   color: #007aff;
   background-color: #ffffff;
