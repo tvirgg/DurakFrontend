@@ -62,11 +62,7 @@
   padding: clamp(5px, 1.5vw, 15px) 0;
 }
 
-<<<<<<< HEAD
-.earn .header_bar .buffs span {
-=======
 .earn .header_bar .buffs button {
->>>>>>> cactus
   display: block;
   padding: clamp(2px, 0.75vw, 6px) clamp(5px, 1.5vw, 15px);
   background: #e8d0ae;

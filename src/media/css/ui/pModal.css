@@ -61,8 +61,6 @@
   font-size: clamp(16px, 4vw, 20px);
   text-align: center;
 }
-<<<<<<< HEAD
-=======
 
 .coin_count {
   display: flex;
@@ -90,4 +88,3 @@
 .p_verify_modal .buy_button img {
   width: 26px;
 }
->>>>>>> cactus
