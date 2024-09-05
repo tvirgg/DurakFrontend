@@ -12,7 +12,6 @@ import LobbiesLayout from "../layouts/lobbies.layout";
 import axios from "axios";
 import ShowPopup from "../ShowPopup";
 import config from "../config";
-import PostRequester from "../PostRequester";
 import connectToSocket from "../connectToSocket";
 const bids = [0, 1, 10, 100, 500, 1000, 5000, 10000, 50000, 100000];
 
@@ -25,15 +24,37 @@ const LobbiesCreate = () => {
   const [gameType, setGameType] = React.useState("CLASSIC");
 
   const createGame = async () => {
-    const game = await PostRequester("/game/create", {
-      fieldSize: (playerAmount + 1) * 6,
-      type: gameType,
-      allowedShullerMoves: gameType === "SHULLER" ? 1 : 0,
-      betAmount: bidCur === "Free" ? 0 : bidAmount,
-      betType: bidCur === "Free" ? "usual" : bidCur,
-      name: name.length > 0 ? name : "Anonimus",
-    });
-    console.log(game);
+    try {
+      await axios
+        .post(
+          config.url + "/game/create",
+          {
+            fieldSize: (playerAmount + 1) * 6,
+            type: gameType,
+            allowedShullerMoves: gameType === "SHULLER" ? 1 : 0,
+            betAmount: bidCur === "Free" ? 0 : bidAmount,
+            betType: bidCur === "Free" ? "usual" : bidCur,
+            name: name.length > 0 ? name : "Anonimus",
+          },
+          {
+            headers: {
+              "Access-Control-Expose-Headers": "X-Session",
+              "X-Session": localStorage.getItem("session_key"),
+            },
+          }
+        )
+        .then((res) => {
+          localStorage.setItem("session_key", res.headers.get("X-Session"));
+          console.log(res.data);
+          connectToSocket(res.data.gameId);
+        });
+    } catch (err) {
+      localStorage.setItem(
+        "session_key",
+        err.response.headers.get("X-Session")
+      );
+      return null;
+    }
   };
 
   const bidChanger = (value) => {
