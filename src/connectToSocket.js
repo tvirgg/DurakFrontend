@@ -4,19 +4,17 @@ import SockJS from "sockjs-client";
 
 const connectToSocket = (gameId) => {
   let stompClient = null;
-  let socket = new SockJS(config.url + "/gameplay");
+  let socket = new SockJS(config.url + "/game/connect");
   stompClient = Stomp.over(socket);
-  stompClient.connect(
-    {},
-    function (frame) {
-      console.log("connected to the frame: " + frame);
-      stompClient.subscribe(
-        "/topic/game-progress/" + gameId,
-        function (response) {
-          let data = JSON.parse(response.body);
-          console.log(data);
-        }
-      );
+  stompClient.connect({}, function (frame) {
+    console.log("connected to the frame: " + frame);
+    stompClient.subscribe(
+      "/topic/game-progress/" + gameId,
+      function (response) {
+        let data = JSON.parse(response.body);
+        console.log(data);
+      }
+    );
   });
 };
 
