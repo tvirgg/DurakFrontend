@@ -54,8 +54,8 @@
 					}
 				},
 				"url": {
-					"raw": "http://tondurak.online/api/users",
-					"protocol": "http",
+					"raw": "https://tondurak.online/api/users",
+					"protocol": "https",
 					"host": [
 						"tondurak",
 						"online"

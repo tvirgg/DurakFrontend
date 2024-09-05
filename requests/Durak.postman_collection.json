@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"fieldSize\": 24,\r\n    \"type\": \"CLASSIC\",\r\n    \"allowedShullerMoves\": 1,\r\n    \"betAmount\": 1,\r\n    \"betType\": \"premium\"\r\n}",
+					"raw": "{\r\n    \"fieldSize\": 24,\r\n    \"type\": \"CLASSIC\",\r\n    \"allowedShullerMoves\": 1,\r\n    \"betAmount\": 1,\r\n    \"betType\": \"premium\",\r\n    \"name\": \"deanon\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -21,13 +21,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/game/create",
-					"protocol": "http",
+					"raw": "https://tondurak.online/api/game/create",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"tondurak",
+						"online"
 					],
-					"port": "8080",
 					"path": [
+						"api",
 						"game",
 						"create"
 					]
@@ -51,13 +52,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/game/connect",
-					"protocol": "http",
+					"raw": "https://tondurak.online/api/game/connect",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"tondurak",
+						"online"
 					],
-					"port": "8080",
 					"path": [
+						"api",
 						"game",
 						"connect"
 					]
@@ -234,17 +236,30 @@
 		},
 		{
 			"name": "all-awaiting-games",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:8181/game/all-awaiting-games",
-					"protocol": "http",
+					"raw": "https://tondurak.online/api/game/all-awaiting-games",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"tondurak",
+						"online"
 					],
-					"port": "8181",
 					"path": [
+						"api",
 						"game",
 						"all-awaiting-games"
 					]
@@ -301,6 +316,67 @@
 						"connect",
 						"random",
 						"training"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete-game",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"gameId\": \"8e9062b2-335b-4208-8695-09d523fb4eaa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8181/api/v1/game",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"api",
+						"v1",
+						"game"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "emoji",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"gameId\": \"UUID\",\r\n    \"path\": \"local/path/to/emoji\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://tondurak.online/api/v1/game/emoji",
+					"protocol": "https",
+					"host": [
+						"tondurak",
+						"online"
+					],
+					"path": [
+						"api",
+						"v1",
+						"game",
+						"emoji"
 					]
 				}
 			},

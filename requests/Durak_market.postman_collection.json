@@ -12,12 +12,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/market",
-					"protocol": "http",
+					"raw": "https://tondurak.online/api/market",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"tondurak",
+						"online"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"market"
