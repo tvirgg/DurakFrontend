@@ -17,6 +17,10 @@ import { useNavigate } from "react-router-dom";
 import FilterWindow from "../components/lobbies.filter.window";
 import { I18nText } from "./i18nText";
 import { useIntl } from "react-intl";
+import axios from "axios";
+import config from "../config";
+import ShowPopup from "../ShowPopup";
+import connectToSocket from "../connectToSocket";
 
 //
 const GamesRooms = ({ roomsData }) => {
@@ -24,8 +28,28 @@ const GamesRooms = ({ roomsData }) => {
   const navigate = useNavigate();
 
   const connectToGame = async (id) => {
-    console.log(id, "connectToGame");
-    await PostRequester("/game/connect", { gameId: id });
+    try {
+      await axios
+        .post(
+          config.url + "/game/connect",
+          {
+            gameId: id,
+          },
+          {
+            headers: {
+              "Access-Control-Expose-Headers": "X-Session",
+              "X-Session": localStorage.getItem("session_key"),
+            },
+          }
+        )
+        .then((res) => {
+          localStorage.setItem("session_key", res.headers.get("X-Session"));
+          localStorage.setItem("game_status", JSON.stringify(res.data));
+          window.location.href = `/game?type=quick`;
+        });
+    } catch (e) {
+      ShowPopup(e.response.data, "Error");
+    }
   };
 
   const linkLobbies = () => {

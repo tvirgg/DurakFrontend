@@ -46,7 +46,8 @@ const LobbiesCreate = () => {
         .then((res) => {
           localStorage.setItem("session_key", res.headers.get("X-Session"));
           console.log(res.data);
-          connectToSocket(res.data.gameId);
+          localStorage.setItem("game_status", JSON.stringify(res.data));
+          window.location.href = `/game?type=quick`;
         });
     } catch (err) {
       localStorage.setItem(

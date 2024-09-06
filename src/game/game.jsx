@@ -9,6 +9,7 @@ import GameCard from "./res/components/gameCard";
 import Timer from "./res/components/timer";
 // functions
 import { generateDeck } from "./utils/deckUtils";
+import connectToSocket from "../connectToSocket";
 // card Utils
 import {
   shuffleDeck,
@@ -125,6 +126,7 @@ const Game = () => {
   //
   const [allPlayers, setAllPlayers] = useState([...otherPlayers, player_self]);
   const [deck, setDeck] = useState([]);
+  const [fullGameDeck, setFullGameDeck] = useState({});
   const [remainingDeck, setRemainingDeck] = useState([]);
   const [cardsShuffled, setCardsShuffled] = useState(false);
   const [playerSelfCards, setPlayerSelfCards] = useState([]);
@@ -144,17 +146,58 @@ const Game = () => {
   const [gamePlaying, setGamePlaying] = useState(false);
   // UI bools
   const [cardsDisabled, setCardsDisabled] = useState(false);
+
+  const listener = (res) => {
+    setFullGameDeck(res);
+    console.log(res);
+    if (game.status === "load") {
+      let gameStatus = res;
+
+      setFullGameDeck(gameStatus);
+
+      console.log("gameStatus", fullGameDeck);
+
+      if (gameStatus.players.length < gameStatus.fieldSize / 6 - 1) {
+        setGame((prevGame) => ({
+          ...prevGame,
+          status: "await",
+        }));
+      } else {
+        setGame((prevGame) => ({
+          ...prevGame,
+          status: "start",
+        }));
+      }
+    }
+  };
   // eff
+  const statusChanger = () => {
+    if (game.status === "load") {
+      let gameStatus = JSON.parse(localStorage.getItem("game_status"));
+
+      setFullGameDeck(gameStatus);
+
+      console.log("gameStatus", fullGameDeck);
+
+      if (gameStatus.players.length < gameStatus.fieldSize / 6 - 1) {
+        setGame((prevGame) => ({
+          ...prevGame,
+          status: "await",
+        }));
+        connectToSocket(gameStatus.gameId, listener);
+      } else {
+        setGame((prevGame) => ({
+          ...prevGame,
+          status: "start",
+        }));
+      }
+    }
+  };
 
   // game-load
   useEffect(() => {
-    if (game.status === "load") {
-      setGame((prevGame) => ({
-        ...prevGame,
-        status: "start",
-      }));
-    }
-  }, [game.status]);
+    statusChanger();
+  }, [game.status, fullGameDeck]);
 
   // game-start
   useEffect(() => {
@@ -386,6 +429,21 @@ const Game = () => {
           );
         })}
       </div>
+      {game.status === "await" && fullGameDeck.fieldSize !== null && (
+        <div
+          className="await"
+          style={{
+            zIndex: 1000,
+            position: "absolute",
+            left: "50%",
+            top: "20%",
+            transform: "translate(-50%, -50%)",
+            fontSize: "clamp(30px, 4vw, 40px)",
+          }}
+        >
+          {fullGameDeck.players.length}/{fullGameDeck.fieldSize / 6 - 1}
+        </div>
+      )}
       {/* timer */}
       <Timer
         duration={15}

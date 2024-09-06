@@ -3,12 +3,9 @@ import config from "./config";
 
 async function initUser() {
   await axios
-    .post(
-      config.url + "/users/init",
-      {
-        initData: window.Telegram.WebApp.initData,
-      }
-    )
+    .post(config.url + "/users/init", {
+      initData: window.Telegram.WebApp.initData,
+    })
     .then((res) => {
       console.log(res.headers);
       localStorage.setItem("session_key", res.headers.get("X-Session"));
