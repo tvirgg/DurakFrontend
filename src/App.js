@@ -5,7 +5,7 @@ import './media/css/animations.css'
 import Routes from './router/routes'
 import Providers from './Prodivers'
 import Preloader from './includes/preloader'
-import initUser from './initUser'
+import initUser from './api/initUser'
 
 function App({ intlProviderValue }) {
   const [loading, setLoading] = React.useState(true)

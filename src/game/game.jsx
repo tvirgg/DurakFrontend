@@ -3,12 +3,12 @@ import React, { useRef, useEffect, useState, useCallback } from "react";
 import "../game/css/game.css";
 // img
 import imgAvatar from "../media/img/avatar.png";
-import imgFrame from "./res/skins/frames/frame-0.svg";
 // components
 import GameCard from "./res/components/gameCard";
 import Timer from "./res/components/timer";
 // functions
 import { generateDeck } from "./utils/deckUtils";
+import connectToSocket from "../connectToSocket";
 // card Utils
 import {
   shuffleDeck,
@@ -29,7 +29,10 @@ import localStorageUtils from "./utils/localStorageUtils";
 import { touchEvents } from "./scripts/touchEvents";
 import EmojiPopup from "../components/emoji.popup";
 import { I18nText } from "../components/i18nText";
-import { useIntl } from 'react-intl'
+import { useIntl } from "react-intl";
+import axios from "axios";
+import config from "../config";
+import ShowPopup from "../ShowPopup";
 
 // game
 const Game = () => {
@@ -125,6 +128,7 @@ const Game = () => {
   //
   const [allPlayers, setAllPlayers] = useState([...otherPlayers, player_self]);
   const [deck, setDeck] = useState([]);
+  const [fullGameDeck, setFullGameDeck] = useState({});
   const [remainingDeck, setRemainingDeck] = useState([]);
   const [cardsShuffled, setCardsShuffled] = useState(false);
   const [playerSelfCards, setPlayerSelfCards] = useState([]);
@@ -144,17 +148,58 @@ const Game = () => {
   const [gamePlaying, setGamePlaying] = useState(false);
   // UI bools
   const [cardsDisabled, setCardsDisabled] = useState(false);
+
+  const listener = res => {
+    setFullGameDeck(res);
+    console.log(res);
+    if (game.status === "load") {
+      let gameStatus = res;
+
+      setFullGameDeck(gameStatus);
+
+      console.log("gameStatus", fullGameDeck);
+
+      if (gameStatus.players.length < gameStatus.fieldSize / 6 - 1) {
+        setGame(prevGame => ({
+          ...prevGame,
+          status: "await",
+        }));
+      } else {
+        setGame(prevGame => ({
+          ...prevGame,
+          status: "start",
+        }));
+      }
+    }
+  };
   // eff
+  const statusChanger = () => {
+    if (game.status === "load") {
+      let gameStatus = JSON.parse(localStorage.getItem("game_status"));
+
+      setFullGameDeck(gameStatus);
+
+      console.log("gameStatus", fullGameDeck);
+
+      if (gameStatus?.players.length < gameStatus?.fieldSize / 6 - 1) {
+        setGame(prevGame => ({
+          ...prevGame,
+          status: "await",
+        }));
+        connectToSocket(gameStatus.gameId, listener);
+      } else {
+        setGame(prevGame => ({
+          ...prevGame,
+          status: "start",
+        }));
+      }
+    }
+  };
 
   // game-load
   useEffect(() => {
-    if (game.status === "load") {
-      setGame(prevGame => ({
-        ...prevGame,
-        status: "start",
-      }));
-    }
-  }, [game.status]);
+    statusChanger();
+  }, [game.status, fullGameDeck]);
 
   // game-start
   useEffect(() => {
@@ -324,10 +369,35 @@ const Game = () => {
     setShowEmojiPopup(prev => !prev);
   }, []);
 
-  const selectEmoji = useCallback(emoji => {
+  const selectEmoji = useCallback(async emoji => {
     setSelectedEmoji(emoji);
     setShowEmojiPopup(false);
     setSelectedEmojiClass("show");
+    const gameStatus = JSON.parse(localStorage.getItem("game_status"));
+
+    console.log(emoji);
+
+    try {
+      await axios
+        .post(
+          config.url + "/game/emoji",
+          {
+            gameId: gameStatus.gameId,
+            path: emoji,
+          },
+          {
+            headers: {
+              "Access-Control-Expose-Headers": "X-Session",
+              "X-Session": localStorage.getItem("session_key"),
+            },
+          }
+        )
+        .then(res => {
+          localStorage.setItem("session_key", res.headers.get("X-Session"));
+        });
+    } catch (e) {
+      ShowPopup(e.response.data, "Error");
+    }
 
     const hideTimeout = setTimeout(() => setSelectedEmojiClass("hide"), 1750);
     const clearTimeout = setTimeout(() => {
@@ -375,7 +445,7 @@ const Game = () => {
                   src={player.avatar}
                   alt="player_picture"
                 />
-                <img className="frame" src={imgFrame} alt="frame" />
+                {/* <img className="frame" src={imgFrame} alt="frame" /> */}
               </div>
               <span className="player_name">{player.name}</span>
               <span className="cards_count">
@@ -386,6 +456,21 @@ const Game = () => {
           );
         })}
       </div>
+      {game.status === "await" && fullGameDeck.fieldSize !== null && (
+        <div
+          className="await"
+          style={{
+            zIndex: 1000,
+            position: "absolute",
+            left: "50%",
+            top: "20%",
+            transform: "translate(-50%, -50%)",
+            fontSize: "clamp(30px, 4vw, 40px)",
+          }}
+        >
+          {fullGameDeck.players.length}/{fullGameDeck.fieldSize / 6 - 1}
+        </div>
+      )}
       {/* timer */}
       <Timer
         duration={15}

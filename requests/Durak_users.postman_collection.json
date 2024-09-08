@@ -1,470 +1,358 @@
 {
-	"info": {
-		"_postman_id": "f8dc1ac1-8860-419a-81ef-352bb9e904b7",
-		"name": "Durak_users",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "33784924"
-	},
-	"item": [
-		{
-			"name": "init",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"initData\" :\"user=%7B%22id%22%3A735028324%2C%22first_name%22%3A%22DK%22%2C%22last_name%22%3A%22%22%2C%22username%22%3A%22mL7support%22%2C%22language_code%22%3A%22ru%22%2C%22allows_write_to_pm%22%3Atrue%7D&chat_instance=-4163287608751558072&start_param=735028324&auth_date=1721901982&hash=30025c521659bf44b735dd7275ba4ff7fc94871e5f1135f5eb16070e8abc3b34\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "https://tondurak.online/api/users/init",
-					"protocol": "https",
-					"host": [
-						"tondurak",
-						"online"
-					],
-					"path": [
-						"api",
-						"users",
-						"init"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get-user",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://tondurak.online/api/users",
-					"protocol": "http",
-					"host": [
-						"tondurak",
-						"online"
-					],
-					"path": [
-						"api",
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "friends",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/users/friends",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"friends"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "usual-storage",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/users/storage",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"storage"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "quests",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/users/quests",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"quests"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "leaders",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/users/leaders",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"leaders"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "collect-storage",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/users/collect-storage",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"collect-storage"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "check-payment",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"amount\": 20000000\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/users/pay",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"pay"
-					]
-				},
-				"description": "Указываем количество в nanoton"
-			},
-			"response": []
-		},
-		{
-			"name": "add-tg-wallet",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"tgWallet\": \"UQA_lhgXvIjoCYYGpkH931EiKx9HtqoMfBnG9P1zp2Oo1xeK\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/users/tgWallet",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"tgWallet"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "wallet",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/users/wallet",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"wallet"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "withdraw",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"amount\": 3\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/users/return-money",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"return-money"
-					]
-				},
-				"description": "Указываем amount в premium валюте, которая = 0.01 TON"
-			},
-			"response": []
-		},
-		{
-			"name": "get-premium-market",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/users/premium-pricing",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"premium-pricing"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "buy-passive",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"passiveId\": 5\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/users/buy/passive",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"buy",
-						"passive"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "available-passives",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/users/available-passive",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"available-passive"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "cosmetics-owned",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/users/cosmetics",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"cosmetics"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "cosmetics-active",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/users/cosmetic/active",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"cosmetic",
-						"active"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "rank",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/users/rank",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"rank"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "buy-premium",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"passiveId\": 1\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/users/buy/premium",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"buy",
-						"premium"
-					]
-				}
-			},
-			"response": []
-		}
-	]
+  "info": {
+    "_postman_id": "f8dc1ac1-8860-419a-81ef-352bb9e904b7",
+    "name": "Durak_users",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "33784924"
+  },
+  "item": [
+    {
+      "name": "init",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"initData\" :\"user=%7B%22id%22%3A735028324%2C%22first_name%22%3A%22DK%22%2C%22last_name%22%3A%22%22%2C%22username%22%3A%22mL7support%22%2C%22language_code%22%3A%22ru%22%2C%22allows_write_to_pm%22%3Atrue%7D&chat_instance=-4163287608751558072&start_param=735028324&auth_date=1721901982&hash=30025c521659bf44b735dd7275ba4ff7fc94871e5f1135f5eb16070e8abc3b34\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://tondurak.online/api/users/init",
+          "protocol": "https",
+          "host": ["tondurak", "online"],
+          "path": ["api", "users", "init"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get-user",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://tondurak.online/api/users",
+          "protocol": "https",
+          "host": ["tondurak", "online"],
+          "path": ["api", "users"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "friends",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/users/friends",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "users", "friends"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "usual-storage",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/users/storage",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "users", "storage"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "quests",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/users/quests",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "users", "quests"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "leaders",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/users/leaders",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "users", "leaders"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "collect-storage",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/users/collect-storage",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "users", "collect-storage"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "check-payment",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"amount\": 20000000\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/users/pay",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "users", "pay"]
+        },
+        "description": "Указываем количество в nanoton"
+      },
+      "response": []
+    },
+    {
+      "name": "add-tg-wallet",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"tgWallet\": \"UQA_lhgXvIjoCYYGpkH931EiKx9HtqoMfBnG9P1zp2Oo1xeK\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/users/tgWallet",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "users", "tgWallet"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "wallet",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/users/wallet",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "users", "wallet"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "withdraw",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"amount\": 3\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/users/return-money",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "users", "return-money"]
+        },
+        "description": "Указываем amount в premium валюте, которая = 0.01 TON"
+      },
+      "response": []
+    },
+    {
+      "name": "get-premium-market",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/users/premium-pricing",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "users", "premium-pricing"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "buy-passive",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"passiveId\": 5\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/users/buy/passive",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "users", "buy", "passive"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "available-passives",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/users/available-passive",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "users", "available-passive"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "cosmetics-owned",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/users/cosmetics",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "users", "cosmetics"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "cosmetics-active",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/users/cosmetic/active",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "users", "cosmetic", "active"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "rank",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/users/rank",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "users", "rank"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "buy-premium",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"passiveId\": 1\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/users/buy/premium",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "users", "buy", "premium"]
+        }
+      },
+      "response": []
+    }
+  ]
 }

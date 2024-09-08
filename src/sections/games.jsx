@@ -27,13 +27,13 @@ const Games = () => {
             "X-Session": localStorage.getItem("session_key"),
           },
         })
-        .then((res) => {
+        .then(res => {
           localStorage.setItem("session_key", res.headers.get("X-Session"));
           setData(res.data);
+          console.log(res)
           setLoading(false);
         });
     } catch (e) {
-      alert(e);
       ShowPopup(e.response.data, "Error");
     }
   }, []);

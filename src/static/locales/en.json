@@ -182,5 +182,6 @@
   "welcome_tournament": "Welcome Tournament",
   "main_prize": "Main prize",
   "requirement_tournament": "Requirement - be in game at the start of event",
-  "aug": "Aug"
+  "aug": "Aug",
+  "no_friends": "You don't have friends :("
 }

@@ -33,7 +33,7 @@
 
 .user_picture .img {
   position: relative;
-  z-index: 0;
+  z-index: 10;
   border-radius: var(--br-full);
   max-width: 100%;
   height: auto;

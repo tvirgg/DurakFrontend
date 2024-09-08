@@ -8,6 +8,7 @@ import React, {
 import { IntlProvider } from "react-intl";
 import enMessages from "./static/locales/en.json";
 import ruMessages from "./static/locales/ru.json";
+import { TonConnectUIProvider } from "@tonconnect/ui-react";
 
 const messages = {
   en: enMessages,
@@ -49,7 +50,9 @@ const Providers = ({ children }) => {
   return (
     <IntlContext.Provider value={providerValue}>
       <IntlProvider locale={locale} messages={messages[locale]}>
-        {children}
+        <TonConnectUIProvider manifestUrl="https://raw.githubusercontent.com/ton-connect/demo-telegram-bot/master/tonconnect-manifest.json">
+          {children}
+        </TonConnectUIProvider>
       </IntlProvider>
     </IntlContext.Provider>
   );
