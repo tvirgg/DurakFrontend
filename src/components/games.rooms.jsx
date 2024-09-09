@@ -27,7 +27,7 @@ const GamesRooms = ({ roomsData }) => {
   const [isFilterOpen, setIsFilterOpen] = React.useState(false);
   const navigate = useNavigate();
 
-  const connectToGame = async (id) => {
+  const connectToGame = async id => {
     try {
       await axios
         .post(
@@ -42,10 +42,34 @@ const GamesRooms = ({ roomsData }) => {
             },
           }
         )
-        .then((res) => {
+        .then(res => {
           localStorage.setItem("session_key", res.headers.get("X-Session"));
           localStorage.setItem("game_status", JSON.stringify(res.data));
           window.location.href = `/game?type=quick`;
+        });
+    } catch (e) {
+      ShowPopup(e.response.data, "Error");
+    }
+  };
+
+  const deleteGame = async id => {
+    try {
+      await axios
+        .post(
+          config.url + "/game/leave",
+          {
+            gameId: id,
+          },
+          {
+            headers: {
+              "Access-Control-Expose-Headers": "X-Session",
+              "X-Session": localStorage.getItem("session_key"),
+            },
+          }
+        )
+        .then(res => {
+          localStorage.setItem("session_key", res.headers.get("X-Session"));
+          localStorage.setItem("game_status", JSON.stringify(res.data));
         });
     } catch (e) {
       ShowPopup(e.response.data, "Error");
@@ -147,6 +171,7 @@ const GamesRooms = ({ roomsData }) => {
     btns.classList.toggle("fmode");
     document.body.classList.toggle("filter-open", !isFilterOpen);
   };
+
   return (
     <div className="rooms">
       {/* Header */}
@@ -191,6 +216,7 @@ const GamesRooms = ({ roomsData }) => {
               <span className="owner_name">{room.name}</span>
             </div>
             <div className="info">
+              <button onClick={() => deleteGame(room.gameId)}>Delete</button>
               <div className="corner">
                 {room.type === "CLASSIC" ? (
                   <IconPlayWhite />

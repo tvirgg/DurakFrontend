@@ -1,28 +1,28 @@
-import React from 'react'
+import React from "react";
 
 // css
-import '../media/css/component/games.play.cards.css'
+import "../media/css/component/games.play.cards.css";
 // img
-import cardImg from '../media/img/games/cardPlayImg.png'
+import cardImg from "../media/img/games/cardPlayImg.png";
 //
-import { useNavigate } from 'react-router-dom'
-import { I18nText } from './i18nText'
+import { useNavigate } from "react-router-dom";
+import { I18nText } from "./i18nText";
+import connectQuickGame from "../api/connectQuickGame";
 // icons
 
 const GamesPlayCards = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const linkTourney = () => {
-    navigate('/tourneys')
-  }
+    navigate("/tourneys");
+  };
   const linkQuickGame = () => {
-    navigate('/game?type=quick')
-  }
+    navigate("/game?type=quick");
+    const connectInfo = connectQuickGame();
+    console.log(connectInfo);
+  };
   return (
     <div className="play_cards">
-      <button
-        className="card card_quick anim_sjump"
-        onClick={linkQuickGame}
-      >
+      <button className="card card_quick anim_sjump" onClick={linkQuickGame}>
         <div className="title">
           <h1>
             <I18nText path="quick_game_title" />
@@ -31,16 +31,9 @@ const GamesPlayCards = () => {
             <I18nText path="quick_game_play" />
           </h2>
         </div>
-        <img
-          className="cardImg"
-          src={cardImg}
-          alt="icon"
-        />
+        <img className="cardImg" src={cardImg} alt="icon" />
       </button>
-      <button
-        className="card card_tourneys anim_sjump"
-        onClick={linkTourney}
-      >
+      <button className="card card_tourneys anim_sjump" onClick={linkTourney}>
         <div className="title">
           <h1>
             <I18nText path="tourneys_title" />
@@ -49,11 +42,7 @@ const GamesPlayCards = () => {
             <I18nText path="quick_game_play" />
           </h2>
         </div>
-        <img
-          className="cardImg"
-          src={cardImg}
-          alt="icon"
-        />
+        <img className="cardImg" src={cardImg} alt="icon" />
       </button>
       <button className="card card_trainings anim_sjump">
         <div className="title">
@@ -64,13 +53,9 @@ const GamesPlayCards = () => {
             <I18nText path="quick_game_play" />
           </h2>
         </div>
-        <img
-          className="cardImg"
-          src={cardImg}
-          alt="icon"
-        />
+        <img className="cardImg" src={cardImg} alt="icon" />
       </button>
     </div>
-  )
-}
-export default GamesPlayCards
+  );
+};
+export default GamesPlayCards;

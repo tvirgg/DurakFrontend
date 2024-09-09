@@ -1,17 +1,17 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import catFrame from "../media/img/catFrame.png";
 import catTable from "../media/img/catTable.png";
 import catCard from "../media/img/catCard.png";
 import catEmoji from "../media/img/catEmoji.png";
 import PModal from "./ui/pModal";
 import { I18nText } from "./i18nText";
+import { getMarket, buyItemForFriend } from "../api/market";
+import IconCoin from "./icons/coin";
+import IconCoinDUR from "./icons/coinDur";
 
 const ProfileWindows = () => {
-  const user = {
-    balance_DUR: 1, // Баланс пользователя
-  };
-
   const [present, setPresent] = useState({
+    userId: null,
     cat: null,
     lvl: null,
     pid: null,
@@ -29,68 +29,84 @@ const ProfileWindows = () => {
 
   const windowsRef = useRef(null);
 
-  const presentsArray = [
-    { img: catFrame, price: 1, category: "frame" },
-    { img: catTable, price: 2, category: "tables" },
-    { img: catCard, price: 1, category: "cards" },
-    { img: catEmoji, price: 2, category: "emoji" },
-    { img: catFrame, price: 1, category: "frame" },
-    { img: catTable, price: 1, category: "tables" },
-    { img: catCard, price: 2, category: "cards" },
-    { img: catEmoji, price: 2, category: "emoji" },
-    { img: catFrame, price: 1, category: "frame" },
-  ];
+  const [presentsArray, setPresentsArray] = useState();
+
+  useEffect(() => {
+    async function fetchMarket() {
+      const data = await getMarket();
+      setPresentsArray(data);
+    }
+
+    setTimeout(() => {
+      fetchMarket();
+    }, 1500);
+  }, []);
 
   const catBtns = [
     { label: <I18nText path="gift_frames" />, cat: "frame", img: catFrame },
-    { label: <I18nText path="gift_tables" />, cat: "tables", img: catTable },
-    { label: <I18nText path="gift_cards" />, cat: "cards", img: catCard },
+    { label: <I18nText path="gift_tables" />, cat: "table", img: catTable },
+    { label: <I18nText path="gift_cards" />, cat: "card", img: catCard },
     { label: <I18nText path="gift_emojis" />, cat: "emoji", img: catEmoji },
   ];
 
   const lvlBtns = [
-    { label: "Standart", lvl: "standart" },
+    { label: "Standard", lvl: "standard" },
     { label: "Special", lvl: "special" },
     { label: "Relic", lvl: "relic" },
     { label: "Rare", lvl: "rare" },
   ];
 
-  const catSelect = (cat) => {
+  const catSelect = cat => {
     const filteredPresents = presentsArray.filter(
-      (presentItem) => presentItem.category === cat
+      presentItem => presentItem.cosmetic.type === cat
     );
-    setPresent((prevPresent) => ({
+
+    setPresent(prevPresent => ({
       ...prevPresent,
       cat: cat,
       availablePresents: filteredPresents,
     }));
   };
 
-  const lvlSelect = (lvl) => {
-    setPresent((prevPresent) => ({
+  const lvlSelect = lvl => {
+    const filteredPresents = present.availablePresents.filter(
+      presentItem => presentItem.cosmetic.rarity === lvl
+    );
+
+    setPresent(prevPresent => ({
       ...prevPresent,
       lvl: lvl,
+      availablePresents: filteredPresents,
     }));
   };
 
-  const presentSelect = (pid) => {
-    setPresent((prevPresent) => ({
+  const presentSelect = pid => {
+    setPresent(prevPresent => ({
       ...prevPresent,
       pid: pid,
     }));
+    console.log(pid);
   };
 
-  const handleSendPresent = () => {
-    const selectedPresent = present.availablePresents[present.pid];
+  const handleSendPresent = async () => {
+    const selectedPresent = present.availablePresents.filter(
+      presentItem => presentItem.id === present.pid
+    )[0];
 
-    if (user.balance_DUR >= selectedPresent.price) {
+    console.log(selectedPresent);
+    const selectedFriendId = localStorage.getItem("selected_friend");
+
+    try {
+      await buyItemForFriend({
+        id: selectedPresent.id,
+        userId: selectedFriendId,
+      });
+
       setModalState({
         isActive: true,
         type: "success",
         succesText: "You’ve sent the present!",
       });
-
-      // Сбрасываем состояние после успешной отправки
       setPresent({
         cat: null,
         lvl: null,
@@ -99,7 +115,16 @@ const ProfileWindows = () => {
       });
       setCurrentSlide(0);
       setWindowActive(false);
-    } else {
+      localStorage.setItem("selected_friend", "");
+    } catch (error) {
+      setPresent({
+        cat: null,
+        lvl: null,
+        pid: null,
+        availablePresents: [],
+      });
+      setCurrentSlide(0);
+      setWindowActive(false);
       setModalState({ isActive: true, type: "fail" });
     }
   };
@@ -135,11 +160,20 @@ const ProfileWindows = () => {
       const button = (
         <button
           key={index}
-          className={`pbtn ${present.pid === index ? "p_active" : ""}`}
-          onClick={() => presentSelect(index)}
+          className={`pbtn ${present.pid === presentItem.id ? "p_active" : ""}`}
+          onClick={() => presentSelect(presentItem.id)}
         >
-          <img src={presentItem.img} alt="present" />
-          <span>{presentItem.price} DUR</span>
+          <img src={`/res/skins${presentItem.cosmetic.link}`} alt="present" />
+          <span>
+            {presentItem.price}{" "}
+            {presentItem.priceCurrency === "usual" ? (
+              <IconCoin />
+            ) : presentItem.priceCurrency === "premium" ? (
+              <IconCoinDUR />
+            ) : (
+              "$"
+            )}
+          </span>
         </button>
       );
 

@@ -121,10 +121,10 @@
 .market .products .product .img {
   display: block;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
 }
 
 .market .products .product .content {
@@ -133,7 +133,7 @@
   flex-direction: column;
   justify-content: flex-end;
   padding: clamp(5px, 1.5vw, 8px);
-  gap: clamp(2px, 0.5vw, 3px);
+  gap: clamp(4px, 0.5vw, 3px);
   width: 100%;
   height: 100%;
   background: linear-gradient(0deg, #0009, transparent);
@@ -154,6 +154,14 @@
 
 .market .products .product .content .price {
   font-size: clamp(12px, 2vw, 14px);
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.market .products .product .content .price img {
+  width: 16px;
+  height: 16px;
 }
 
 .market .products .product .content .buy_btn {

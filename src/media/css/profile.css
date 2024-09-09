@@ -60,6 +60,7 @@
   aspect-ratio: 1 / 1;
   width: clamp(30px, 2vw, 35px);
   height: auto;
+  border-radius: 50%;
 }
 
 .profile_section .profile_friends .row .user .info {
@@ -287,7 +288,22 @@
   .presents
   .pbtn
   span {
-  opacity: 0;
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.profile_section
+  .windows
+  .window
+  .w_container
+  .choose_present
+  .presents
+  .pbtn
+  span
+  img {
+  width: 16px;
+  height: 16px;
 }
 
 .profile_section

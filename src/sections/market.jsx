@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // css
 import "../media/css/market.css";
 // components
@@ -6,32 +6,43 @@ import Preloader from "../includes/preloader";
 import NavBar from "../components/nav.bar";
 import ImageLoader from "../includes/imageLoader";
 import PModal from "../components/ui/pModal";
-// Продукты
-import products from "../db/products"; // массив продуктов
 // img
 import catFrame from "../media/img/catFrame.png";
 import catTable from "../media/img/catTable.png";
 import catCard from "../media/img/catCard.png";
 import catEmoji from "../media/img/catEmoji.png";
 import { I18nText } from "../components/i18nText";
+import { getMarket } from "../api/market";
+import IconCoin from "../components/icons/coin";
+import IconCoinDUR from "../components/icons/coinDur";
+import axios from "axios";
+import config from "../config";
+import ShowPopup from "../ShowPopup";
 
 const Market = () => {
-  const user = {
-    balance: 2.0,
-  };
+  const [market, setMarket] = useState();
+
+  useEffect(() => {
+    async function fetchMarket() {
+      const data = await getMarket();
+      setMarket(data);
+    }
+
+    fetchMarket();
+  }, []);
 
   // Состояние для активного типа
   const [activeType, setActiveType] = useState("frame");
   const [activeCategories, setActiveCategories] = useState([]);
 
-  const handleTypeClick = (type) => {
+  const handleTypeClick = type => {
     setActiveType(type);
   };
 
-  const handleCategoryClick = (category) => {
-    setActiveCategories((prevCategories) => {
+  const handleCategoryClick = category => {
+    setActiveCategories(prevCategories => {
       if (prevCategories.includes(category)) {
-        return prevCategories.filter((cat) => cat !== category);
+        return prevCategories.filter(cat => cat !== category);
       } else {
         return [...prevCategories, category];
       }
@@ -39,11 +50,11 @@ const Market = () => {
   };
 
   // Фильтрация продуктов по активному типу и категориям
-  const filteredProducts = products.filter(
-    (product) =>
-      product.type === activeType &&
+  const filteredProducts = market?.filter(
+    product =>
+      product.cosmetic.type === activeType &&
       (activeCategories.length === 0 ||
-        activeCategories.includes(product.category))
+        activeCategories.includes(product.cosmetic.rarity))
   );
 
   // modal state
@@ -57,18 +68,46 @@ const Market = () => {
     setModalState({ isActive: false, type: null });
   };
 
-  const handleBuy = (price) => {
-    if (user.balance >= price) {
-      setModalState({
-        isActive: true,
-        type: "success",
-        succesText: <I18nText path="new_item" />,
-      });
-    } else {
-      setModalState({
-        isActive: true,
-        type: "fail",
-      });
+  const handleBuy = async itemData => {
+    try {
+      await axios
+        .post(
+          config.url + "/market",
+          {
+            id: itemData.id,
+          },
+          {
+            headers: {
+              "Access-Control-Expose-Headers": "X-Session",
+              "X-Session": localStorage.getItem("session_key"),
+            },
+          }
+        )
+        .then(res => {
+          localStorage.setItem("session_key", res.headers.get("X-Session"));
+
+          setModalState({
+            isActive: true,
+            type: "success",
+            succesText: <I18nText path="new_item" />,
+          });
+        })
+        .catch(error => {
+          console.log(error);
+          if (error.response.data === "Not enough balance") {
+            setModalState({
+              isActive: true,
+              type: "fail",
+            });
+          } else {
+            setModalState({
+              isActive: true,
+              type: "fail",
+            });
+          }
+        });
+    } catch (e) {
+      ShowPopup(e.response.data, "Error");
     }
   };
 
@@ -120,9 +159,9 @@ const Market = () => {
             <div className="category_btns active_category">
               <button
                 className={`btn standart ${
-                  activeCategories.includes("standart") ? "active" : ""
+                  activeCategories.includes("standard") ? "active" : ""
                 }`}
-                onClick={() => handleCategoryClick("standart")}
+                onClick={() => handleCategoryClick("standard")}
               >
                 <I18nText path="standart" />
               </button>
@@ -154,15 +193,33 @@ const Market = () => {
           </header>
           {/* products */}
           <div className="products">
-            {filteredProducts.map((product) => (
+            {filteredProducts?.map(product => (
               <div key={product.id} className="product">
-                <ImageLoader src={product.picture} alt={product.title} />
+                <ImageLoader
+                  src={`/res/skins${product.cosmetic.link}`}
+                  alt={product.title}
+                />
                 <div className="content">
                   <p className="title">{product.title}</p>
-                  <span className="price">{product.price} $</span>
+                  <span className="price">
+                    {product.price}{" "}
+                    {product.priceCurrency === "usual" ? (
+                      <IconCoin />
+                    ) : product.priceCurrency === "premium" ? (
+                      <IconCoinDUR />
+                    ) : (
+                      "$"
+                    )}
+                  </span>
                   <button
                     className="buy_btn"
-                    onClick={() => handleBuy(product.price)}
+                    onClick={() =>
+                      handleBuy({
+                        value: product.price,
+                        currency: product.priceCurrency,
+                        id: product.id,
+                      })
+                    }
                   >
                     <I18nText path="buy" />
                   </button>

@@ -3,7 +3,6 @@ import React, { useRef, useEffect, useState, useCallback } from "react";
 import "../game/css/game.css";
 // img
 import imgAvatar from "../media/img/avatar.png";
-import imgFrame from "./res/skins/frames/frame-0.svg";
 // components
 import GameCard from "./res/components/gameCard";
 import Timer from "./res/components/timer";
@@ -31,6 +30,9 @@ import { touchEvents } from "./scripts/touchEvents";
 import EmojiPopup from "../components/emoji.popup";
 import { I18nText } from "../components/i18nText";
 import { useIntl } from "react-intl";
+import axios from "axios";
+import config from "../config";
+import ShowPopup from "../ShowPopup";
 
 // game
 const Game = () => {
@@ -147,7 +149,7 @@ const Game = () => {
   // UI bools
   const [cardsDisabled, setCardsDisabled] = useState(false);
 
-  const listener = (res) => {
+  const listener = res => {
     setFullGameDeck(res);
     console.log(res);
     if (game.status === "load") {
@@ -158,12 +160,12 @@ const Game = () => {
       console.log("gameStatus", fullGameDeck);
 
       if (gameStatus.players.length < gameStatus.fieldSize / 6 - 1) {
-        setGame((prevGame) => ({
+        setGame(prevGame => ({
           ...prevGame,
           status: "await",
         }));
       } else {
-        setGame((prevGame) => ({
+        setGame(prevGame => ({
           ...prevGame,
           status: "start",
         }));
@@ -179,14 +181,14 @@ const Game = () => {
 
       console.log("gameStatus", fullGameDeck);
 
-      if (gameStatus.players.length < gameStatus.fieldSize / 6 - 1) {
-        setGame((prevGame) => ({
+      if (gameStatus?.players.length < gameStatus?.fieldSize / 6 - 1) {
+        setGame(prevGame => ({
           ...prevGame,
           status: "await",
         }));
         connectToSocket(gameStatus.gameId, listener);
       } else {
-        setGame((prevGame) => ({
+        setGame(prevGame => ({
           ...prevGame,
           status: "start",
         }));
@@ -367,10 +369,35 @@ const Game = () => {
     setShowEmojiPopup((prev) => !prev);
   }, []);
 
-  const selectEmoji = useCallback((emoji) => {
+  const selectEmoji = useCallback(async emoji => {
     setSelectedEmoji(emoji);
     setShowEmojiPopup(false);
     setSelectedEmojiClass("show");
+    const gameStatus = JSON.parse(localStorage.getItem("game_status"));
+
+    console.log(emoji);
+
+    try {
+      await axios
+        .post(
+          config.url + "/game/emoji",
+          {
+            gameId: gameStatus.gameId,
+            path: emoji,
+          },
+          {
+            headers: {
+              "Access-Control-Expose-Headers": "X-Session",
+              "X-Session": localStorage.getItem("session_key"),
+            },
+          }
+        )
+        .then(res => {
+          localStorage.setItem("session_key", res.headers.get("X-Session"));
+        });
+    } catch (e) {
+      ShowPopup(e.response.data, "Error");
+    }
 
     const hideTimeout = setTimeout(() => setSelectedEmojiClass("hide"), 1750);
     const clearTimeout = setTimeout(() => {
@@ -418,7 +445,7 @@ const Game = () => {
                   src={player.avatar}
                   alt="player_picture"
                 />
-                <img className="frame" src={imgFrame} alt="frame" />
+                {/* <img className="frame" src={imgFrame} alt="frame" /> */}
               </div>
               <span className="player_name">{player.name}</span>
               <span className="cards_count">
