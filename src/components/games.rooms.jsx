@@ -27,7 +27,7 @@ const GamesRooms = ({ roomsData }) => {
   const [isFilterOpen, setIsFilterOpen] = React.useState(false);
   const navigate = useNavigate();
 
-  const connectToGame = async id => {
+  const connectToGame = async (id) => {
     try {
       await axios
         .post(
@@ -42,7 +42,7 @@ const GamesRooms = ({ roomsData }) => {
             },
           }
         )
-        .then(res => {
+        .then((res) => {
           localStorage.setItem("session_key", res.headers.get("X-Session"));
           localStorage.setItem("game_status", JSON.stringify(res.data));
           window.location.href = `/game?type=quick`;
@@ -52,7 +52,7 @@ const GamesRooms = ({ roomsData }) => {
     }
   };
 
-  const deleteGame = async id => {
+  const deleteGame = async (id) => {
     try {
       await axios
         .post(
@@ -67,7 +67,7 @@ const GamesRooms = ({ roomsData }) => {
             },
           }
         )
-        .then(res => {
+        .then((res) => {
           localStorage.setItem("session_key", res.headers.get("X-Session"));
           localStorage.setItem("game_status", JSON.stringify(res.data));
         });

@@ -149,7 +149,7 @@ const Game = () => {
   // UI bools
   const [cardsDisabled, setCardsDisabled] = useState(false);
 
-  const listener = res => {
+  const listener = (res) => {
     setFullGameDeck(res);
     console.log(res);
     if (game.status === "load") {
@@ -160,12 +160,12 @@ const Game = () => {
       console.log("gameStatus", fullGameDeck);
 
       if (gameStatus.players.length < gameStatus.fieldSize / 6 - 1) {
-        setGame(prevGame => ({
+        setGame((prevGame) => ({
           ...prevGame,
           status: "await",
         }));
       } else {
-        setGame(prevGame => ({
+        setGame((prevGame) => ({
           ...prevGame,
           status: "start",
         }));
@@ -181,14 +181,14 @@ const Game = () => {
 
       console.log("gameStatus", fullGameDeck);
 
-      if (gameStatus?.players.length < gameStatus?.fieldSize / 6 - 1) {
-        setGame(prevGame => ({
+      if (gameStatus?.players.length <= gameStatus?.fieldSize / 6 - 1) {
+        setGame((prevGame) => ({
           ...prevGame,
           status: "await",
         }));
         connectToSocket(gameStatus.gameId, listener);
       } else {
-        setGame(prevGame => ({
+        setGame((prevGame) => ({
           ...prevGame,
           status: "start",
         }));
@@ -369,7 +369,7 @@ const Game = () => {
     setShowEmojiPopup((prev) => !prev);
   }, []);
 
-  const selectEmoji = useCallback(async emoji => {
+  const selectEmoji = useCallback(async (emoji) => {
     setSelectedEmoji(emoji);
     setShowEmojiPopup(false);
     setSelectedEmojiClass("show");
@@ -392,7 +392,7 @@ const Game = () => {
             },
           }
         )
-        .then(res => {
+        .then((res) => {
           localStorage.setItem("session_key", res.headers.get("X-Session"));
         });
     } catch (e) {
