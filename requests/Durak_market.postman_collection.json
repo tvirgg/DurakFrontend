@@ -1,96 +1,121 @@
 {
-  "info": {
-    "_postman_id": "527b506e-8e14-420d-9fe7-1eb9b59fa730",
-    "name": "Durak_market",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "33784924"
-  },
-  "item": [
-    {
-      "name": "get-all",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "https://tondurak.online/api/market",
-          "protocol": "https",
-          "host": ["tondurak", "online"],
-          "path": ["api", "market"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "buy-item",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n    \"id\" : 3\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:8080/api/market",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "8080",
-          "path": ["api", "market"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "buy-usual",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n    \"amount\": 3\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:8181/api/market/buy/usual",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "8181",
-          "path": ["api", "market", "buy", "usual"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "buy-for-friend",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n    \"id\": 1,\r\n    \"userId\": 73544444\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:8080/api/market/buy/friend",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "8080",
-          "path": ["api", "market", "buy", "friend"]
-        }
-      },
-      "response": []
-    }
-  ]
+	"info": {
+		"_postman_id": "527b506e-8e14-420d-9fe7-1eb9b59fa730",
+		"name": "Durak_market",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33784924"
+	},
+	"item": [
+		{
+			"name": "get-all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://tondurak.online/api/market",
+					"protocol": "https",
+					"host": [
+						"tondurak",
+						"online"
+					],
+					"path": [
+						"api",
+						"market"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buy-item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\" : 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/market",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"market"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buy-usual",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\": 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8181/api/market/buy/usual",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"api",
+						"market",
+						"buy",
+						"usual"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buy-for-friend",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"userId\": 73544444\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/market/buy/friend",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"market",
+						"buy",
+						"friend"
+					]
+				}
+			},
+			"response": []
+		}
+	]
 }
