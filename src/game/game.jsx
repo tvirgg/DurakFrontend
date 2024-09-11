@@ -30,7 +30,7 @@ import { touchEvents } from "./scripts/touchEvents";
 import EmojiPopup from "../components/emoji.popup";
 import { I18nText } from "../components/i18nText";
 import { useIntl } from "react-intl";
-import axios from "axios";
+import axios, { all } from "axios";
 import config from "../config";
 import ShowPopup from "../ShowPopup";
 
@@ -46,7 +46,7 @@ const Game = () => {
     trumpCard: null,
   });
   // Сам игрок
-  let player_self = {
+  let player_selfk = {
     id: 4,
     index: 4,
     status: "online",
@@ -57,7 +57,7 @@ const Game = () => {
     self: true,
   };
   // Массив других игроков
-  let otherPlayers = [
+  let otherPlayerk = [
     {
       id: 1,
       index: 1,
@@ -126,6 +126,8 @@ const Game = () => {
   //
   //
   //
+  const [otherPlayers, setOtherPlayers] = useState(otherPlayerk);
+  const [player_self, setPlayer_self] = useState(player_selfk);
   const [allPlayers, setAllPlayers] = useState([...otherPlayers, player_self]);
   const [deck, setDeck] = useState([]);
   const [fullGameDeck, setFullGameDeck] = useState({});
@@ -155,21 +157,61 @@ const Game = () => {
     if (game.status === "load") {
       let gameStatus = res;
 
-      setFullGameDeck(gameStatus);
-
-      console.log("gameStatus", fullGameDeck);
-
-      if (gameStatus.players.length < gameStatus.fieldSize / 6 - 1) {
+      if (gameStatus["deck"] != null && fullGameDeck["deck"] == null) {
+        console.log("wait");
+        localStorage.setItem("game_status", JSON.stringify(gameStatus));
+        setTimeout(() => {
+          setGame(
+            (prevGame) => ({
+              ...prevGame,
+              status: "start",
+            }),
+            1000
+          );
+        });
+      } else if (gameStatus.players.length < gameStatus.fieldSize / 6 - 1) {
         setGame((prevGame) => ({
           ...prevGame,
           status: "await",
         }));
-      } else {
-        setGame((prevGame) => ({
-          ...prevGame,
-          status: "start",
-        }));
+      } else if (gameStatus.players[0].cards.length == 0) {
+        if (
+          gameStatus.players[0].id ==
+          JSON.parse(localStorage.getItem("user")).id
+        ) {
+          setTimeout(() => {
+            axios
+              .post(
+                `${config.url}/game/start-game`,
+                {
+                  gameId: gameStatus.gameId,
+                },
+                {
+                  headers: {
+                    "Access-Control-Expose-Headers": "X-Session",
+                    "X-Session": localStorage.getItem("session_key"),
+                  },
+                }
+              )
+              .then((res) => {
+                setGame((prevGame) => ({
+                  ...prevGame,
+                  status: "start",
+                }));
+                localStorage.setItem("game_status", JSON.stringify(res.data));
+                setFullGameDeck(res.data);
+              })
+              .catch((err) => {
+                localStorage.setItem(
+                  "session_key",
+                  res.headers.get("X-Session")
+                );
+              });
+          }, 2000);
+        }
       }
+
+      setFullGameDeck(gameStatus);
     }
   };
   // eff
@@ -210,24 +252,108 @@ const Game = () => {
       setDeck(shuffledDeck);
 
       // Обновляем состояние игроков с уникальными картами
-      const updatedPlayers = [...allPlayers];
-      const deckCopy = [...shuffledDeck]; // Создаем копию колоды для раздачи
+      // const updatedPlayers = [...allPlayers];
+      let updatedPlayers = [];
+      var ownPlayer = {};
+      const deckCopy = [...shuffledDeck];
+      let backPlayers = JSON.parse(localStorage.getItem("game_status"))[
+        "players"
+      ];
 
-      updatedPlayers.forEach((player) => {
-        const playerCards = getRandomCards(deckCopy, 6); // Получаем уникальные карты
-        player.cards = playerCards;
-        player.cardsCount = playerCards.length;
-
-        // Удаляем выданные карты из колоды
-        playerCards.forEach((card) => {
-          const cardIndex = deckCopy.findIndex(
-            (deckCard) => deckCard.id === card.id
-          );
-          if (cardIndex !== -1) {
-            deckCopy.splice(cardIndex, 1);
-          }
-        });
+      backPlayers.forEach((player, index) => {
+        if (player.id != JSON.parse(localStorage.getItem("user")).id) {
+          let tempCards = [];
+          player.cards.forEach((card, index) => {
+            let seconpart = "";
+            if (card.nominal <= 10) {
+              seconpart = card.nominal.toString();
+            } else if (card.nominal == 11) {
+              seconpart = "J";
+            } else if (card.nominal == 12) {
+              seconpart = "Q";
+            } else if (card.nominal == 13) {
+              seconpart = "K";
+            } else if (card.nominal == 14) {
+              seconpart = "A";
+            }
+            let car = card.name[0].toLowerCase() + seconpart;
+            tempCards.push({
+              id: index,
+              type: card.name[0].toLowerCase(),
+              name: car,
+              value: card.nominal,
+              nominal: card.nominal,
+              nameBack: card.name,
+              playerOwner: card.playerOwner,
+            });
+          });
+          updatedPlayers.push({
+            avatar: `https://t.me/i/userpic/160/${player.user.tgNickname}.jpg`,
+            cardsCount: player.cards.length,
+            id: player.id,
+            name: player.user.username,
+            cards: tempCards,
+            index: index,
+            status: player.user.status,
+          });
+        } else {
+          let tempCards = [];
+          player.cards.forEach((card, index) => {
+            let seconpart = "";
+            if (card.nominal <= 10) {
+              seconpart = card.nominal.toString();
+            } else if (card.nominal == 11) {
+              seconpart = "J";
+            } else if (card.nominal == 12) {
+              seconpart = "Q";
+            } else if (card.nominal == 13) {
+              seconpart = "K";
+            } else if (card.nominal == 14) {
+              seconpart = "A";
+            }
+            let car = card.name[0].toLowerCase() + seconpart;
+            tempCards.push({
+              id: index,
+              type: card.name[0].toLowerCase(),
+              name: car,
+              value: card.nominal,
+              nominal: card.nominal,
+              nameBack: card.name,
+              playerOwner: card.playerOwner,
+            });
+          });
+          ownPlayer = {
+            avatar: `https://t.me/i/userpic/160/${player.user.tgNickname}.jpg`,
+            cardsCount: player.cards.length,
+            id: player.id,
+            name: player.user.username,
+            cards: tempCards,
+            index: index,
+            status: player.user.status,
+          };
+        }
       });
+
+      setOtherPlayers(updatedPlayers);
+      setPlayer_self(ownPlayer);
+      updatedPlayers.push(ownPlayer);
+
+      // updatedPlayers.forEach((player) => {
+      //   const playerCards = getRandomCards(deckCopy, 6); // Получаем уникальные карты
+      //   player.cards = playerCards;
+      //   player.cardsCount = playerCards.length;
+
+      //   // Удаляем выданные карты из колоды
+      //   playerCards.forEach((card) => {
+      //     const cardIndex = deckCopy.findIndex(
+      //       (deckCard) => deckCard.id === card.id
+      //     );
+      //     if (cardIndex !== -1) {
+      //       deckCopy.splice(cardIndex, 1);
+      //     }
+      //   });
+      // });
+      console.log(updatedPlayers, backPlayers);
 
       setAllPlayers(updatedPlayers);
       setCardsShuffled(true);
@@ -412,7 +538,7 @@ const Game = () => {
   }, []);
 
   const playerCenterIndex = Math.floor(otherPlayers.length / 2);
-
+  console.log(allPlayers, player_self, otherPlayers);
   // render
   return (
     <section className="game">
@@ -479,6 +605,7 @@ const Game = () => {
       />
       {/* change_card */}
       <span className="change_card"></span>
+      <span className="enemy_card"></span>
 
       {deck.map((card, index) => (
         <GameCard

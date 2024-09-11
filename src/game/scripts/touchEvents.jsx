@@ -4,6 +4,11 @@ import { gsap } from "gsap";
 import { animateMoveTo, animateVibrateCard } from "../utils/animationUtils";
 import localStorageUtils from "../utils/localStorageUtils";
 import G from "../utils/mathUtils";
+import { openCard } from "../utils/cardUtils";
+import { Cone } from "react-bootstrap-icons";
+import axios from "axios";
+import config from "../../config";
+import ShowPopup from "../../ShowPopup";
 //
 export const touchEvents = (playersSelfCards, cardsDisabled) => {
   let newTableCards = [];
@@ -67,7 +72,9 @@ export const touchEvents = (playersSelfCards, cardsDisabled) => {
       if (target.classList.contains("self_card")) {
         // Если нажимают на уже активную карту, вернуть ее в исходное положение
         if (activeCard && activeCard === target) {
-          applyCardState(activeCard, cardStates.get(activeCard));
+          if (!target.classList.contains("enemy_card"))
+            applyCardState(activeCard, cardStates.get(activeCard));
+
           cardDeactive(activeCard);
           activeCard.classList.remove("b-card");
           activeCard = null;
@@ -81,7 +88,8 @@ export const touchEvents = (playersSelfCards, cardsDisabled) => {
 
         // Если уже есть другая активная карта, возвращаем её в исходное положение
         if (activeCard) {
-          applyCardState(activeCard, cardStates.get(activeCard));
+          if (!target.classList.contains("enemy_card"))
+            applyCardState(activeCard, cardStates.get(activeCard));
           activeCard.classList.remove("b-card");
           cardDeactive(activeCard);
         }
@@ -182,6 +190,99 @@ export const touchEvents = (playersSelfCards, cardsDisabled) => {
           animateVibrateCard(activeCard);
           applyCardState(activeCard, cardStates.get(activeCard));
           defaultSelfCards();
+        }
+        // for (let i = 0; i < newTableCards.length; i++) {
+        //   const el = newTableCards[i];
+
+        // }
+
+        // last ev
+        activeCard = null;
+      } else if (target.classList.contains("enemy_card")) {
+        console.log("enemy card");
+        let cardsScale = 1;
+        let cCard = document.querySelector(".enemy_card");
+        let list = document.querySelectorAll(".game_card");
+        for (let i = 0; i < list.length; i++) {
+          if (
+            !list[i].classList.contains("open-card") &&
+            list[i].style.opacity != 0
+          ) {
+            activeCard = list[i];
+            openCard(activeCard);
+            break;
+          }
+        }
+        let firstCard =
+          newTableCards.length == 0 || newTableCards == 1 ? true : false;
+        // verifying card types
+        console.log(newTableCards[0]?.dataset.type, activeCard.dataset.type);
+
+        if (
+          !newTableCards[0] ||
+          newTableCards[0].dataset.value == activeCard.dataset.value
+        ) {
+          activeCard.classList.remove("self_card");
+          cardDeactive(activeCard);
+          activeCard.classList.add("table_card");
+          newTableCards.push(activeCard);
+
+          let rect = cCard.getBoundingClientRect();
+
+          let commonY = rect.y; // Установите общую Y координату для всех карт.
+          let newPosCard = {
+            x: firstCard ? rect.x - rect.width + 5 : rect.x,
+            y: commonY,
+          };
+          let newPosChangeCard = {
+            x: firstCard ? rect.x + 10 : rect.x + rect.width + 5,
+            y: commonY,
+          };
+          if (newTableCards.length >= 3) {
+            setTimeout(() => {
+              let el2 = null;
+              for (let i = 0; i < newTableCards.length; i++) {
+                const el = newTableCards[i];
+                if (i == 1) {
+                  el2 = el.getBoundingClientRect();
+                }
+                let elRect = el.getBoundingClientRect();
+                let elY = elRect.y - elRect.height - 10;
+                animateMoveTo(el, null, elY, 1, 0.5, 0);
+              }
+              if (el2) {
+                animateMoveTo(
+                  cCard,
+                  el2.x - 5,
+                  null,
+                  cardsScale,
+                  0.3,
+                  0.1,
+                  false
+                );
+              }
+            }, 500);
+          }
+          animateMoveTo(
+            activeCard,
+            newPosCard.x,
+            newPosCard.y,
+            cardsScale,
+            0.3,
+            0.1
+            // false
+          );
+          animateMoveTo(
+            cCard,
+            newPosChangeCard.x,
+            newPosChangeCard.y,
+            cardsScale,
+            0.3,
+            0.1,
+            false
+          );
+        } else {
+          console.log("wrong card", activeCard.dataset.value);
         }
         // for (let i = 0; i < newTableCards.length; i++) {
         //   const el = newTableCards[i];

@@ -142,6 +142,7 @@ body {
   width: var(--card-width);
   aspect-ratio: 2/3;
   background-size: 100% 100%;
+  background-image: url(../res/cards/cardBack.svg);
   position: fixed;
   transform: translate(clamp(-20px, -5vw, -35px), calc(50vh - 60px));
   top: 0;
@@ -176,6 +177,19 @@ body {
   background-size: 100% 100%;
   transform-origin: center center;
   transform: translate(calc(50vw - clamp(20px, 5vw, 40px)), calc(50vh - 60px));
+}
+
+.game .enemy_card {
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: var(--card-width);
+  aspect-ratio: 2/3;
+  background-image: url(../res/cards/changeCard.svg);
+  background-size: 100% 100%;
+  transform-origin: center center;
+  transform: translate(calc(50vw - clamp(20px, 5vw, 40px)), calc(35vh - 60px));
 }
 
 /* timer */
