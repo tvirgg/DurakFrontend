@@ -1013,10 +1013,6 @@ const Game = () => {
                 {/* <img className="frame" src={imgFrame} alt="frame" /> */}
               </div>
               <span className="player_name">{player.name}</span>
-              <span className="cards_count">
-                {allPlayers[index].cards.length}{" "}
-                <I18nText path="player_cards" />
-              </span>
             </div>
           );
         })}
