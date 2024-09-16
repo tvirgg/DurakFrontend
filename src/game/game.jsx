@@ -8,6 +8,7 @@ import GameCard from "./res/components/gameCard";
 import Timer from "./res/components/timer";
 // functions
 import { generateDeck } from "./utils/deckUtils";
+import { scriptedCardsMoves } from "./scripts/scriptedCardsMoves";
 import connectToSocket from "../connectToSocket";
 // card Utils
 import {
@@ -33,6 +34,7 @@ import { useIntl } from "react-intl";
 import axios, { all } from "axios";
 import config from "../config";
 import ShowPopup from "../ShowPopup";
+import { ConeStriped } from "react-bootstrap-icons";
 
 // game
 const Game = () => {
@@ -92,12 +94,234 @@ const Game = () => {
   // functions
   // timer
   const [timerActive, setTimerActive] = useState(false);
+  const [madeMove, setMadeMove] = useState(false);
+  const [enemyCardPos, setEnemyCardPos] = useState({});
+  const [changeCardPos, setChangeCardPos] = useState({});
+  const [duration, setDuration] = useState(15);
   //
   const handleTimerFinish = (finished) => {
     if (finished) {
+      handleTimerStop();
       console.log("Таймер завершился");
-      // Ваш код для обработки завершения таймера
+      if (duration != 3) {
+        // Ваш код для обработки завершения таймера
+        let gameStatus = JSON.parse(localStorage.getItem("game_status"));
+        let index = calculateIndex();
+        if (gameStatus.attackerCards.length == 0) {
+          setTimeout(() => {
+            setDuration(15);
+            setTimerActive(true);
+            enablePlayerControls();
+          }, 3000);
+        } else {
+          if (index == gameStatus.attackerIndex) {
+            axios
+              .post(
+                `${config.url}/game/finish-turn`,
+                {
+                  gameId: gameStatus.gameId,
+                },
+                {
+                  headers: {
+                    "Access-Control-Expose-Headers": "X-Session",
+                    "X-Session": localStorage.getItem("session_key"),
+                  },
+                }
+              )
+              .then((res) => {
+                localStorage.setItem("game_status", JSON.stringify(res.data));
+                localStorage.setItem(
+                  "session_key",
+                  res.headers.get("X-Session")
+                );
+
+                finisher();
+              })
+              .catch((err) => {
+                localStorage.setItem(
+                  "session_key",
+                  err.response.headers.get("X-Session")
+                );
+              });
+          }
+        }
+      }
     }
+  };
+
+  const finisher = async () => {
+    let gameStatus = JSON.parse(localStorage.getItem("game_status"));
+    let tableCards = document.querySelectorAll(".table_card");
+    let id = JSON.parse(localStorage.getItem("user")).id;
+    let temp = document.querySelectorAll(".self_card");
+    const cardsToPlayers = [];
+    const cardsToSelf = [];
+    const trashCards = [];
+    let foundOwner = false;
+    const animDur = 0.6;
+
+    for (let i = 0; i < temp.length; i++) {
+      temp[i].setAttribute("style", "");
+      cardsToSelf.push(temp[i]);
+    }
+    temp = document.querySelectorAll(".game_card");
+    for (let i = 0; i < temp.length; i++) {
+      if (
+        temp[i].classList.length === 2 ||
+        (temp[i].classList.contains("trump_card") &&
+          temp[i].classList.length === 4)
+      ) {
+        for (let j = 0; j < gameStatus.players.length; j++) {
+          if (gameStatus.players[j].id == id) {
+            for (let k = 0; k < gameStatus.players[j].cards.length; k++) {
+              let name = cardConverter(gameStatus.players[j].cards[k]);
+              if (temp[i].dataset.name == name) {
+                cardsToSelf.push(temp[i]);
+              }
+            }
+          } else {
+            let xT = document
+              .getElementById(gameStatus.players[j].id)
+              .getBoundingClientRect().left;
+            let yT = document
+              .getElementById(gameStatus.players[j].id)
+              .getBoundingClientRect().top;
+            for (let k = 0; k < gameStatus.players[j].cards.length; k++) {
+              let name = cardConverter(gameStatus.players[j].cards[k]);
+              if (temp[i].dataset.name == name) {
+                cardsToPlayers.push({
+                  card: temp[i],
+                  x: xT,
+                  y: yT,
+                  animDur: animDur,
+                  toScale: 0,
+                  rotation: true,
+                });
+              }
+            }
+          }
+        }
+      }
+    }
+
+    let playerPos = null;
+
+    for (let i = 0; i < tableCards.length; i++) {
+      foundOwner = false;
+      tableCards[i].classList.remove("table_card");
+      tableCards[i].classList.remove("enemy_attacked_card");
+      tableCards[i].classList.remove("enemy_defend_card");
+      for (let j = 0; j < gameStatus.players.length; j++) {
+        const isSelf = id === gameStatus.players[j].id;
+        const playerRef =
+          id === gameStatus.players[j].id
+            ? playerSelfRef.current.getBoundingClientRect()
+            : document
+                .getElementById(gameStatus.players[j].id)
+                .getBoundingClientRect();
+        const pX = playerRef.left;
+        const pY = playerRef.top;
+        if (isSelf) {
+          playerPos = { x: pX, y: pY };
+        }
+        for (let k = 0; k < gameStatus.players[j].cards.length; k++) {
+          let name = cardConverter(gameStatus.players[j].cards[k]);
+          if (tableCards[i].dataset.name == name) {
+            foundOwner = true;
+
+            if (isSelf) {
+              cardsToSelf.push(tableCards[i]);
+            } else {
+              cardsToPlayers.push({
+                card: tableCards[i],
+                x: pX,
+                y: pY,
+                animDur: animDur,
+                toScale: 0,
+                rotation: true,
+              });
+            }
+          }
+        }
+      }
+      if (!foundOwner) {
+        tableCards[i].classList.remove("game_card");
+        tableCards[i].remove();
+      }
+    }
+    console.log(cardsToPlayers);
+    console.log(cardsToSelf, enemyCardPos, changeCardPos);
+
+    const cardElements = cardsToPlayers.map(
+      ({ card, x, y, animDur, toScale, rotation, index }) => {
+        const cardElement = card;
+        if (cardElement) {
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              animateMoveTo(cardElement, x, y, toScale, animDur, 0, rotation);
+              resolve();
+            }, index * 100); // Задержка в миллисекундах для каждой карты
+          });
+        } else {
+          return Promise.resolve();
+        }
+      }
+    );
+    const trashCardElements = trashCards.map(
+      ({ card, x, y, animDur, toScale, rotation, index }) => {
+        const cardElement = card;
+        if (cardElement) {
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              animateMoveTo(cardElement, x, y, toScale, animDur, 0, rotation);
+              resolve();
+            }, index * 100); // Задержка в миллисекундах для каждой карты
+          });
+        } else {
+          return Promise.resolve();
+        }
+      }
+    );
+
+    await Promise.all(cardElements);
+    await Promise.all(trashCardElements);
+    if (playerPos != null && playerPos.x != null && playerPos.y != null) {
+      await animateGetCardsPlayerSelf(
+        cardsToSelf,
+        playerPos.x,
+        playerPos.y,
+        1.5,
+        animDur,
+        0
+      );
+    }
+
+    await animateMoveTo(
+      document.querySelector(".enemy_card"),
+      document.documentElement.clientWidth / 2 -
+        Math.min(20, document.documentElement.clientWidth * 0.05, 40),
+      document.documentElement.clientHeight / 3 - 60,
+      1,
+      animDur,
+      0,
+      false
+    );
+    await animateMoveTo(
+      document.querySelector(".change_card"),
+      document.documentElement.clientWidth / 2 -
+        Math.min(20, document.documentElement.clientWidth * 0.05, 40),
+      document.documentElement.clientHeight / 2 - 60,
+      1,
+      animDur,
+      0,
+      false
+    );
+
+    setTimeout(() => {
+      setDuration(15);
+      setTimerActive(true);
+      enablePlayerControls();
+    }, 3000);
   };
 
   const handleTimerStop = useCallback(() => {
@@ -110,10 +334,29 @@ const Game = () => {
     setTimerActive((prev) => !prev);
   };
 
+  const calculateIndex = () => {
+    let gameStatus = JSON.parse(localStorage.getItem("game_status"));
+    let playerMas = gameStatus.players;
+    let des = 0;
+    for (let i = 0; i < playerMas.length; i++) {
+      if (playerMas[i].id == JSON.parse(localStorage.getItem("user")).id) {
+        des = i;
+        break;
+      }
+    }
+    return des;
+  };
+
   const disablePlayerControls = () => {
     setCardsDisabled(true);
     controlBtns(false, false, false, true);
     setCardsDisabled(true);
+  };
+
+  const enablePlayerControls = () => {
+    setCardsDisabled(false);
+    controlBtns(true, true, true, true);
+    setCardsDisabled(false);
   };
   const controlBtns = (cheat, take, pass, react) => {
     setButtonStates({
@@ -152,67 +395,134 @@ const Game = () => {
   const [cardsDisabled, setCardsDisabled] = useState(false);
 
   const listener = (res) => {
-    setFullGameDeck(res);
-    console.log(res);
-    if (game.status === "load") {
-      let gameStatus = res;
-
-      if (gameStatus["deck"] != null && fullGameDeck["deck"] == null) {
-        console.log("wait");
-        localStorage.setItem("game_status", JSON.stringify(gameStatus));
+    console.log(res, fullGameDeck);
+    let gameStatus = res;
+    if (
+      gameStatus["gameState"] != null &&
+      gameStatus["gameState"] == "game_over"
+    ) {
+      window.location.href = "/games";
+    }
+    if (
+      gameStatus["deck"] != null &&
+      JSON.parse(localStorage.getItem("game_status"))["deck"] == null
+    ) {
+      console.log("wait");
+      localStorage.setItem("game_status", JSON.stringify(gameStatus));
+      setTimeout(() => {
+        setGame(
+          (prevGame) => ({
+            ...prevGame,
+            status: "start",
+          }),
+          1000
+        );
+      });
+    } else if (
+      gameStatus["attackerCards"] != null &&
+      gameStatus["attackerCards"].length === 0
+    ) {
+      localStorage.setItem("game_status", JSON.stringify(gameStatus));
+      finisher();
+    } else if (gameStatus.players.length < gameStatus.fieldSize / 6 - 1) {
+      setGame((prevGame) => ({
+        ...prevGame,
+        status: "await",
+      }));
+    } else if (checkAllPlayersNull(gameStatus)) {
+      setMadeMove(false);
+      if (
+        gameStatus.players[0].id == JSON.parse(localStorage.getItem("user")).id
+      ) {
         setTimeout(() => {
-          setGame(
-            (prevGame) => ({
-              ...prevGame,
-              status: "start",
-            }),
-            1000
-          );
-        });
-      } else if (gameStatus.players.length < gameStatus.fieldSize / 6 - 1) {
-        setGame((prevGame) => ({
-          ...prevGame,
-          status: "await",
-        }));
-      } else if (gameStatus.players[0].cards.length == 0) {
-        if (
-          gameStatus.players[0].id ==
-          JSON.parse(localStorage.getItem("user")).id
-        ) {
-          setTimeout(() => {
-            axios
-              .post(
-                `${config.url}/game/start-game`,
-                {
-                  gameId: gameStatus.gameId,
+          axios
+            .post(
+              `${config.url}/game/start-game`,
+              {
+                gameId: gameStatus.gameId,
+              },
+              {
+                headers: {
+                  "Access-Control-Expose-Headers": "X-Session",
+                  "X-Session": localStorage.getItem("session_key"),
                 },
-                {
-                  headers: {
-                    "Access-Control-Expose-Headers": "X-Session",
-                    "X-Session": localStorage.getItem("session_key"),
-                  },
-                }
-              )
-              .then((res) => {
-                setGame((prevGame) => ({
-                  ...prevGame,
-                  status: "start",
-                }));
-                localStorage.setItem("game_status", JSON.stringify(res.data));
-                setFullGameDeck(res.data);
-              })
-              .catch((err) => {
-                localStorage.setItem(
-                  "session_key",
-                  res.headers.get("X-Session")
-                );
-              });
-          }, 2000);
+              }
+            )
+            .then((res) => {
+              setGame((prevGame) => ({
+                ...prevGame,
+                status: "start",
+              }));
+              localStorage.setItem("game_status", JSON.stringify(res.data));
+              localStorage.setItem("session_key", res.headers.get("X-Session"));
+              setFullGameDeck(res.data);
+            })
+            .catch((err) => {
+              localStorage.setItem(
+                "session_key",
+                err.response.headers.get("X-Session")
+              );
+            });
+        }, 2000);
+      }
+    } else {
+      console.log(playerRefs, playerSelfRef);
+      setDuration((prev) => prev + 1);
+
+      new Promise((resolve) => setTimeout(resolve, 5000)).then(() => {});
+      // timer.classList.add("timer_active");
+
+      let playerMas = gameStatus.players;
+      let des = 0;
+      for (let i = 0; i < playerMas.length; i++) {
+        if (playerMas[i].id == JSON.parse(localStorage.getItem("user")).id) {
+          des = i;
+          break;
         }
       }
-
-      setFullGameDeck(gameStatus);
+      console.log(des);
+      if (
+        des === (gameStatus.attackerIndex + 1) % gameStatus.players.length &&
+        calculateNewCard(gameStatus, ".enemy_attacked_card") != null
+      ) {
+        let card = cardConverter(
+          calculateNewCard(gameStatus, ".enemy_attacked_card")
+        );
+        scriptedCardsMoves(card, "enemy_attacked_card");
+      } else if (des === gameStatus.attackerIndex) {
+        let card = calculateNewCard(gameStatus, ".enemy_defend_card");
+        let defendAganist = null;
+        for (let i = 0; i < gameStatus.defenderCards.length; i++) {
+          if (card === gameStatus.defenderCards[i]) {
+            defendAganist = gameStatus.attackerCards[i];
+            break;
+          }
+        }
+        // if (card !== null) {
+        //   setTimerActive(true);
+        //   enablePlayerControls();
+        // }
+        console.log(card, defendAganist);
+        scriptedCardsMoves(
+          cardConverter(card),
+          "enemy_defend_card",
+          cardConverter(defendAganist)
+        );
+      }
+      localStorage.setItem("game_status", JSON.stringify(gameStatus));
     }
+
+    setFullGameDeck(gameStatus);
+  };
+
+  const checkAllPlayersNull = (gameStatus) => {
+    for (let i = 0; i < gameStatus.players.length; i++) {
+      if (gameStatus.players[i].cards.length > 0) {
+        return false;
+      }
+    }
+
+    return true;
   };
   // eff
   const statusChanger = () => {
@@ -243,19 +553,76 @@ const Game = () => {
     statusChanger();
   }, [game.status, fullGameDeck]);
 
+  const calculateNewCard = (gameStatus, classNaming) => {
+    let prevgameStatus = JSON.parse(localStorage.getItem("game_status"));
+    let lst = null;
+    let newlst = null;
+    if (classNaming === ".enemy_attacked_card") {
+      lst = prevgameStatus.attackerCards;
+      newlst = gameStatus.attackerCards;
+    } else if (classNaming === ".enemy_defend_card") {
+      lst = prevgameStatus.defenderCards;
+      newlst = gameStatus.defenderCards;
+    }
+    let find = false;
+
+    for (let i = 0; i < newlst.length; i++) {
+      find = false;
+      for (let j = 0; j < lst.length; j++) {
+        if (
+          newlst[i].nominal === lst[j].nominal &&
+          newlst[i].name === lst[j].name
+        ) {
+          find = true;
+          break;
+        }
+      }
+      if (!find) {
+        return newlst[i];
+      }
+    }
+
+    return null;
+  };
+  function cardConverter(card) {
+    let seconpart = "";
+    if (card.nominal <= 10) {
+      seconpart = card.nominal.toString();
+    } else if (card.nominal == 11) {
+      seconpart = "J";
+    } else if (card.nominal == 12) {
+      seconpart = "Q";
+    } else if (card.nominal == 13) {
+      seconpart = "K";
+    } else if (card.nominal == 14) {
+      seconpart = "A";
+    }
+    let car = card.name[0].toLowerCase() + seconpart;
+    return car;
+  }
+
   // game-start
   useEffect(() => {
     if (game.status === "start" && !cardsShuffled) {
+      setEnemyCardPos({
+        x: document.querySelector(".enemy_card").getBoundingClientRect().left,
+        y: document.querySelector(".enemy_card").getBoundingClientRect().left,
+      });
+      setChangeCardPos((prevChangeCardPos) => ({
+        ...prevChangeCardPos,
+        x: document.querySelector(".change_card").getBoundingClientRect().left,
+        y: document.querySelector(".change_card").getBoundingClientRect().top,
+      }));
+      console.log("starting Game");
+      let id = 1;
       // Перемешивание и раздача карт
       const generatedDeck = generateDeck(game.cardsCount);
-      const shuffledDeck = shuffleDeck(generatedDeck);
-      setDeck(shuffledDeck);
+      setDeck(generatedDeck);
 
       // Обновляем состояние игроков с уникальными картами
       // const updatedPlayers = [...allPlayers];
       let updatedPlayers = [];
       var ownPlayer = {};
-      const deckCopy = [...shuffledDeck];
       let backPlayers = JSON.parse(localStorage.getItem("game_status"))[
         "players"
       ];
@@ -278,7 +645,7 @@ const Game = () => {
             }
             let car = card.name[0].toLowerCase() + seconpart;
             tempCards.push({
-              id: index,
+              id: id++,
               type: card.name[0].toLowerCase(),
               name: car,
               value: card.nominal,
@@ -295,6 +662,7 @@ const Game = () => {
             cards: tempCards,
             index: index,
             status: player.user.status,
+            self: false,
           });
         } else {
           let tempCards = [];
@@ -313,7 +681,7 @@ const Game = () => {
             }
             let car = card.name[0].toLowerCase() + seconpart;
             tempCards.push({
-              id: index,
+              id: id++,
               type: card.name[0].toLowerCase(),
               name: car,
               value: card.nominal,
@@ -330,13 +698,23 @@ const Game = () => {
             cards: tempCards,
             index: index,
             status: player.user.status,
+            self: true,
           };
         }
       });
+      for (let i = 0; i < updatedPlayers.length; i++) {
+        if (
+          updatedPlayers[i].id == JSON.parse(localStorage.getItem("user")).id
+        ) {
+          console.log("ownPlayer");
+          updatedPlayers.splice(i, 1);
+          break;
+        }
+      }
+      console.log("update players", updatedPlayers);
 
       setOtherPlayers(updatedPlayers);
       setPlayer_self(ownPlayer);
-      updatedPlayers.push(ownPlayer);
 
       // updatedPlayers.forEach((player) => {
       //   const playerCards = getRandomCards(deckCopy, 6); // Получаем уникальные карты
@@ -353,9 +731,14 @@ const Game = () => {
       //     }
       //   });
       // });
-      console.log(updatedPlayers, backPlayers);
+      let temp = [];
+      for (let i = 0; i < updatedPlayers.length; i++) {
+        temp.push(updatedPlayers[i]);
+      }
 
-      setAllPlayers(updatedPlayers);
+      temp.push(ownPlayer);
+
+      setAllPlayers(temp);
       setCardsShuffled(true);
       setGame((prevGame) => ({
         ...prevGame,
@@ -370,13 +753,16 @@ const Game = () => {
       const animDur = 0.6;
 
       async function distributeCardsToPlayer(player, playerIndex) {
-        const playerRef =
-          playerRefs.current[playerIndex].getBoundingClientRect();
+        const playerRef = playerRefs.current[playerIndex]
+          ? playerRefs.current[playerIndex].getBoundingClientRect()
+          : playerSelfRef.current.getBoundingClientRect();
         const pX = playerRef.left;
         const pY = playerRef.top;
 
         let playerCards = player.cards;
+        console.log("playerCards", playerCards);
         const boolPlayerSelf = player.self;
+        console.log(player);
 
         if (!boolPlayerSelf) {
           const cardPromises = playerCards.map((card, index) => {
@@ -448,8 +834,18 @@ const Game = () => {
       // Проверяем, что колода не пуста
       if (remainingDeck.length > 0) {
         // Выбираем последнюю карту из оставшейся колоды как козырную карту
-        const trumpCard = remainingDeck[remainingDeck.length - 1];
-        const trumpCardEl = findCardById(trumpCard.id);
+        let trumpCard = fullGameDeck.trumpCard;
+        let trumpCardEl;
+        for (let i = 0; i < remainingDeck.length; i++) {
+          if (
+            remainingDeck[i].nominal === trumpCard.nominal &&
+            remainingDeck[i].nameBack === trumpCard.name
+          ) {
+            trumpCard = remainingDeck[i];
+            trumpCardEl = findCardById(remainingDeck[i].id);
+            break;
+          }
+        }
         if (trumpCardEl) {
           trumpCardEl.classList.add("trump_card");
           animateShowTrumpCard(trumpCardEl);
@@ -469,15 +865,16 @@ const Game = () => {
   useEffect(() => {
     if (game.status === "play") {
       // Получаем функцию очистки
-      const cleanUp = touchEvents(playerSelfCards, cardsDisabled);
+      const cleanUp = touchEvents(playerSelfCards, cardsDisabled, setMadeMove);
 
       // Очистка при размонтировании или изменении зависимостей
-
       const timer = document.querySelector(".game .timer");
       if (!gamePlaying) {
         controlBtns(true, true, true, true); // Активируем все кнопки
         setGamePlaying(true);
+
         setTimerActive(true);
+
         timer.classList.add("timer_active");
       }
 
@@ -537,8 +934,49 @@ const Game = () => {
     };
   }, []);
 
+  const finishTurn = () => {
+    let gameStatus = JSON.parse(localStorage.getItem("game_status"));
+    let playerMas = gameStatus.players;
+    let des = 0;
+    for (let i = 0; i < playerMas.length; i++) {
+      if (playerMas[i].id == JSON.parse(localStorage.getItem("user")).id) {
+        des = i;
+        break;
+      }
+    }
+
+    if (des === (gameStatus.attackerIndex + 1) % gameStatus.players.length) {
+      axios
+        .post(
+          config.url + "/game/finish-turn",
+          {
+            gameId: gameStatus.gameId,
+          },
+          {
+            headers: {
+              "Access-Control-Expose-Headers": "X-Session",
+              "X-Session": localStorage.getItem("session_key"),
+            },
+          }
+        )
+        .then((res) => {
+          localStorage.setItem("session_key", res.headers.get("X-Session"));
+          localStorage.setItem("game_status", JSON.stringify(res.data));
+          setGame((prevGame) => ({
+            ...prevGame,
+            status: "start",
+          }));
+        })
+        .catch((err) => {
+          localStorage.setItem(
+            "session_key",
+            err.response.headers.get("X-Session")
+          );
+        });
+    }
+  };
+
   const playerCenterIndex = Math.floor(otherPlayers.length / 2);
-  console.log(allPlayers, player_self, otherPlayers);
   // render
   return (
     <section className="game">
@@ -598,11 +1036,13 @@ const Game = () => {
         </div>
       )}
       {/* timer */}
+
       <Timer
-        duration={15}
+        duration={duration}
         onFinish={handleTimerFinish}
         isActive={timerActive}
       />
+
       {/* change_card */}
       <span className="change_card"></span>
       <span className="enemy_card"></span>
@@ -635,7 +1075,11 @@ const Game = () => {
         <button className="take" disabled={!buttonStates.take}>
           <I18nText path="take_button" />
         </button>
-        <button className="pass" disabled={!buttonStates.pass}>
+        <button
+          className="pass"
+          disabled={!buttonStates.pass}
+          onClick={finishTurn}
+        >
           <I18nText path="pass_button" />
         </button>
         <button

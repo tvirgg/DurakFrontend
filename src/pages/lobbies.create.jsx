@@ -43,7 +43,7 @@ const LobbiesCreate = () => {
             },
           }
         )
-        .then(res => {
+        .then((res) => {
           localStorage.setItem("session_key", res.headers.get("X-Session"));
           console.log(res.data);
           localStorage.setItem("game_status", JSON.stringify(res.data));
@@ -58,7 +58,7 @@ const LobbiesCreate = () => {
     }
   };
 
-  const bidChanger = value => {
+  const bidChanger = (value) => {
     setBidAmount(bids[value]);
     setProgress(value);
   };
@@ -70,7 +70,7 @@ const LobbiesCreate = () => {
             type="text"
             placeholder="Enter lobby name..."
             name="lobby_name"
-            onChange={e => setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
         {/* players / progress-bar */}
@@ -135,12 +135,12 @@ const LobbiesCreate = () => {
           <label htmlFor="cgt2" onClick={() => setGameType("PEREVODNOY")}>
             Passing <IconRefresh />
           </label>
-          <input type="radio" id="cgt2" name="game_type" />
-          <label htmlFor="cgt2" onClick={() => setGameType("PODKIDNOY")}>
+          <input type="radio" id="cgt3" name="game_type" />
+          <label htmlFor="cgt3" onClick={() => setGameType("PODKIDNOY")}>
             Throwing Extra <IconRefresh />
           </label>
-          <input type="radio" id="cgt2" name="game_type" />
-          <label htmlFor="cgt2" onClick={() => setGameType("SHULLERS")}>
+          <input type="radio" id="cgt4" name="game_type" />
+          <label htmlFor="cgt4" onClick={() => setGameType("SHULLERS")}>
             With Shullers <IconRefresh />
           </label>
         </div>
