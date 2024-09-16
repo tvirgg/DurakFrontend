@@ -176,6 +176,7 @@ const Game = () => {
             for (let k = 0; k < gameStatus.players[j].cards.length; k++) {
               let name = cardConverter(gameStatus.players[j].cards[k]);
               if (temp[i].dataset.name == name) {
+                temp[i].setAttribute("style", "");
                 cardsToSelf.push(temp[i]);
               }
             }

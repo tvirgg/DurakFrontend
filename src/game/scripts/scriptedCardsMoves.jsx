@@ -116,7 +116,7 @@ export const scriptedCardsMoves = (
     x: firstCard ? rect.x + 10 : rect.x + rect.width + 5,
     y: commonY,
   };
-  if (newTableCards.length >= 3 && toCard === null) {
+  if (newTableCards.length % 3 == 0 && toCard === null) {
     setTimeout(() => {
       let el2 = null;
       let fullTable = [];
@@ -130,12 +130,23 @@ export const scriptedCardsMoves = (
           el2 = el.getBoundingClientRect();
         }
         let elRect = el.getBoundingClientRect();
-        let elY = elRect.y - elRect.height - 10;
+        let elY = elRect.y + elRect.height + 5;
         animateMoveTo(el, null, elY, 1, 0.5, 0);
       }
       if (el2) {
         animateMoveTo(cCard, el2.x - 5, null, cardsScale, 0.3, 0.1, false);
       }
+
+      animateMoveTo(
+        document.querySelector(".change_card"),
+        document.documentElement.clientWidth / 2 -
+          Math.min(20, document.documentElement.clientWidth * 0.05, 40),
+        document.documentElement.clientHeight / 2 - 60,
+        1,
+        0.6,
+        0,
+        false
+      );
     }, 500);
   }
   console.log(activeCard, cCard, "scripted");

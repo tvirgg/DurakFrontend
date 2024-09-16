@@ -205,7 +205,7 @@ export const touchEvents = (
                     el2 = el.getBoundingClientRect();
                   }
                   let elRect = el.getBoundingClientRect();
-                  let elY = elRect.y + elRect.height + 5;
+                  let elY = elRect.y - elRect.height - 10;
                   animateMoveTo(el, null, elY, 1, 0.5, 0);
                 }
                 if (el2) {
@@ -219,6 +219,21 @@ export const touchEvents = (
                     false
                   );
                 }
+
+                animateMoveTo(
+                  document.querySelector(".change_card"),
+                  document.documentElement.clientWidth / 2 -
+                    Math.min(
+                      20,
+                      document.documentElement.clientWidth * 0.05,
+                      40
+                    ),
+                  document.documentElement.clientHeight / 2 - 60,
+                  1,
+                  0.6,
+                  0,
+                  false
+                );
               }, 500);
             }
             animateMoveTo(
