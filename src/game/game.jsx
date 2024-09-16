@@ -463,7 +463,7 @@ const Game = () => {
                 err.response.headers.get("X-Session")
               );
             });
-        }, 2000);
+        }, 10000);
       }
     } else {
       console.log(playerRefs, playerSelfRef);

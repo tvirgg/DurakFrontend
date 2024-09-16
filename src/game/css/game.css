@@ -189,7 +189,7 @@ body {
   top: 0;
   width: var(--card-width);
   aspect-ratio: 2/3;
-  background-image: url(../res/cards/changeCard.svg);
+  background-color: transparent;
   background-size: 100% 100%;
   transform-origin: center center;
   transform: translate(calc(50vw - clamp(20px, 5vw, 40px)), calc(35vh - 60px));
