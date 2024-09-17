@@ -9,8 +9,15 @@ import IconCoin from "../components/icons/coin";
 //
 import TransactionHistory from "../components/transaction.history";
 import { I18nText } from "../components/i18nText";
+import { useNavigate } from "react-router-dom";
+import BackBtn from "../BackBtn";
 //
 const PageExchange = () => {
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    BackBtn("/", navigate);
+  });
   return (
     <section className="page dwe exchange pb-80">
       <Preloader />

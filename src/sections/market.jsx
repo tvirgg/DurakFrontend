@@ -18,9 +18,16 @@ import IconCoinDUR from "../components/icons/coinDur";
 import axios from "axios";
 import config from "../config";
 import ShowPopup from "../ShowPopup";
+import { useNavigate } from "react-router-dom";
+import BackBtn from "../BackBtn";
 
 const Market = () => {
   const [market, setMarket] = useState();
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    BackBtn("/", navigate);
+  });
 
   useEffect(() => {
     async function fetchMarket() {
@@ -35,14 +42,14 @@ const Market = () => {
   const [activeType, setActiveType] = useState("frame");
   const [activeCategories, setActiveCategories] = useState([]);
 
-  const handleTypeClick = type => {
+  const handleTypeClick = (type) => {
     setActiveType(type);
   };
 
-  const handleCategoryClick = category => {
-    setActiveCategories(prevCategories => {
+  const handleCategoryClick = (category) => {
+    setActiveCategories((prevCategories) => {
       if (prevCategories.includes(category)) {
-        return prevCategories.filter(cat => cat !== category);
+        return prevCategories.filter((cat) => cat !== category);
       } else {
         return [...prevCategories, category];
       }
@@ -51,7 +58,7 @@ const Market = () => {
 
   // Фильтрация продуктов по активному типу и категориям
   const filteredProducts = market?.filter(
-    product =>
+    (product) =>
       product.cosmetic.type === activeType &&
       (activeCategories.length === 0 ||
         activeCategories.includes(product.cosmetic.rarity))
@@ -68,7 +75,7 @@ const Market = () => {
     setModalState({ isActive: false, type: null });
   };
 
-  const handleBuy = async itemData => {
+  const handleBuy = async (itemData) => {
     try {
       await axios
         .post(
@@ -83,7 +90,7 @@ const Market = () => {
             },
           }
         )
-        .then(res => {
+        .then((res) => {
           localStorage.setItem("session_key", res.headers.get("X-Session"));
 
           setModalState({
@@ -92,7 +99,7 @@ const Market = () => {
             succesText: <I18nText path="new_item" />,
           });
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
           if (error.response.data === "Not enough balance") {
             setModalState({
@@ -193,7 +200,7 @@ const Market = () => {
           </header>
           {/* products */}
           <div className="products">
-            {filteredProducts?.map(product => (
+            {filteredProducts?.map((product) => (
               <div key={product.id} className="product">
                 <ImageLoader
                   src={`/res/skins${product.cosmetic.link}`}

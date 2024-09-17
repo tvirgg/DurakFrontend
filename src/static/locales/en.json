@@ -4,7 +4,6 @@
   "profile": "Profile",
   "earn": "Earn",
   "market": "Market",
-
   "filter_button": "Filter",
   "open_label": "Open",
   "private_label": "Private",
@@ -13,12 +12,13 @@
   "create_lobby_button": "Create your new lobby",
   "lobbies": "LOBBIES",
   "lobbies_tagline": "Join others or create your own game.",
-
   "earn_title": "Earn",
   "coins_label": "Coins",
   "per_hour": "per hour",
   "buff_collect": "collect",
-  "buff_speed": "speed",
+  "buff_per_hour": "Per hour",
+  "buff_per_hour_increased": "Per hour increased",
+  "buff_speed": "Multiplier",
   "buff_capacity": "capacity",
   "basic_tasks": "Basic tasks",
   "special_tasks": "Special tasks",
@@ -34,7 +34,6 @@
   "special_table": "Special table background",
   "speed_increased": "speed increased",
   "capacity_increased": "capacity increased",
-
   "task_daily_login_title": "Daily Login",
   "task_daily_login_info": "Login in to the game 7 days in a row",
   "task_first_victory_title": "First victory",
@@ -77,7 +76,6 @@
   "task_golden_player_title": "Golden player",
   "task_golden_player_info": "Earn 1.000.000 coins",
   "player_title": "Player",
-
   "invite": "Invite",
   "friends": "friends",
   "invite_friends_subtitle": "and get rewards",
@@ -85,7 +83,6 @@
   "premium_title": "Premium",
   "year": "year",
   "premium_new_price": "45 TON / year",
-
   "user_profile_in_game": "In Game",
   "user_profile_premium": "Premium",
   "user_profile_usdt_balance": "USDT: 10.99$",
@@ -121,7 +118,6 @@
   "profile_windows_send_present": "Send present",
   "profile_windows_success": "You’ve sent the present!",
   "profile_windows_fail": "Insufficient balance",
-
   "cheat_button": "cheat",
   "take_button": "take",
   "pass_button": "pass",
@@ -142,7 +138,6 @@
   "congratulations": "Congratulations",
   "new_item": "You bought a new item",
   "buy_for": "Buy for",
-
   "deposit_title": "Deposit",
   "deposit_desc": "buy DUR tokens for TON",
   "connect_wallet": "Connect wallet",
@@ -178,7 +173,6 @@
   "search_room": "Search room",
   "all": "All",
   "player_cards": "cards",
-
   "welcome_tournament": "Welcome Tournament",
   "main_prize": "Main prize",
   "requirement_tournament": "Requirement - be in game at the start of event",

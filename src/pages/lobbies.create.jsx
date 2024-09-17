@@ -10,9 +10,9 @@ import IconEye from "../components/icons/eye";
 import LobbiesLayout from "../layouts/lobbies.layout";
 // -
 import axios from "axios";
-import ShowPopup from "../ShowPopup";
 import config from "../config";
-import connectToSocket from "../connectToSocket";
+import { useNavigate } from "react-router-dom";
+import BackBtn from "../BackBtn";
 const bids = [0, 1, 10, 100, 500, 1000, 5000, 10000, 50000, 100000];
 
 const LobbiesCreate = () => {
@@ -22,6 +22,11 @@ const LobbiesCreate = () => {
   const [progress, setProgress] = React.useState(0);
   const [name, setName] = React.useState("Anonim");
   const [gameType, setGameType] = React.useState("CLASSIC");
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    BackBtn("/lobbies", navigate);
+  });
 
   const createGame = async () => {
     try {

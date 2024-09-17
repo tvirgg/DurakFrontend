@@ -7,8 +7,16 @@ import "../media/css/page/withdraw.css";
 //
 import TransactionHistory from "../components/transaction.history";
 import { I18nText } from "../components/i18nText";
+import { useNavigate } from "react-router-dom";
+import BackBtn from "../BackBtn";
+
 //
 const PageWithDraw = () => {
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    BackBtn("/", navigate);
+  });
   return (
     <section className="page dwe withdraw pb-80">
       <Preloader />
