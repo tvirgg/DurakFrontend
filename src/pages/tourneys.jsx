@@ -10,11 +10,18 @@ import IconChevronRightBlack from "../components/icons/chevronRightBlack";
 import IconTelegram from "../components/icons/telegram";
 import { I18nText } from "../components/i18nText";
 import { useIntl } from "react-intl";
+import { useNavigate } from "react-router-dom";
+import BackBtn from "../BackBtn";
 
 const Tourneys = () => {
   const user = {
     check_gold: 1100,
   };
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    BackBtn("/", navigate);
+  });
 
   const intl = useIntl();
   const tournamentTitle = intl.formatMessage({ id: "welcome_tournament" });

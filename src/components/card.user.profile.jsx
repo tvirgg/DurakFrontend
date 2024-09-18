@@ -9,6 +9,7 @@ import IconAdd from "../components/icons/add";
 import IconArrowCrook from "../components/icons/arrowCrook";
 import IconArrowTraffic from "../components/icons/arrowTraffic";
 import IconStarPremium from "../components/icons/starPremium";
+import balanceOwned from "../api/balanceOwned";
 // Navigation
 import { useNavigate } from "react-router-dom";
 // img
@@ -21,11 +22,14 @@ const CardUserProfile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const modalRef = useRef(null);
   const userInfo = JSON.parse(localStorage.getItem("user"));
+  const [activeBalance, setActiveBalance] = useState();
   const [activeCosmetic, setActiveCosmetic] = useState(JSON.parse(localStorage.getItem("user_cosmetic")));
 
   useEffect(() => {
     async function fetch() {
       const data = await getCosmeticActive();
+      const data2 = await balanceOwned();
+      setActiveBalance(data2);
       setActiveCosmetic(data);
       console.log(data);
     }
@@ -45,7 +49,7 @@ const CardUserProfile = () => {
   const closeModal = () => setIsModalOpen(false);
 
   useEffect(() => {
-    const handleClickOutside = event => {
+    const handleClickOutside = (event) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
         closeModal();
       }
@@ -104,12 +108,11 @@ const CardUserProfile = () => {
           </span>
           <div className="balance_info">
             <span className="coins_count">
-              {userInfo?.usualBalance || 0}
+              {activeBalance?.usualBalance || 0}
               <IconCoin />
             </span>
             <span className="dur">
-              <IconDUR />
-              0.00 DUR
+              <IconDUR /> {activeBalance?.premiumBalanceReturnable || 0} DUR
             </span>
           </div>
           <div className="premium_usdt">

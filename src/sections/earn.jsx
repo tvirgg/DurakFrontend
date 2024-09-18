@@ -26,6 +26,10 @@ import imgT17 from "../media/img/earn/t17.png";
 import imgT18 from "../media/img/earn/t18.png";
 import imgT19 from "../media/img/earn/t19.png";
 import imgT20 from "../media/img/earn/t20.png";
+import collectStorage from "../api/collectStorage.js";
+import buyPassive from "../api/buyPassive.js";
+import { useNavigate } from "react-router-dom";
+import BackBtn from "../BackBtn";
 
 // icon
 import IconCoin from "../components/icons/coin";
@@ -40,8 +44,14 @@ import PModal from "../components/ui/pModal.jsx";
 import { useIntl } from "react-intl";
 import availablePassive from "../api/availablePassive.js";
 import getAllQuests from "../api/quests.js";
+import ownedPassive from "../api/ownedPassive.js";
 
 const Earn = () => {
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    BackBtn("/", navigate);
+  });
   // const tasks = [
   //   {
   //     id: 1,
@@ -87,6 +97,7 @@ const Earn = () => {
   const intl = useIntl();
   const speed = intl.formatMessage({ id: "buff_speed" });
   const capacity = intl.formatMessage({ id: "buff_capacity" });
+  const perHour = intl.formatMessage({ id: "buff_per_hour" });
 
   const [modalState, setModalState] = useState({
     isActive: false,
@@ -98,11 +109,14 @@ const Earn = () => {
     buttonOnClick: null,
   });
   const [earnData, setEarnData] = useState();
+  const [availablePassives, setAvailablePassives] = useState();
   const userInfo = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     async function fetch() {
-      const data = await availablePassive();
+      const data = await ownedPassive();
+      const data2 = await availablePassive();
+      setAvailablePassives(data2);
       setEarnData(data);
     }
 
@@ -113,7 +127,7 @@ const Earn = () => {
     setModalState({ isActive: false, type: null });
   };
 
-  const openModal = (type) => {
+  const openModal = async (type, id, price, value) => {
     if (type === "success-speed") {
       setModalState({
         isActive: true,
@@ -126,27 +140,63 @@ const Earn = () => {
         type: "success",
         succesText: <I18nText path="capacity_increased" />,
       });
+    } else if (type === "success-buff-per-hour") {
+      setModalState({
+        isActive: true,
+        type: "success",
+        succesText: <I18nText path="buff_per_hour_increased" />,
+      });
     } else if (type === "collect") {
+      let res = await collectStorage();
       setModalState({
         isActive: true,
         type: "collect",
-        coinCount: 115,
+        coinCount: res ? res.passiveAmount : 0,
       });
     } else if (type === "skill-speed") {
       setModalState({
         isActive: true,
         type: "skill",
-        skillText: `+20% ${speed}`,
-        skillPrice: 115,
-        buttonOnClick: () => openModal("success-speed"),
+        skillText: `+ ${value} ${speed}`,
+        skillPrice: price,
+        buttonOnClick: async () => {
+          let res = await buyPassive(id);
+          if (res != null) {
+            openModal("success-speed");
+          } else {
+            openModal("fail");
+          }
+        },
       });
     } else if (type === "skill-capacity") {
       setModalState({
         isActive: true,
         type: "skill",
-        skillText: `X2 ${capacity}`,
-        skillPrice: 115,
-        buttonOnClick: () => openModal("success-capacity"),
+        skillText: `X ${value} ${capacity}`,
+        skillPrice: price,
+        buttonOnClick: async () => {
+          let res = await buyPassive(id);
+          if (res != null) {
+            openModal("success-capacity");
+          } else {
+            openModal("fail");
+          }
+        },
+      });
+    } else if (type === "buff-per-hour") {
+      setModalState({
+        isActive: true,
+        type: "skill",
+        skillText: `+ ${value} ${perHour}`,
+        skillPrice: price,
+        buttonOnClick: async () => {
+          let res = await buyPassive(id);
+          if (res != null) {
+            openModal("success-buff-per-hour");
+          } else {
+            openModal("fail");
+          }
+        },
       });
     } else {
       setModalState({
@@ -156,7 +206,7 @@ const Earn = () => {
     }
   };
 
-  const uniqueTypes = [...new Set(tasks?.map(task => task.quest.type))];
+  const uniqueTypes = [...new Set(tasks?.map((task) => task.quest.type))];
 
   return (
     <>
@@ -180,14 +230,57 @@ const Earn = () => {
               </span>
             </div>
             <div className="buffs">
-              <button onClick={() => openModal("collect")}>
+              <button onClick={() => openModal("collect", -1)}>
                 <I18nText path="buff_collect" />
               </button>
-              <button onClick={() => openModal("skill-speed")}>
-                +20% <I18nText path="buff_speed" />
+              <button
+                onClick={() =>
+                  openModal(
+                    "skill-speed",
+                    availablePassives ? availablePassives[2]?.id : -1,
+                    availablePassives ? availablePassives[2]?.price : 0,
+                    availablePassives ? availablePassives[2]?.value : 0
+                  )
+                }
+              >
+                + {availablePassives ? availablePassives[2]?.value : 0}{" "}
+                <I18nText path="buff_speed" />
               </button>
-              <button onClick={() => openModal("skill-capacity")}>
-                X2 <I18nText path="buff_capacity" />
+              <button
+                onClick={() =>
+                  openModal(
+                    "buff-per-hour",
+                    availablePassives ? availablePassives[1]?.id : -1,
+                    availablePassives ? availablePassives[1]?.price : 0,
+                    availablePassives
+                      ? availablePassives[1]?.value - earnData[1]?.value
+                      : 0
+                  )
+                }
+              >
+                +{" "}
+                {availablePassives
+                  ? availablePassives[1]?.value - earnData[1]?.value
+                  : 0}{" "}
+                <I18nText path="buff_per_hour" />
+              </button>
+              <button
+                onClick={() =>
+                  openModal(
+                    "skill-capacity",
+                    availablePassives ? availablePassives[0]?.id : -1,
+                    availablePassives ? availablePassives[0]?.price : 0,
+                    availablePassives
+                      ? availablePassives[0]?.value / earnData[0]?.value
+                      : 0
+                  )
+                }
+              >
+                X{" "}
+                {availablePassives
+                  ? availablePassives[0]?.value / earnData[0]?.value
+                  : 0}{" "}
+                <I18nText path="buff_capacity" />
               </button>
             </div>
           </div>
@@ -195,8 +288,15 @@ const Earn = () => {
 
           <div className="tasks">
             {tasks &&
-              uniqueTypes.map(type => (
-                <div style={{display: 'flex', flexDirection: 'column', gap: '15px'}} key={type}>
+              uniqueTypes.map((type) => (
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "15px",
+                  }}
+                  key={type}
+                >
                   <h2>
                     {type === "Обычные Квесты" ? (
                       <I18nText path="basic_tasks" />
@@ -215,8 +315,10 @@ const Earn = () => {
                     )}
                   </h2>
                   {tasks
-                    .filter(task => task.quest.type === type && !task.completed)
-                    .map(task => (
+                    .filter(
+                      (task) => task.quest.type === type && !task.completed
+                    )
+                    .map((task) => (
                       <button key={task.id} className="task anim_sjump">
                         <img
                           className="picture anim_sjump"

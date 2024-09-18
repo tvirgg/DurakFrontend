@@ -10,8 +10,9 @@ import IconEye from "../components/icons/eye";
 import LobbiesLayout from "../layouts/lobbies.layout";
 // -
 import axios from "axios";
-import ShowPopup from "../ShowPopup";
 import config from "../config";
+import { useNavigate } from "react-router-dom";
+import BackBtn from "../BackBtn";
 import connectToSocket from "../connectToSocket";
 import {I18nText} from "../components/i18nText";
 import IconPlay from "../components/icons/play";
@@ -27,6 +28,11 @@ const LobbiesCreate = () => {
   const [progressPlayers, setProgressPlayers] = React.useState(0);
   const [name, setName] = React.useState("Anonim");
   const [gameType, setGameType] = React.useState("CLASSIC");
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    BackBtn("/lobbies", navigate);
+  });
 
   const createGame = async () => {
     try {

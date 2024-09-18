@@ -15,6 +15,7 @@ import ShowPopup from "../ShowPopup";
 
 const PageDeposit = () => {
   const address = useTonAddress();
+  const [calculatedValue, setCalculatedValue] = React.useState(0);
 
   console.log(address);
 
@@ -34,7 +35,7 @@ const PageDeposit = () => {
               },
             }
           )
-          .then(res => {
+          .then((res) => {
             localStorage.setItem("session_key", res.headers.get("X-Session"));
           });
       } catch (e) {
@@ -82,26 +83,46 @@ const PageDeposit = () => {
             </h2>
             <div className="list">
               <input type="radio" id="v1" name="choose" />
-              <label htmlFor="v1">100DUR</label>
+              <label htmlFor="v1" onClick={() => setCalculatedValue(1)}>
+                100DUR
+              </label>
               <input type="radio" id="v2" name="choose" />
-              <label htmlFor="v2">200DUR</label>
+              <label htmlFor="v2" onClick={() => setCalculatedValue(2)}>
+                200DUR
+              </label>
               <input type="radio" id="v3" name="choose" />
-              <label htmlFor="v3">300DUR</label>
+              <label htmlFor="v3" onClick={() => setCalculatedValue(3)}>
+                300DUR
+              </label>
               <input type="radio" id="v4" name="choose" />
-              <label htmlFor="v4">400DUR</label>
+              <label htmlFor="v4" onClick={() => setCalculatedValue(4)}>
+                400DUR
+              </label>
               <input type="radio" id="v5" name="choose" />
-              <label htmlFor="v5">500DUR</label>
+              <label htmlFor="v5" onClick={() => setCalculatedValue(5)}>
+                500DUR
+              </label>
               {/* 5 */}
               <input type="radio" id="v6" name="choose" />
-              <label htmlFor="v6">600DUR</label>
+              <label htmlFor="v6" onClick={() => setCalculatedValue(6)}>
+                600DUR
+              </label>
               <input type="radio" id="v7" name="choose" />
-              <label htmlFor="v7">700DUR</label>
+              <label htmlFor="v7" onClick={() => setCalculatedValue(7)}>
+                700DUR
+              </label>
               <input type="radio" id="v8" name="choose" />
-              <label htmlFor="v8">800DUR</label>
+              <label htmlFor="v8" onClick={() => setCalculatedValue(8)}>
+                800DUR
+              </label>
               <input type="radio" id="v9" name="choose" />
-              <label htmlFor="v9">900DUR</label>
+              <label htmlFor="v9" onClick={() => setCalculatedValue(9)}>
+                900DUR
+              </label>
               <input type="radio" id="v10" name="choose" />
-              <label htmlFor="v10">1000DUR</label>
+              <label htmlFor="v10" onClick={() => setCalculatedValue(10)}>
+                1000DUR
+              </label>
             </div>
           </div>
           {/* conversion */}
@@ -119,7 +140,7 @@ const PageDeposit = () => {
               <I18nText path="you_will_pay" />:
             </h2>
             <div className="list">
-              <span>6 TON</span>
+              <span>{calculatedValue} TON</span>
             </div>
           </div>
           <TransactionHistory />

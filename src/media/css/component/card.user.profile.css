@@ -19,6 +19,7 @@
   position: relative;
   padding: 10px;
   border-radius: var(--br-full);
+  background-color: #3a9ddc;
 }
 
 .user_picture .frame {
@@ -38,6 +39,7 @@
   max-width: 100%;
   height: auto;
   transform: scale(1.1);
+  background-color: #3a9ddc;
 }
 
 .user_info {

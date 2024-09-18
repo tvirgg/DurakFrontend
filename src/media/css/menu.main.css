@@ -151,7 +151,6 @@
 
 .menu_section .double .card_user_earn .progress_bar .progress {
   display: block;
-  width: 50%;
   height: 100%;
   background: var(--yellow);
   border-radius: var(--br-large);

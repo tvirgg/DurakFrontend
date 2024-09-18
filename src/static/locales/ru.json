@@ -4,7 +4,6 @@
   "profile": "Профиль",
   "earn": "Доход",
   "market": "Магазин",
-
   "filter_button": "Фильтр",
   "open_label": "Открытый",
   "private_label": "Приватный",
@@ -13,12 +12,13 @@
   "create_lobby_button": "Создайте новое лобби",
   "lobbies": "ЛОББИ",
   "lobbies_tagline": "Присоединяйтесь к другим или создавайте свой собственный игровой пользовательский интерфейс.",
-
   "earn_title": "Доход",
   "coins_label": "монет",
   "per_hour": "час",
   "buff_collect": "собрать",
-  "buff_speed": "скорость",
+  "buff_speed": "мультипликатор",
+  "buff_per_hour": "количество/час",
+  "buff_per_hour_increased": "количество/час увеличено",
   "buff_capacity": "ёмкость",
   "basic_tasks": "Основные задания",
   "special_tasks": "Специальные задания",
@@ -34,7 +34,6 @@
   "special_table": "Специальный шаблон стола",
   "speed_increased": "скорость увеличена",
   "capacity_increased": "ёмкость увеличена",
-
   "task_daily_login_title": "Ежедневный вход",
   "task_daily_login_info": "Входите в игру 7 дней подряд",
   "task_first_victory_title": "Первая победа",
@@ -77,7 +76,6 @@
   "task_golden_player_title": "Золотой игрок",
   "task_golden_player_info": "Заработайте 1.000.000 монет",
   "player_title": "Игрок",
-
   "invite": "Пригласите",
   "friends": "друзей",
   "invite_friends_subtitle": "и получите награды",
@@ -86,7 +84,6 @@
   "premium_title": "Премиум",
   "year": "год",
   "premium_new_price": "45 TON / год",
-
   "user_profile_in_game": "В игре",
   "user_profile_premium": "Премиум",
   "user_profile_usdt_balance": "USDT: 10.99$",
@@ -121,7 +118,6 @@
   "profile_windows_send_present": "Отправить подарок",
   "profile_windows_success": "Вы отправили подарок!",
   "profile_windows_fail": "Недостаточно средств",
-
   "cheat_button": "мухлевать",
   "take_button": "беру",
   "pass_button": "пропустить",
@@ -142,7 +138,6 @@
   "congratulations": "Поздравляем",
   "new_item": "Вы купили новый предмет",
   "buy_for": "Купить за",
-
   "deposit_title": "Пополнить",
   "deposit_desc": "Вы можете внести средства в свой аккаунт по кнопке ниже",
   "connect_wallet": "Подключить кошелек",
@@ -178,7 +173,6 @@
   "search_room": "Поиск комнаты",
   "all": "Все",
   "player_cards": "карт",
-
   "welcome_tournament": "Приветственный турнир",
   "main_prize": "Главный приз",
   "requirement_tournament": "Требование - быть в игре к началу события",
