@@ -1,32 +1,92 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 
-// components
+// api
+import getCosmeticActive from "../api/cosmeticActive";
+import ImageLoader from "../includes/imageLoader";
+import ProfileCustomsWindow from "./profile.customs.window";
+import getUsersCosmetics from "../api/usersCosmetics";
+import activateCosmetic from "../api/cosmeticActivate";
 
-// img
-import imgCard from "../media/img/profile/cCard.png";
-import imgBorder from "../media/img/profile/cBorder.png";
-import imgTable from "../media/img/profile/cTable.png";
-import imgEmoji from "../media/img/profile/cEmoji.png";
-
-//
 const ProfileCustomsBar = () => {
+  const [activeCosmetic, setActiveCosmetic] = useState();
+  const [availableCosmetic, setAvailableCosmetic] = useState();
+  const [currentCosmetics, setCurrentCosmetics] = useState();
+  const [isOpenWindow, setIsOpenWindow] = useState(false);
+
+  useEffect(() => {
+    async function fetch() {
+        const data = await getCosmeticActive();
+        const availableCosmeticData = await getUsersCosmetics();
+
+        localStorage.setItem("user_cosmetic", JSON.stringify(data?.data));
+
+        setActiveCosmetic(data?.data);
+        setAvailableCosmetic(availableCosmeticData);
+    }
+
+    fetch();
+  }, [])
+
+  const getHandleOpenWindow = (type) => {
+      return () => {
+          setCurrentCosmetics(availableCosmetic?.filter(item => item.cosmetic?.type === type));
+          setIsOpenWindow(true);
+      }
+  }
+
+  const handleCloseWindow = () => {
+      setIsOpenWindow(false);
+  }
+
+  const handleSelect = async (cosmetic) => {
+      const newCosmetic = activeCosmetic?.map(item => {
+          if (item.cosmetic?.type === cosmetic?.cosmetic?.type) {
+              return {...cosmetic};
+          }
+
+          return item;
+      });
+
+      localStorage.setItem("user_cosmetic", JSON.stringify(newCosmetic));
+      window.dispatchEvent(new Event("user_cosmetic_changed"));
+      setActiveCosmetic(newCosmetic);
+      await activateCosmetic({id: cosmetic.id});
+
+      setIsOpenWindow(false);
+  }
+
   return (
-    <div className="profile_customs anim_sjump">
-      {/* 4/c */}
-      <button className="btn card_skin">
-        <img src={imgCard} alt="cCard" />
-      </button>
-      <button className="btn border_skin">
-        <img src={imgBorder} alt="cBorder" />
-      </button>
-      <button className="btn bg_skin">
-        <img src={imgTable} alt="cTable" />
-      </button>
-      <button className="btn smile">
-        <img src={imgEmoji} alt="cEmoji" />
-      </button>
-      {/* navbar */}
-    </div>
+      <>
+          <ProfileCustomsWindow open={isOpenWindow} onClose={handleCloseWindow} cosmetics={currentCosmetics} onSelect={handleSelect} />
+          <div className="profile_customs anim_sjump">
+              {/* 4/c */}
+              <button className="btn border_skin" onClick={getHandleOpenWindow('frame')}>
+                  <ImageLoader
+                      src={`/res/skins${activeCosmetic?.[0]?.cosmetic?.link}`}
+                      alt="cBorder"
+                  />
+              </button>
+              <button className="btn bg_skin" onClick={getHandleOpenWindow('table')}>
+                  <ImageLoader
+                      src={`/res/skins${activeCosmetic?.[1]?.cosmetic?.link}`}
+                      alt="cTable"
+                  />
+              </button>
+              <button className="btn smile" onClick={getHandleOpenWindow('emoji')}>
+                  <ImageLoader
+                      src={`/res/skins${activeCosmetic?.[2]?.cosmetic?.link}`}
+                      alt="cEmoji"
+                  />
+              </button>
+              <button className="btn card_skin" onClick={getHandleOpenWindow('card')}>
+                  <ImageLoader
+                      src={`/res/skins${activeCosmetic?.[3]?.cosmetic?.link}`}
+                      alt="cCard"
+                  />
+              </button>
+              {/* navbar */}
+          </div>
+      </>
   );
 };
 export default ProfileCustomsBar;

@@ -98,6 +98,8 @@ const Game = () => {
   const [enemyCardPos, setEnemyCardPos] = useState({});
   const [changeCardPos, setChangeCardPos] = useState({});
   const [duration, setDuration] = useState(15);
+  const [activeCosmetic, setActiveCosmetic] = useState(JSON.parse(localStorage.getItem("user_cosmetic")));
+
   //
   const handleTimerFinish = (finished) => {
     if (finished) {
@@ -980,7 +982,13 @@ const Game = () => {
   const playerCenterIndex = Math.floor(otherPlayers.length / 2);
   // render
   return (
-    <section className="game">
+    <section
+        className="game"
+        style={{
+          backgroundImage: `url(/res/skins${activeCosmetic?.find((item) => item.cosmetic?.type === 'table')?.cosmetic?.link})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover'
+        }}>
       {/* players */}
       <div className="players">
         {otherPlayers.map((player, index) => {

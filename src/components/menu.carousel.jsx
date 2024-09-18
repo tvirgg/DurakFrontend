@@ -27,9 +27,9 @@ const MenuCarousel = () => {
           disableOnInteraction: false,
         }}
         slidesPerView={1}
-        loop={true}
         modules={[Autoplay]}
         className="menu_carousel anim_sjump"
+        rewind={true}
       >
         <SwiperSlide className="slide">
           <CardSubcribePremium />

@@ -4,4 +4,7 @@
 
 .menu_carousel .slide {
   display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
 }

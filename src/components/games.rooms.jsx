@@ -77,7 +77,7 @@ const GamesRooms = ({ roomsData }) => {
   };
 
   const linkLobbies = () => {
-    navigate("/lobbies");
+    navigate("/lobbies/create");
   };
 
   const toggleSearchBar = () => {

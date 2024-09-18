@@ -21,7 +21,7 @@ const CardUserProfile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const modalRef = useRef(null);
   const userInfo = JSON.parse(localStorage.getItem("user"));
-  const [activeCosmetic, setActiveCosmetic] = useState();
+  const [activeCosmetic, setActiveCosmetic] = useState(JSON.parse(localStorage.getItem("user_cosmetic")));
 
   useEffect(() => {
     async function fetch() {
@@ -59,6 +59,16 @@ const CardUserProfile = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isModalOpen]);
+
+  useEffect(() => {
+    const handleEvent = () => {
+      const userCosmetic = JSON.parse(localStorage.getItem("user_cosmetic"));
+
+      setActiveCosmetic(userCosmetic);
+    }
+
+    window.addEventListener("user_cosmetic_changed", handleEvent);
+  }, [setActiveCosmetic]);
 
   return (
     <div className="card user_profile anim_sjump">

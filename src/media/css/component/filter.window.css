@@ -9,7 +9,7 @@
   background: #1e3645;
   width: 100%;
   max-width: 95vw;
-  bottom: 0;
+  bottom: 20%;
   left: 50%;
   transform: translateX(-50%);
   border-radius: var(--br-medium) var(--br-medium) 0 0;
@@ -116,6 +116,7 @@
   margin-bottom: clamp(5px, 2vh, 8px);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   gap: clamp(10px, 2vw, 20px);
 }
 

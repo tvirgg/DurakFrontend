@@ -110,7 +110,8 @@
 /* game type */
 .lobbies .list .header .filter_bar .filter_window .game_type {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   gap: 12px 8px;
   padding: 0 15px;
   margin-bottom: 8px;
