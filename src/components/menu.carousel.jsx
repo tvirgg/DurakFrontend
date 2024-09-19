@@ -22,10 +22,10 @@ const MenuCarousel = () => {
       <Swiper
         spaceBetween={6}
         centeredSlides={true}
-        autoplay={{
-          delay: 3000,
-          disableOnInteraction: false,
-        }}
+        // autoplay={{
+        //   delay: 3000,
+        //   disableOnInteraction: false,
+        // }}
         slidesPerView={1}
         modules={[Autoplay]}
         className="menu_carousel anim_sjump"

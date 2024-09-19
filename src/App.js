@@ -53,12 +53,23 @@ function App({ intlProviderValue }) {
       }
     }, { passive: false })
 
+    function preventCollapse() {
+      console.log('preventCollapse');
+      if (window.scrollY === 0) {
+        window.scrollTo(0, 1);
+      }
+    }
+
+    document.body.addEventListener('touchstart', preventCollapse, { passive: false })
+
     return () => {
       document.body.removeEventListener('touchmove', function(e) {
         if (e.target === document.body) {
           e.preventDefault()
         }
-      })
+      });
+
+      document.body.removeEventListener('touchstart', preventCollapse)
     }
   }, [])
 
