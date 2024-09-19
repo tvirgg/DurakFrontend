@@ -85,7 +85,7 @@ body {
   font-weight: 400;
   margin: 0;
   padding: 0;
-  background-color: var(--bg);
+  background-color: var(--bg) !important;
   background: var(--bg) !important;
   color: var(--white);
   user-select: none;
@@ -305,6 +305,7 @@ button:active {
   display: flex;
   flex-direction: column;
   min-height: 100dvh;
+  background: #0f1620;
 }
 
 .page .menu_section,

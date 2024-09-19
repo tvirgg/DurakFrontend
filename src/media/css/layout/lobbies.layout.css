@@ -120,9 +120,6 @@
 .lobbies .btn_bar {
   display: flex;
   gap: clamp(5px, 1vw, 10px);
-  position: fixed;
-  bottom: 0;
-  left: 0;
   padding: clamp(5px, 0.7vw, 7px);
   width: 100%;
   z-index: 90;

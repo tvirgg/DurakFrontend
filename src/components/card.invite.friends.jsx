@@ -4,7 +4,7 @@ import '../media/css/component/card.invite.friends.css'
 // icons
 import { useNavigate } from 'react-router-dom'
 // img
-import ImgPoster from '../media/posters/inviteFriends.svg'
+import ImgPoster from '../media/posters/inviteFriends.png'
 import { I18nText } from './i18nText'
 
 //
@@ -33,11 +33,11 @@ const CardInviteFriends = () => {
           <span className="prize">+40 DUR</span>
         </div>
       </div>
-      <img
-        className="cardImg"
-        src={ImgPoster}
-        alt="card"
-      />
+        <img
+            className="cardImg"
+            src={ImgPoster}
+            alt="card"
+        />
     </button>
   )
 }

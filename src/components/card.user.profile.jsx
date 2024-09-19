@@ -28,6 +28,20 @@ const CardUserProfile = () => {
   useEffect(() => {
     async function fetch() {
       const data = await getCosmeticActive();
+
+      setActiveCosmetic(data);
+    }
+
+    setTimeout(() => {
+      if(!activeCosmetic) {
+        fetch();
+      }
+    }, 2000);
+  }, [activeCosmetic])
+
+  useEffect(() => {
+    async function fetch() {
+      const data = await getCosmeticActive();
       const data2 = await balanceOwned();
       setActiveBalance(data2);
       setActiveCosmetic(data);

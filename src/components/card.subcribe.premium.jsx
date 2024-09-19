@@ -2,7 +2,7 @@ import * as React from 'react'
 // icons
 import { useNavigate } from 'react-router-dom'
 // img
-import ImgPoster from '../media/posters/premiumMask.svg'
+import ImgPoster from '../media/posters/premiumMask.png'
 import { I18nText } from './i18nText'
 //
 const CardSubcribePremium = () => {

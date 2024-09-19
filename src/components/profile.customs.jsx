@@ -18,7 +18,9 @@ const ProfileCustomsBar = () => {
         const data = await getCosmeticActive();
         const availableCosmeticData = await getUsersCosmetics();
 
-        localStorage.setItem("user_cosmetic", JSON.stringify(data?.data));
+        if(data?.data) {
+            localStorage.setItem("user_cosmetic", JSON.stringify(data.data));
+        }
 
         setActiveCosmetic(data?.data);
         setAvailableCosmetic(availableCosmeticData);
@@ -47,7 +49,10 @@ const ProfileCustomsBar = () => {
           return item;
       });
 
-      localStorage.setItem("user_cosmetic", JSON.stringify(newCosmetic));
+      if(newCosmetic) {
+          localStorage.setItem("user_cosmetic", JSON.stringify(newCosmetic));
+      }
+      
       window.dispatchEvent(new Event("user_cosmetic_changed"));
       setActiveCosmetic(newCosmetic);
       await activateCosmetic({id: cosmetic.id});

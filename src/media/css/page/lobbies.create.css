@@ -9,6 +9,8 @@
    border-radius: var(--br-medium);
    padding: 10px;
    transition: all 0.5s ease;
+     position: unset;
+     transform: unset;
  }
 
 
@@ -63,7 +65,9 @@
  .create_window .players_number input:checked+label,
  .create_window .bid input:checked+label,
  .create_window .game_type input:checked+label {
-   background: var(--d9-50);
+     background-color: #ffffff;
+     color: #000000;
+     box-shadow: 0 4px 4px 0 rgba(255, 255, 255, 0.25);
  }
 
 
