@@ -8,18 +8,53 @@ import "../media/css/page/deposit.css";
 import TransactionHistory from "../components/transaction.history";
 import { I18nText } from "../components/i18nText";
 //
-import { TonConnectButton, useTonAddress } from "@tonconnect/ui-react";
+import {
+  TonConnectButton,
+  useTonAddress,
+  useTonConnectUI,
+} from "@tonconnect/ui-react";
 import config from "../config";
 import axios from "axios";
 import ShowPopup from "../ShowPopup";
+import generatedWallet from "../api/generatedWallet";
+import paymentChecker from "../api/paymentChecker";
 
 const PageDeposit = () => {
   const address = useTonAddress();
+  const [tonConnectUI, setOptions] = useTonConnectUI();
+  const [generatedAddress, setGeneratedAddress] = React.useState("");
   const [calculatedValue, setCalculatedValue] = React.useState(0);
+  const [isLoading, setIsLoading] = React.useState(false);
 
-  console.log(address);
+  const makeTransaction = async () => {
+    setIsLoading(true);
+    if (address != null && generatedAddress != null && calculatedValue != 0) {
+      const transaction = {
+        messages: [
+          {
+            address: generatedAddress, // destination address
+            amount: calculatedValue * 1000000000, //Toncoin in nanotons
+          },
+        ],
+      };
+
+      tonConnectUI.sendTransaction(transaction);
+
+      setTimeout(async () => {
+        let res = await paymentChecker();
+        setIsLoading(false);
+      }, 5000);
+    }
+  };
 
   useEffect(() => {
+    const getGenWallet = async () => {
+      let res = await generatedWallet();
+      if (res != null) {
+        console.log(res);
+        setGeneratedAddress(res);
+      }
+    };
     const addWallet = async () => {
       try {
         await axios
@@ -37,12 +72,19 @@ const PageDeposit = () => {
           )
           .then((res) => {
             localStorage.setItem("session_key", res.headers.get("X-Session"));
+          })
+          .catch((e) => {
+            localStorage.setItem(
+              "session_key",
+              e.response.headers.get("X-Session")
+            );
           });
       } catch (e) {
         ShowPopup(e.response.data, "Error");
       }
     };
 
+    getGenWallet();
     if (address) {
       addWallet();
     }
@@ -146,7 +188,12 @@ const PageDeposit = () => {
           <TransactionHistory />
           {/* submit */}
           <div className="bar_btn">
-            <button className="btn_submit" type="submit">
+            <button
+              className="btn_submit"
+              type="submit"
+              disabled={isLoading}
+              onClick={makeTransaction}
+            >
               <I18nText path="purchase_btn" />
             </button>
           </div>
