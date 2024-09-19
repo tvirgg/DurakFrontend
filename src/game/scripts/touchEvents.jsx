@@ -82,7 +82,6 @@ export const touchEvents = (
   // handle
   function handleClick(e) {
     const target = e.target;
-    console.log(target);
     // self cards touch events
     if (!cardsDisabled) {
       if (target.classList.contains("self_card")) {
@@ -138,7 +137,6 @@ export const touchEvents = (
         let firstCard =
           newTableCards.length == 0 || newTableCards == 1 ? true : false;
         // verifying card types
-        console.log(newTableCards[0]?.dataset.type, activeCard.dataset.type);
 
         let convertedType;
         if (activeCard.dataset.type == "d") {
@@ -278,7 +276,7 @@ export const touchEvents = (
       if (target.classList.contains("table_card")) {
         let cardsScale = 1;
         let cCard = target;
-        console.log(cCard, activeCard, "card");
+
         let firstCard =
           newTableCards.length == 0 || newTableCards == 1 ? true : false;
         let gameStatus = JSON.parse(localStorage.getItem("game_status"));

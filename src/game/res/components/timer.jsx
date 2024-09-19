@@ -29,8 +29,6 @@ const Timer = ({ duration, onFinish, isActive }) => {
   };
 
   useEffect(() => {
-    console.log(isActive);
-
     if (isActive) {
       startTimer();
     } else {
@@ -46,7 +44,6 @@ const Timer = ({ duration, onFinish, isActive }) => {
   }, [isActive, duration]);
 
   useEffect(() => {
-    console.log("duration changed ", duration);
     if (timerRef.current) {
       timerRef.current.style.setProperty("--timer-dur", `${duration}s`);
     }

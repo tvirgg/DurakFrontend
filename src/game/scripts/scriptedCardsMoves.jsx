@@ -87,7 +87,6 @@ export const scriptedCardsMoves = (
   let firstCard =
     newTableCards.length == 0 || newTableCards == 1 ? true : false;
   // verifying card types
-  console.log(activeCard, newTableCards, toCard);
 
   activeCard.classList.remove("self_card");
   cardDeactive(activeCard);
@@ -149,7 +148,6 @@ export const scriptedCardsMoves = (
       );
     }, 500);
   }
-  console.log(activeCard, cCard, "scripted");
   animateMoveTo(
     activeCard,
     newPosCard.x,
@@ -160,7 +158,6 @@ export const scriptedCardsMoves = (
     // false
   );
   if (toCard == null) {
-    console.log("toCard", toCard);
     animateMoveTo(
       cCard,
       newPosChangeCard.x,

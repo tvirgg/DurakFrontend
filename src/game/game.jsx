@@ -98,13 +98,15 @@ const Game = () => {
   const [enemyCardPos, setEnemyCardPos] = useState({});
   const [changeCardPos, setChangeCardPos] = useState({});
   const [duration, setDuration] = useState(15);
-  const [activeCosmetic, setActiveCosmetic] = useState(JSON.parse(localStorage.getItem("user_cosmetic")));
+  const [activeCosmetic, setActiveCosmetic] = useState(
+    JSON.parse(localStorage.getItem("user_cosmetic"))
+  );
 
   //
   const handleTimerFinish = (finished) => {
     if (finished) {
       handleTimerStop();
-      console.log("Таймер завершился");
+
       if (duration != 3) {
         // Ваш код для обработки завершения таймера
         let gameStatus = JSON.parse(localStorage.getItem("game_status"));
@@ -252,8 +254,6 @@ const Game = () => {
         tableCards[i].remove();
       }
     }
-    console.log(cardsToPlayers);
-    console.log(cardsToSelf, enemyCardPos, changeCardPos);
 
     const cardElements = cardsToPlayers.map(
       ({ card, x, y, animDur, toScale, rotation, index }) => {
@@ -330,7 +330,6 @@ const Game = () => {
   const handleTimerStop = useCallback(() => {
     setTimerActive(false);
     disablePlayerControls();
-    console.log("Таймер остановлен");
   }, []);
 
   const toggleTimer = () => {
@@ -398,7 +397,6 @@ const Game = () => {
   const [cardsDisabled, setCardsDisabled] = useState(false);
 
   const listener = (res) => {
-    console.log(res, fullGameDeck);
     let gameStatus = res;
     if (
       gameStatus["gameState"] != null &&
@@ -410,7 +408,6 @@ const Game = () => {
       gameStatus["deck"] != null &&
       JSON.parse(localStorage.getItem("game_status"))["deck"] == null
     ) {
-      console.log("wait");
       localStorage.setItem("game_status", JSON.stringify(gameStatus));
       setTimeout(() => {
         setGame(
@@ -469,7 +466,6 @@ const Game = () => {
         }, 10000);
       }
     } else {
-      console.log(playerRefs, playerSelfRef);
       setDuration((prev) => prev + 1);
 
       new Promise((resolve) => setTimeout(resolve, 5000)).then(() => {});
@@ -483,7 +479,6 @@ const Game = () => {
           break;
         }
       }
-      console.log(des);
       if (
         des === (gameStatus.attackerIndex + 1) % gameStatus.players.length &&
         calculateNewCard(gameStatus, ".enemy_attacked_card") != null
@@ -505,7 +500,6 @@ const Game = () => {
         //   setTimerActive(true);
         //   enablePlayerControls();
         // }
-        console.log(card, defendAganist);
         scriptedCardsMoves(
           cardConverter(card),
           "enemy_defend_card",
@@ -533,8 +527,6 @@ const Game = () => {
       let gameStatus = JSON.parse(localStorage.getItem("game_status"));
 
       setFullGameDeck(gameStatus);
-
-      console.log("gameStatus", fullGameDeck);
 
       if (gameStatus?.players.length <= gameStatus?.fieldSize / 6 - 1) {
         setGame((prevGame) => ({
@@ -616,7 +608,6 @@ const Game = () => {
         x: document.querySelector(".change_card").getBoundingClientRect().left,
         y: document.querySelector(".change_card").getBoundingClientRect().top,
       }));
-      console.log("starting Game");
       let id = 1;
       // Перемешивание и раздача карт
       const generatedDeck = generateDeck(game.cardsCount);
@@ -709,12 +700,10 @@ const Game = () => {
         if (
           updatedPlayers[i].id == JSON.parse(localStorage.getItem("user")).id
         ) {
-          console.log("ownPlayer");
           updatedPlayers.splice(i, 1);
           break;
         }
       }
-      console.log("update players", updatedPlayers);
 
       setOtherPlayers(updatedPlayers);
       setPlayer_self(ownPlayer);
@@ -763,9 +752,7 @@ const Game = () => {
         const pY = playerRef.top;
 
         let playerCards = player.cards;
-        console.log("playerCards", playerCards);
         const boolPlayerSelf = player.self;
-        console.log(player);
 
         if (!boolPlayerSelf) {
           const cardPromises = playerCards.map((card, index) => {
@@ -901,8 +888,6 @@ const Game = () => {
     setSelectedEmojiClass("show");
     const gameStatus = JSON.parse(localStorage.getItem("game_status"));
 
-    console.log(emoji);
-
     try {
       await axios
         .post(
@@ -983,12 +968,16 @@ const Game = () => {
   // render
   return (
     <section
-        className="game"
-        style={{
-          backgroundImage: `url(/res/skins${activeCosmetic?.find((item) => item.cosmetic?.type === 'table')?.cosmetic?.link})`,
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover'
-        }}>
+      className="game"
+      style={{
+        backgroundImage: `url(/res/skins${
+          activeCosmetic?.find((item) => item.cosmetic?.type === "table")
+            ?.cosmetic?.link
+        })`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}
+    >
       {/* players */}
       <div className="players">
         {otherPlayers.map((player, index) => {
