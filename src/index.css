@@ -92,7 +92,7 @@ body {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  overscroll-behavior: contain;
+  overscroll-behavior: none;
   /* Отключение горизонтальной прокрутки */
   overflow-x: hidden;
   /* Для плавного скролла на iOS */
