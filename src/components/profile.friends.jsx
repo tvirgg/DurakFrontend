@@ -17,14 +17,17 @@ const ProfileFriends = () => {
   useEffect(() => {
     async function fetchFriends() {
       const { data } = await getFriends();
-      setFriends(data);
-      console.log(data);
+      let newData = data.filter(
+        (friend) => friend.id != JSON.parse(localStorage.getItem("user")).id
+      );
+      setFriends(newData);
+      console.log(newData);
     }
 
     fetchFriends();
   }, []);
 
-  const openWindows = id => {
+  const openWindows = (id) => {
     const w = document.querySelector(".profile_section .windows");
     w.classList.add("windows_active");
     localStorage.setItem("selected_friend", id);
