@@ -18,10 +18,10 @@ import { I18nText } from "../components/i18nText";
 import IconPlay from "../components/icons/play";
 import IconAlertCircle from "../components/icons/alertCircle";
 const bids = [0, 1, 10, 100, 500, 1000, 5000, 10000, 50000, 100000];
-const players = [1, 2, 3, 4, 5, 6];
+const players = [2, 3, 4, 5, 6];
 
 const LobbiesCreate = () => {
-  const [playerAmount, setPlayerAmount] = React.useState(1);
+  const [playerAmount, setPlayerAmount] = React.useState(2);
   const [bidCur, setBidCur] = React.useState("Free");
   const [bidAmount, setBidAmount] = React.useState(0);
   const [progress, setProgress] = React.useState(0);
@@ -32,7 +32,7 @@ const LobbiesCreate = () => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    BackBtn("/lobbies", navigate);
+    BackBtn("/", navigate);
   });
 
   const createGame = async () => {
@@ -47,6 +47,7 @@ const LobbiesCreate = () => {
             betAmount: bidCur === "Free" ? 0 : bidAmount,
             betType: bidCur === "Free" ? "usual" : bidCur,
             name: name.length > 0 ? name : "Anonimus",
+            playerAmount: playerAmount,
           },
           {
             headers: {
@@ -160,15 +161,15 @@ const LobbiesCreate = () => {
         <div className="game_type">
           <input type="radio" id="cgt1" name="game_type" />
           <label htmlFor="cgt1" onClick={() => setGameType("CLASSIC")}>
-            <I18nText path="filter_window_classical" /> <IconArrowDegRight />
+            <I18nText path="filter_window_classical" /> <IconPlay />
           </label>
           <input type="radio" id="cgt2" name="game_type" />
           <label htmlFor="cgt2" onClick={() => setGameType("PEREVODNOY")}>
-            <I18nText path="filter_window_passing" /> <IconRefresh />
+            <I18nText path="filter_window_passing" /> <IconArrowDegRight />
           </label>
           <input type="radio" id="cgt3" name="game_type" />
           <label htmlFor="cgt3" onClick={() => setGameType("PODKIDNOY")}>
-            <I18nText path="filter_window_passing" /> <IconRefresh />
+            <I18nText path="filter_window_throwing_extra" /> <IconRefresh />
           </label>
           <input type="radio" id="cgt4" name="game_type" />
           <label htmlFor="cgt4" onClick={() => setGameType("SHULLERS")}>

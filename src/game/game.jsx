@@ -424,7 +424,7 @@ const Game = () => {
     ) {
       localStorage.setItem("game_status", JSON.stringify(gameStatus));
       finisher();
-    } else if (gameStatus.players.length < gameStatus.fieldSize / 6 - 1) {
+    } else if (gameStatus.players.length < gameStatus.playerAmount) {
       setGame((prevGame) => ({
         ...prevGame,
         status: "await",
@@ -528,7 +528,7 @@ const Game = () => {
 
       setFullGameDeck(gameStatus);
 
-      if (gameStatus?.players.length <= gameStatus?.fieldSize / 6 - 1) {
+      if (gameStatus?.players.length <= gameStatus?.playerAmount) {
         setGame((prevGame) => ({
           ...prevGame,
           status: "await",
@@ -1026,7 +1026,7 @@ const Game = () => {
             fontSize: "clamp(30px, 4vw, 40px)",
           }}
         >
-          {fullGameDeck.players.length}/{fullGameDeck.fieldSize / 6 - 1}
+          {fullGameDeck.players.length}/{fullGameDeck.playerAmount}
         </div>
       )}
       {/* timer */}

@@ -233,9 +233,7 @@ const GamesRooms = ({ roomsData }) => {
                   <IconPlayWhite />
                 )} */}
               </div>
-              <div className="players_count">{`${room.players.length}/${
-                room.fieldSize / 6 - 1
-              }`}</div>
+              <div className="players_count">{`${room.players.length}/${room.playerAmount}`}</div>
               <button
                 className="sign_btn"
                 onClick={() => connectToGame(room.gameId)}
