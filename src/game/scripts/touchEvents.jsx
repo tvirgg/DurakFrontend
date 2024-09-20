@@ -62,7 +62,7 @@ export const touchEvents = (
     let aCard = document.querySelector(".game .active-card");
     if (aCard) {
       let aW = aCard.getBoundingClientRect.width;
-      gsap.to(aCard, { y: `+=${aW / 2}`, rotate: `-=${8}`, duration: 0.3 });
+      gsap.to(aCard, { y: `+=${aW / 2}`, rotate: `-=${8}`, duration: 0 });
       cardDeactive(aCard);
     }
     document.querySelectorAll(".self_card").forEach((card) => {
