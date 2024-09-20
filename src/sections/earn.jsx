@@ -110,7 +110,9 @@ const Earn = () => {
   });
   const [earnData, setEarnData] = useState();
   const [availablePassives, setAvailablePassives] = useState();
-  const userInfo = JSON.parse(localStorage.getItem("user"));
+  const [userInfo, setUserInfo] = useState(
+    JSON.parse(localStorage.getItem("user"))
+  );
 
   useEffect(() => {
     async function fetch() {
@@ -148,6 +150,10 @@ const Earn = () => {
       });
     } else if (type === "collect") {
       let res = await collectStorage();
+      setUserInfo((prevUser) => ({
+        ...prevUser,
+        storage: 0,
+      }));
       setModalState({
         isActive: true,
         type: "collect",
@@ -233,7 +239,7 @@ const Earn = () => {
               <button onClick={() => openModal("collect", -1)}>
                 <I18nText path="buff_collect" />
               </button>
-              <button
+              {/* <button
                 onClick={() =>
                   openModal(
                     "skill-speed",
@@ -245,7 +251,7 @@ const Earn = () => {
               >
                 + {availablePassives ? availablePassives[2]?.value : 0}{" "}
                 <I18nText path="buff_speed" />
-              </button>
+              </button> */}
               <button
                 onClick={() =>
                   openModal(
@@ -258,10 +264,10 @@ const Earn = () => {
                   )
                 }
               >
-                +{" "}
+                {/* +{" "}
                 {availablePassives
                   ? availablePassives[1]?.value - earnData[1]?.value
-                  : 0}{" "}
+                  : 0}{" "} */}
                 <I18nText path="buff_per_hour" />
               </button>
               <button
@@ -276,10 +282,10 @@ const Earn = () => {
                   )
                 }
               >
-                X{" "}
+                {/* X{" "}
                 {availablePassives
                   ? availablePassives[0]?.value / earnData[0]?.value
-                  : 0}{" "}
+                  : 0}{" "} */}
                 <I18nText path="buff_capacity" />
               </button>
             </div>

@@ -23,7 +23,9 @@ const CardUserProfile = () => {
   const modalRef = useRef(null);
   const userInfo = JSON.parse(localStorage.getItem("user"));
   const [activeBalance, setActiveBalance] = useState();
-  const [activeCosmetic, setActiveCosmetic] = useState(JSON.parse(localStorage.getItem("user_cosmetic")));
+  const [activeCosmetic, setActiveCosmetic] = useState(
+    JSON.parse(localStorage.getItem("user_cosmetic"))
+  );
 
   useEffect(() => {
     async function fetch() {
@@ -33,11 +35,11 @@ const CardUserProfile = () => {
     }
 
     setTimeout(() => {
-      if(!activeCosmetic) {
+      if (!activeCosmetic) {
         fetch();
       }
     }, 2000);
-  }, [activeCosmetic])
+  }, [activeCosmetic]);
 
   useEffect(() => {
     async function fetch() {
@@ -83,7 +85,7 @@ const CardUserProfile = () => {
       const userCosmetic = JSON.parse(localStorage.getItem("user_cosmetic"));
 
       setActiveCosmetic(userCosmetic);
-    }
+    };
 
     window.addEventListener("user_cosmetic_changed", handleEvent);
   }, [setActiveCosmetic]);
@@ -121,12 +123,12 @@ const CardUserProfile = () => {
             {userInfo?.status}
           </span>
           <div className="balance_info">
+            <span className="dur">
+              {activeBalance?.premiumBalanceReturnable || 0} <IconDUR />
+            </span>
             <span className="coins_count">
               {activeBalance?.usualBalance || 0}
               <IconCoin />
-            </span>
-            <span className="dur">
-              <IconDUR /> {activeBalance?.premiumBalanceReturnable || 0} DUR
             </span>
           </div>
           <div className="premium_usdt">

@@ -17,9 +17,9 @@
   "per_hour": "час",
   "buff_collect": "собрать",
   "buff_speed": "мультипликатор",
-  "buff_per_hour": "количество/час",
+  "buff_per_hour": "ускорить накопление",
   "buff_per_hour_increased": "количество/час увеличено",
-  "buff_capacity": "ёмкость",
+  "buff_capacity": "увеличить хранилище",
   "basic_tasks": "Основные задания",
   "special_tasks": "Специальные задания",
   "rare_tasks": "Редкие задания",
@@ -148,7 +148,7 @@
   "withdraw_desc": "продать DUR токены и получить TON",
   "purchase_btn": "Купить",
   "wallet_address": "Введите адрес кошелька",
-  "exchange_desc": "Обменять DUR на золото или наоборот",
+  "exchange_desc": "Обменять DUR на золото",
   "rooms": "Комнаты",
   "create_game": "Создать игру",
   "torneys": "Турниры",
@@ -177,5 +177,5 @@
   "main_prize": "Главный приз",
   "requirement_tournament": "Требование - быть в игре к началу события",
   "aug": "Авг",
-  "no_friends": "У вас нет друзей :("
+  "no_friends": "У меня нет друзей :("
 }

@@ -41,11 +41,7 @@ const ProfileFriends = () => {
             <div className="user">
               <img
                 className="picture"
-                src={
-                  friend.tgNickname && friend.profilePhoto
-                    ? `https://t.me/i/userpic/160/${friend.tgNickname}.jpg`
-                    : imgFriend
-                }
+                src={`https://t.me/i/userpic/160/${friend.tgNickname}.jpg`}
                 alt="friend"
               />
               <div className="info">

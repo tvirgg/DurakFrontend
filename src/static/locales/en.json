@@ -148,7 +148,7 @@
   "withdraw_desc": "sell DUR tokens and get TON",
   "purchase_btn": "Purchase",
   "wallet_address": "Enter your wallet address",
-  "exchange_desc": "Exchange DUR for gold or vice versa",
+  "exchange_desc": "Exchange DUR for gold",
   "rooms": "Rooms",
   "create_game": "Create game",
   "torneys": "Torneys",
@@ -177,5 +177,5 @@
   "main_prize": "Main prize",
   "requirement_tournament": "Requirement - be in game at the start of event",
   "aug": "Aug",
-  "no_friends": "You don't have friends :("
+  "no_friends": "I don't have friends :("
 }
