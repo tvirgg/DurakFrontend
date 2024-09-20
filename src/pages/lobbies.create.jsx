@@ -8,6 +8,8 @@ import ProgressBar from "../components/ui/progressBar";
 import IconEye from "../components/icons/eye";
 // data
 import LobbiesLayout from "../layouts/lobbies.layout";
+import IconDUR from "../components/icons/dur";
+import IconCoin from "../components/icons/coin";
 // -
 import axios from "axios";
 import config from "../config";
@@ -136,12 +138,28 @@ const LobbiesCreate = () => {
 
         <div className="bid">
           <input type="radio" id="cbid2" name="bid" />
-          <label htmlFor="cbid2" onClick={() => setBidCur("premium")}>
-            DUR
+          <label
+            htmlFor="cbid2"
+            onClick={() => setBidCur("premium")}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <IconDUR />
           </label>
           <input type="radio" id="cbid3" name="bid" />
-          <label htmlFor="cbid3" onClick={() => setBidCur("usual")}>
-            <I18nText path="coins_label" />
+          <label
+            htmlFor="cbid3"
+            onClick={() => setBidCur("usual")}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <IconCoin />
           </label>
         </div>
 
