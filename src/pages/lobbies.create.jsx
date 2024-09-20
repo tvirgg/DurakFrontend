@@ -14,7 +14,7 @@ import config from "../config";
 import { useNavigate } from "react-router-dom";
 import BackBtn from "../BackBtn";
 import connectToSocket from "../connectToSocket";
-import {I18nText} from "../components/i18nText";
+import { I18nText } from "../components/i18nText";
 import IconPlay from "../components/icons/play";
 import IconAlertCircle from "../components/icons/alertCircle";
 const bids = [0, 1, 10, 100, 500, 1000, 5000, 10000, 50000, 100000];
@@ -28,6 +28,7 @@ const LobbiesCreate = () => {
   const [progressPlayers, setProgressPlayers] = React.useState(0);
   const [name, setName] = React.useState("Anonim");
   const [gameType, setGameType] = React.useState("CLASSIC");
+  const [fieldSize, setFieldSize] = React.useState(24);
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -40,7 +41,7 @@ const LobbiesCreate = () => {
         .post(
           config.url + "/game/create",
           {
-            fieldSize: (playerAmount + 1) * 6,
+            fieldSize: fieldSize,
             type: gameType,
             allowedShullerMoves: gameType === "SHULLER" ? 1 : 0,
             betAmount: bidCur === "Free" ? 0 : bidAmount,
@@ -84,63 +85,68 @@ const LobbiesCreate = () => {
       <div className="filter_window create_window">
         <div className="lobby_name">
           <input
-              type="text"
-              placeholder="Enter lobby name..."
-              name="lobby_name"
-              onChange={(e) => setName(e.target.value)}
+            type="text"
+            placeholder="Enter lobby name..."
+            name="lobby_name"
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
         <p>
-          <I18nText path="filter_window_choose_number_of_cards"/>
+          <I18nText path="filter_window_choose_number_of_cards" />
         </p>
 
         <div className="cards_number">
           <input
-              type="radio"
-              id="v1"
-              name="cards_count"
+            type="radio"
+            id="v1"
+            name="cards_count"
+            onClick={() => setFieldSize(24)}
           />
           <label htmlFor="v1">24</label>
           <input
-              type="radio"
-              id="v2"
-              name="cards_count"
+            type="radio"
+            id="v2"
+            name="cards_count"
+            onClick={() => setFieldSize(36)}
           />
           <label htmlFor="v2">36</label>
           <input
-              type="radio"
-              id="v3"
-              name="cards_count"
+            type="radio"
+            id="v3"
+            name="cards_count"
+            onClick={() => setFieldSize(52)}
           />
           <label htmlFor="v3">52</label>
         </div>
 
         <p>
-          <I18nText path="filter_window_amount_of_players"/>
+          <I18nText path="filter_window_amount_of_players" />
         </p>
 
         <ProgressBar
-            values={players}
-            progress={progressPlayers}
-            setProgress={playersNumberChanger}
+          values={players}
+          progress={progressPlayers}
+          setProgress={playersNumberChanger}
         />
 
         <p>
-          <I18nText path="filter_window_bid_type"/>
+          <I18nText path="filter_window_bid_type" />
         </p>
 
         <div className="bid">
-          <input type="radio" id="cbid2" name="bid"/>
+          <input type="radio" id="cbid2" name="bid" />
           <label htmlFor="cbid2" onClick={() => setBidCur("premium")}>
             DUR
           </label>
           <input type="radio" id="cbid3" name="bid" />
           <label htmlFor="cbid3" onClick={() => setBidCur("usual")}>
-            <I18nText path="coins_label"/>
+            <I18nText path="coins_label" />
           </label>
         </div>
 
-        <p><I18nText path="filter_window_bids_amount"/></p>
+        <p>
+          <I18nText path="filter_window_bids_amount" />
+        </p>
         <ProgressBar
           values={[0, 1, 10, 100, 500, "1k", "5k", "10k", "50k", "100k"]}
           progress={progress}
@@ -148,25 +154,25 @@ const LobbiesCreate = () => {
         />
 
         <p>
-          <I18nText path="filter_window_game_type"/>
+          <I18nText path="filter_window_game_type" />
         </p>
 
         <div className="game_type">
           <input type="radio" id="cgt1" name="game_type" />
           <label htmlFor="cgt1" onClick={() => setGameType("CLASSIC")}>
-            <I18nText path="filter_window_classical"/> <IconArrowDegRight/>
+            <I18nText path="filter_window_classical" /> <IconArrowDegRight />
           </label>
           <input type="radio" id="cgt2" name="game_type" />
           <label htmlFor="cgt2" onClick={() => setGameType("PEREVODNOY")}>
-            <I18nText path="filter_window_passing"/> <IconRefresh/>
+            <I18nText path="filter_window_passing" /> <IconRefresh />
           </label>
           <input type="radio" id="cgt3" name="game_type" />
           <label htmlFor="cgt3" onClick={() => setGameType("PODKIDNOY")}>
-            <I18nText path="filter_window_passing"/> <IconRefresh/>
+            <I18nText path="filter_window_passing" /> <IconRefresh />
           </label>
           <input type="radio" id="cgt4" name="game_type" />
           <label htmlFor="cgt4" onClick={() => setGameType("SHULLERS")}>
-            <I18nText path="filter_window_with_schullers"/> <IconAlertCircle/>
+            <I18nText path="filter_window_with_schullers" /> <IconAlertCircle />
           </label>
         </div>
       </div>
