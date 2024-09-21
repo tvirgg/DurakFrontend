@@ -13,6 +13,7 @@ function App({ intlProviderValue }) {
     const tg = window.Telegram.WebApp;
     const tgReady = () => {
       tg.headerColor = "#141019";
+      tg.backgroundColor = "#141019";
 
       tg.disableVerticalSwipes();
       tg.ready();
