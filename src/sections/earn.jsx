@@ -110,18 +110,32 @@ const Earn = () => {
   });
   const [earnData, setEarnData] = useState();
   const [availablePassives, setAvailablePassives] = useState();
+  const [perHourInfo, setPerHourInfo] = useState({});
+  const [storageInfo, setStorageInfo] = useState({});
   const [userInfo, setUserInfo] = useState(
     JSON.parse(localStorage.getItem("user"))
   );
 
-  useEffect(() => {
-    async function fetch() {
-      const data = await ownedPassive();
-      const data2 = await availablePassive();
-      setAvailablePassives(data2);
-      setEarnData(data);
-    }
+  async function fetch() {
+    setPerHourInfo({});
+    setStorageInfo({});
+    const data = await ownedPassive();
+    const data2 = await availablePassive();
 
+    for (let i = 0; i < data2.length; i++) {
+      if (data2[i].type === "количество_час") {
+        setPerHourInfo(data2[i]);
+      }
+
+      if (data2[i].type === "вместимость") {
+        setStorageInfo(data2[i]);
+      }
+    }
+    setAvailablePassives(data2);
+    setEarnData(data);
+  }
+
+  useEffect(() => {
     fetch();
   }, []);
 
@@ -131,18 +145,21 @@ const Earn = () => {
 
   const openModal = async (type, id, price, value) => {
     if (type === "success-speed") {
+      fetch();
       setModalState({
         isActive: true,
         type: "success",
         succesText: <I18nText path="speed_increased" />,
       });
     } else if (type === "success-capacity") {
+      fetch();
       setModalState({
         isActive: true,
         type: "success",
         succesText: <I18nText path="capacity_increased" />,
       });
     } else if (type === "success-buff-per-hour") {
+      fetch();
       setModalState({
         isActive: true,
         type: "success",
@@ -252,42 +269,44 @@ const Earn = () => {
                 + {availablePassives ? availablePassives[2]?.value : 0}{" "}
                 <I18nText path="buff_speed" />
               </button> */}
-              <button
-                onClick={() =>
-                  openModal(
-                    "buff-per-hour",
-                    availablePassives ? availablePassives[1]?.id : -1,
-                    availablePassives ? availablePassives[1]?.price : 0,
-                    availablePassives
-                      ? availablePassives[1]?.value - earnData[1]?.value
-                      : 0
-                  )
-                }
-              >
-                {/* +{" "}
+              {perHourInfo.value != null && (
+                <button
+                  onClick={() =>
+                    openModal(
+                      "buff-per-hour",
+                      perHourInfo ? perHourInfo.id : -1,
+                      perHourInfo ? perHourInfo.price : 0,
+                      perHourInfo ? perHourInfo.value - earnData[1]?.value : 0
+                    )
+                  }
+                >
+                  {/* +{" "}
                 {availablePassives
                   ? availablePassives[1]?.value - earnData[1]?.value
                   : 0}{" "} */}
-                <I18nText path="buff_per_hour" />
-              </button>
-              <button
-                onClick={() =>
-                  openModal(
-                    "skill-capacity",
-                    availablePassives ? availablePassives[0]?.id : -1,
-                    availablePassives ? availablePassives[0]?.price : 0,
-                    availablePassives
-                      ? availablePassives[0]?.value / earnData[0]?.value
-                      : 0
-                  )
-                }
-              >
-                {/* X{" "}
+                  <I18nText path="buff_per_hour" />
+                </button>
+              )}
+              {storageInfo.value != null && (
+                <button
+                  onClick={() =>
+                    openModal(
+                      "skill-capacity",
+                      availablePassives ? storageInfo.id : -1,
+                      availablePassives ? storageInfo.price : 0,
+                      availablePassives
+                        ? storageInfo.value / earnData[0]?.value
+                        : 0
+                    )
+                  }
+                >
+                  {/* X{" "}
                 {availablePassives
                   ? availablePassives[0]?.value / earnData[0]?.value
                   : 0}{" "} */}
-                <I18nText path="buff_capacity" />
-              </button>
+                  <I18nText path="buff_capacity" />
+                </button>
+              )}
             </div>
           </div>
           {/* tasks */}
