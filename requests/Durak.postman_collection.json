@@ -10,10 +10,16 @@
 			"name": "create",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "X-Session",
+						"value": "ce55bb25-6c34-4267-a6d1-da7abe811628",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"fieldSize\": 24,\r\n    \"type\": \"CLASSIC\",\r\n    \"allowedShullerMoves\": 1,\r\n    \"betAmount\": 1,\r\n    \"betType\": \"premium\",\r\n    \"name\": \"deanon\"\r\n}",
+					"raw": "{\r\n    \"fieldSize\": 24,\r\n    \"type\": \"CLASSIC\",\r\n    \"allowedShullerMoves\": 1,\r\n    \"betAmount\": 0,\r\n    \"betType\": \"usual\",\r\n    \"name\": \"deanon\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -21,14 +27,15 @@
 					}
 				},
 				"url": {
-					"raw": "https://tondurak.online/api/game/create",
-					"protocol": "https",
+					"raw": "http://localhost:8181/api/v1/game/create",
+					"protocol": "http",
 					"host": [
-						"tondurak",
-						"online"
+						"localhost"
 					],
+					"port": "8181",
 					"path": [
 						"api",
+						"v1",
 						"game",
 						"create"
 					]
@@ -218,15 +225,23 @@
 			"name": "all-games",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "X-Session",
+						"value": "76c1f1e0-4a18-4904-ad81-d4a1e20cc357",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8080/game/all-games",
-					"protocol": "http",
+					"raw": "https://tondurak.online/api/v1/game/all-games",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"tondurak",
+						"online"
 					],
-					"port": "8080",
 					"path": [
+						"api",
+						"v1",
 						"game",
 						"all-games"
 					]
@@ -322,13 +337,13 @@
 			"response": []
 		},
 		{
-			"name": "delete-game",
+			"name": "delete-awaiting",
 			"request": {
 				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"gameId\": \"8e9062b2-335b-4208-8695-09d523fb4eaa\"\r\n}",
+					"raw": "{\r\n    \"gameId\": \"6b814e36-6c82-4ba9-be31-5a1f87b73cb9\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -336,12 +351,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8181/api/v1/game",
-					"protocol": "http",
+					"raw": "https://tondurak.online/api/v1/game",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"tondurak",
+						"online"
 					],
-					"port": "8181",
 					"path": [
 						"api",
 						"v1",
@@ -377,6 +392,37 @@
 						"v1",
 						"game",
 						"emoji"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete-started",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"gameId\": \"a10cfccb-364b-4e3d-8ab2-741a343321a7\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8181/api/v1/game/started",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"api",
+						"v1",
+						"game",
+						"started"
 					]
 				}
 			},
