@@ -8,8 +8,7 @@ import cardImg from "../media/img/games/cardPlayImg.png";
 import { useNavigate } from "react-router-dom";
 import { I18nText } from "./i18nText";
 import connectQuickGame from "../api/connectQuickGame";
-import axios from "axios";
-import config from "../config";
+
 // icons
 
 const GamesPlayCards = () => {
@@ -17,36 +16,22 @@ const GamesPlayCards = () => {
   const linkTourney = () => {
     navigate("/tourneys");
   };
+
   const linkQuickGame = async () => {
     try {
       const connectInfo = await connectQuickGame();
-      const createGameInfo = await axios
-          .post(
-              config.url + "/game/create",
-              {
-                fieldSize: connectInfo?.fieldSize || 24,
-                type: connectInfo?.type,
-                allowedShullerMoves: connectInfo?.allowedShullerMoves,
-                betAmount: connectInfo?.betAmount,
-                betType: connectInfo?.betType,
-                name: connectInfo?.name,
-                playerAmount: connectInfo?.playerAmount,
-              },
-              {
-                headers: {
-                  "Access-Control-Expose-Headers": "X-Session",
-                  "X-Session": localStorage.getItem("session_key"),
-                },
-              }
-          )
-      localStorage.setItem("session_key", createGameInfo.headers.get("X-Session"));
-      console.log(createGameInfo.data);
-      localStorage.setItem("game_status", JSON.stringify(createGameInfo.data));
-      navigate("/game?type=quick");
-    } catch (e) {
-      console.log(e);
+      
+      localStorage.setItem("game_status", JSON.stringify(connectInfo));
+      navigate(`/game?type=quick`);
+    } catch (err) {
+      localStorage.setItem(
+        "session_key",
+        err.response.headers.get("X-Session")
+      );
+      return null;
     }
   };
+
   return (
     <div className="play_cards">
       <button className="card card_quick anim_sjump" onClick={linkQuickGame}>

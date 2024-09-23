@@ -6,18 +6,30 @@ import '../media/css/component/card.play.quick.css'
 import ImgCards from '../media/img/menu/quickGame.png'
 import { useNavigate } from 'react-router-dom'
 import { I18nText } from './i18nText'
+import connectQuickGame from '../api/connectQuickGame'
 
 const CardPlayQuick = () => {
   const navigate = useNavigate()
-  const linkGame = () => {
-    navigate('/game?type=quick')
-  }
+  
+  const linkQuickGame = async () => {
+    try {
+      const connectInfo = await connectQuickGame();
+      
+      localStorage.setItem("game_status", JSON.stringify(connectInfo));
+      navigate(`/game?type=quick`);
+    } catch (err) {
+      localStorage.setItem(
+        "session_key",
+        err.response.headers.get("X-Session")
+      );
+      return null;
+    }
+  };
+
   return (
     <button
       className="card_play_custom anim_sjump"
-      onClick={() => {
-        linkGame()
-      }}
+      onClick={linkQuickGame}
     >
       <div className="texts">
         <h1 className="title">
