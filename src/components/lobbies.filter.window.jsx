@@ -7,7 +7,30 @@ import ProgressBar from './ui/progressBar'
 import { XLg } from 'react-bootstrap-icons'
 import { I18nText } from './i18nText'
 
+const players = [2, 3, 4, 5, 6, 7, 8];
+const maxPlayersMap = {
+  24: 3,
+  36: 5,
+  52: 8,
+  0: 8
+}
+
 const FilterWindow = ({ isOpen, onClose, onReset, onApply }) => {
+  const [playerAmount, setPlayerAmount] = React.useState(2);
+  const [progressPlayers, setProgressPlayers] = React.useState(0);
+  const [fieldSize, setFieldSize] = React.useState(0);
+  
+  const playersNumberChanger = (value) => {
+    setPlayerAmount(players[value]);
+    setProgressPlayers(value);
+  };
+
+  const getHandleChangeFieldSize = (value) => {
+    return () => {
+      setFieldSize(value);
+      playersNumberChanger(0);
+    }
+  };
   return (
     <div className={`filter_window ${isOpen ? 'filter_window_active' : ''}`}>
       <button
@@ -26,18 +49,21 @@ const FilterWindow = ({ isOpen, onClose, onReset, onApply }) => {
           type="radio"
           id="v1"
           name="cards_count"
+          onClick={getHandleChangeFieldSize(24)}
         />
         <label htmlFor="v1">24</label>
         <input
           type="radio"
           id="v2"
           name="cards_count"
+          onClick={getHandleChangeFieldSize(36)}
         />
         <label htmlFor="v2">36</label>
         <input
           type="radio"
           id="v3"
           name="cards_count"
+          onClick={getHandleChangeFieldSize(52)}
         />
         <label htmlFor="v3">52</label>
       </div>
@@ -46,7 +72,11 @@ const FilterWindow = ({ isOpen, onClose, onReset, onApply }) => {
         <I18nText path="filter_window_amount_of_players" />
       </p>
 
-      <ProgressBar values={[1, 2, 3, 4, 5, 6]} />
+      <ProgressBar
+        values={players.filter((item) => item <= maxPlayersMap[fieldSize])}
+        progress={progressPlayers}
+        setProgress={playersNumberChanger}
+      />
 
       <p>
         <I18nText path="filter_window_bid_type" />
