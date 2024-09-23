@@ -1,6 +1,5 @@
 .filter_window {
   display: none;
-  touch-action: none;
   flex-direction: column;
   justify-content: flex-start;
   gap: clamp(2px, 1vh, 10px);

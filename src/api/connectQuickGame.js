@@ -3,7 +3,7 @@ import config from "../config";
 
 async function connectQuickGame() {
   try {
-    const res = await axios.post(config.url + "/game/connect/random/quick", {
+    const res = await axios.post(config.url + "/game/connect/random/quick", {}, {
       headers: {
         "Access-Control-Expose-Headers": "X-Session",
         "X-Session": localStorage.getItem("session_key"),

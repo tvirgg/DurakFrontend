@@ -2,13 +2,22 @@
 // display touch events
 import { gsap } from "gsap";
 import { animateMoveTo, animateVibrateCard } from "../utils/animationUtils";
-import localStorageUtils from "../utils/localStorageUtils";
 import G from "../utils/mathUtils";
 import { openCard } from "../utils/cardUtils";
 import { Cone } from "react-bootstrap-icons";
 import axios from "axios";
 import config from "../../config";
 import ShowPopup from "../../ShowPopup";
+
+function debounce(func, delay) {
+  let timeoutId;
+
+  return function executedFunction(...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => func.apply(this, args), delay);
+  };
+}
+
 //
 export const touchEvents = (
   playersSelfCards,
@@ -77,7 +86,7 @@ export const touchEvents = (
   }
 
   // event
-  document.addEventListener("click", handleClick);
+  document.addEventListener("click", debounce(handleClick, 150));
 
   // handle
   function handleClick(e) {
