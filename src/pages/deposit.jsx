@@ -30,6 +30,7 @@ const PageDeposit = () => {
     setIsLoading(true);
     if (address != null && generatedAddress != null && calculatedValue != 0) {
       const transaction = {
+        validUntil: Math.floor(new Date() / 1000) + 360,
         messages: [
           {
             address: generatedAddress, // destination address
@@ -41,7 +42,7 @@ const PageDeposit = () => {
       tonConnectUI.sendTransaction(transaction);
 
       setTimeout(async () => {
-        let res = await paymentChecker();
+        let res = await paymentChecker(calculatedValue * 1000000000);
         setIsLoading(false);
       }, 5000);
     }
