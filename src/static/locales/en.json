@@ -147,6 +147,7 @@
   "you_will_pay": "You will have to pay",
   "withdraw_desc": "sell DUR tokens and get TON",
   "purchase_btn": "Purchase",
+  "await_btn": "Waiting for payment, don`t close this page...",
   "wallet_address": "Enter your wallet address",
   "exchange_desc": "Exchange DUR for gold",
   "rooms": "Rooms",

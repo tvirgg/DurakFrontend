@@ -18,6 +18,7 @@ import axios from "axios";
 import ShowPopup from "../ShowPopup";
 import generatedWallet from "../api/generatedWallet";
 import paymentChecker from "../api/paymentChecker";
+import getPremuimCoinsMarket from "../api/getPremuimCoinsMarket";
 
 const PageDeposit = () => {
   const address = useTonAddress();
@@ -25,6 +26,7 @@ const PageDeposit = () => {
   const [generatedAddress, setGeneratedAddress] = React.useState("");
   const [calculatedValue, setCalculatedValue] = React.useState(0);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [coins, setCoins] = React.useState([]);
 
   const makeTransaction = async () => {
     setIsLoading(true);
@@ -44,7 +46,7 @@ const PageDeposit = () => {
       setTimeout(async () => {
         let res = await paymentChecker(0.2 * 1000000000);
         setIsLoading(false);
-      }, 5000);
+      }, 10000);
     }
   };
 
@@ -54,6 +56,12 @@ const PageDeposit = () => {
       if (res != null) {
         console.log(res);
         setGeneratedAddress(res);
+      }
+    };
+    const getPremuimCoins = async () => {
+      let res = await getPremuimCoinsMarket();
+      if (res != null) {
+        setCoins(res);
       }
     };
     const addWallet = async () => {
@@ -86,6 +94,7 @@ const PageDeposit = () => {
     };
 
     getGenWallet();
+    getPremuimCoins();
     if (address) {
       addWallet();
     }
@@ -125,47 +134,18 @@ const PageDeposit = () => {
               <I18nText path="choose_amount" />:
             </h2>
             <div className="list">
-              <input type="radio" id="v1" name="choose" />
-              <label htmlFor="v1" onClick={() => setCalculatedValue(1)}>
-                100DUR
-              </label>
-              <input type="radio" id="v2" name="choose" />
-              <label htmlFor="v2" onClick={() => setCalculatedValue(2)}>
-                200DUR
-              </label>
-              <input type="radio" id="v3" name="choose" />
-              <label htmlFor="v3" onClick={() => setCalculatedValue(3)}>
-                300DUR
-              </label>
-              <input type="radio" id="v4" name="choose" />
-              <label htmlFor="v4" onClick={() => setCalculatedValue(4)}>
-                400DUR
-              </label>
-              <input type="radio" id="v5" name="choose" />
-              <label htmlFor="v5" onClick={() => setCalculatedValue(5)}>
-                500DUR
-              </label>
-              {/* 5 */}
-              <input type="radio" id="v6" name="choose" />
-              <label htmlFor="v6" onClick={() => setCalculatedValue(6)}>
-                600DUR
-              </label>
-              <input type="radio" id="v7" name="choose" />
-              <label htmlFor="v7" onClick={() => setCalculatedValue(7)}>
-                700DUR
-              </label>
-              <input type="radio" id="v8" name="choose" />
-              <label htmlFor="v8" onClick={() => setCalculatedValue(8)}>
-                800DUR
-              </label>
-              <input type="radio" id="v9" name="choose" />
-              <label htmlFor="v9" onClick={() => setCalculatedValue(9)}>
-                900DUR
-              </label>
-              <input type="radio" id="v10" name="choose" />
-              <label htmlFor="v10" onClick={() => setCalculatedValue(10)}>
-                1000DUR
-              </label>
+              {coins.map((coin, index) => (
+                <>
+                  {" "}
+                  <input type="radio" id={"v" + index} name="choose" />
+                  <label
+                    htmlFor={"v" + index}
+                    onClick={() => setCalculatedValue(coin.priceInTON)}
+                  >
+                    {coin.premiumAmount}DUR
+                  </label>
+                </>
+              ))}
             </div>
           </div>
           {/* conversion */}
@@ -195,7 +175,7 @@ const PageDeposit = () => {
               disabled={isLoading}
               onClick={makeTransaction}
             >
-              <I18nText path="purchase_btn" />
+              <I18nText path={isLoading ? "await_btn" : "purchase_btn"} />
             </button>
           </div>
         </div>

@@ -147,6 +147,7 @@
   "transaction_history": "История транзакций",
   "withdraw_desc": "продать DUR токены и получить TON",
   "purchase_btn": "Купить",
+  "await_btn": "Ожидание оплаты, не закрывайте эту страницу...",
   "wallet_address": "Введите адрес кошелька",
   "exchange_desc": "Обменять DUR на золото",
   "rooms": "Комнаты",
