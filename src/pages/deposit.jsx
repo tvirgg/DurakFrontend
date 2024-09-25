@@ -36,7 +36,7 @@ const PageDeposit = () => {
         messages: [
           {
             address: generatedAddress, // destination address
-            amount: 0.2 * 1000000000, //Toncoin in nanotons
+            amount: calculatedValue * 1000000000, //Toncoin in nanotons
           },
         ],
       };
@@ -44,7 +44,7 @@ const PageDeposit = () => {
       await tonConnectUI.sendTransaction(transaction);
 
       setTimeout(async () => {
-        let res = await paymentChecker(0.2 * 1000000000);
+        let res = await paymentChecker(calculatedValue * 1000000000);
         setIsLoading(false);
       }, 10000);
     }
