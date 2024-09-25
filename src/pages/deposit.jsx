@@ -33,7 +33,7 @@ const PageDeposit = () => {
         messages: [
           {
             address: generatedAddress, // destination address
-            amount: calculatedValue * 1000000000, //Toncoin in nanotons
+            amount: 0.1 * 1000000000, //Toncoin in nanotons
           },
         ],
       };
