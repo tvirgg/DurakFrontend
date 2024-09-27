@@ -45,7 +45,7 @@ const ProfileCustomsBar = () => {
   const handleSelect = async (cosmetic) => {
     const newCosmetic = activeCosmetic?.map((item) => {
       if (item.cosmetic?.type === cosmetic?.cosmetic?.type) {
-        return { ...cosmetic };
+        return { ...cosmetic, type: "ACTIVE" };
       }
 
       return item;

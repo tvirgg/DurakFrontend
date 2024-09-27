@@ -10,6 +10,7 @@ async function getCosmeticActive() {
       },
     });
     localStorage.setItem("session_key", res.headers.get("X-Session"));
+    localStorage.setItem("user_cosmetic", JSON.stringify(res.data));
     return res;
   } catch (error) {
     console.error("Error fetching friends:", error);

@@ -23,37 +23,33 @@ const CardUserProfile = () => {
   const modalRef = useRef(null);
   const userInfo = JSON.parse(localStorage.getItem("user"));
   const [activeBalance, setActiveBalance] = useState();
-  const [activeCosmetic, setActiveCosmetic] = useState(
-    JSON.parse(localStorage.getItem("user_cosmetic"))
-  );
+  const [activeCosmetic, setActiveCosmetic] = useState({});
 
-  useEffect(() => {
-    async function fetch() {
-      const data = await getCosmeticActive();
+  // useEffect(() => {
+  //   console.log(activeCosmetic);
+  //   async function fetch() {
+  //     const data = await getCosmeticActive();
 
-      setActiveCosmetic(data);
-    }
+  //     setActiveCosmetic(data);
+  //   }
 
-    setTimeout(() => {
-      if (!activeCosmetic) {
-        fetch();
-      }
-    }, 2000);
-  }, [activeCosmetic]);
+  //   setTimeout(() => {
+  //     if (!activeCosmetic) {
+  //       fetch();
+  //     }
+  //   }, 2000);
+  // }, [activeCosmetic]);
 
   useEffect(() => {
     async function fetch() {
       const data = await getCosmeticActive();
       const data2 = await balanceOwned();
       setActiveBalance(data2);
-      setActiveCosmetic(data);
-      console.log(data);
+      setActiveCosmetic(data.data);
     }
 
-    setTimeout(() => {
-      fetch();
-    }, 2000);
-  }, []);
+    fetch();
+  });
 
   // Navigation handlers
   const linkeDeposit = () => navigate("/deposit");
@@ -106,8 +102,11 @@ const CardUserProfile = () => {
           <img
             className="frame"
             src={`/res/skins/${
-              activeCosmetic && activeCosmetic[0]
-                ? activeCosmetic[0].cosmetic.link
+              activeCosmetic[0]
+                ? activeCosmetic?.filter(
+                    (item) =>
+                      item.cosmetic?.type == "frame" && item?.type == "ACTIVE"
+                  )?.[0]?.cosmetic.link
                 : "/frames/frame-0.svg"
             }`}
             alt="user-frame"
