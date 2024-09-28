@@ -19,7 +19,7 @@ async function paymentChecker(amount) {
     return res;
   } catch (error) {
     console.error("Error connect:", error);
-    return null;
+    return error.response;
   }
 }
 

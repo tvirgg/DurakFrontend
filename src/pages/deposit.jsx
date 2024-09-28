@@ -45,6 +45,7 @@ const PageDeposit = () => {
 
       setTimeout(async () => {
         let res = await paymentChecker(calculatedValue * 1000000000);
+        console.log(res);
         if (res.status === 400) {
           ShowPopup("DUR поступят вам на счёт в ближайшее время", "Транзакция");
         }
