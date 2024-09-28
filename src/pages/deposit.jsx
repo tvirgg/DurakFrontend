@@ -41,7 +41,8 @@ const PageDeposit = () => {
         ],
       };
 
-      await tonConnectUI.sendTransaction(transaction);
+      let resultTransaction = await tonConnectUI.sendTransaction(transaction);
+      console.log(resultTransaction + "resultTransaction");
 
       setTimeout(async () => {
         let res = await paymentChecker(calculatedValue * 1000000000);
