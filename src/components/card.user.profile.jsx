@@ -47,10 +47,8 @@ const CardUserProfile = () => {
       setActiveBalance(data2);
       setActiveCosmetic(data.data);
     }
-    if (activeCosmetic == {}) {
-      fetch();
-    }
-  });
+    fetch();
+  }, []);
 
   // Navigation handlers
   const linkeDeposit = () => navigate("/deposit");
