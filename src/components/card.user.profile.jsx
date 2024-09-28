@@ -47,8 +47,9 @@ const CardUserProfile = () => {
       setActiveBalance(data2);
       setActiveCosmetic(data.data);
     }
-
-    fetch();
+    if (activeCosmetic == {}) {
+      fetch();
+    }
   });
 
   // Navigation handlers
