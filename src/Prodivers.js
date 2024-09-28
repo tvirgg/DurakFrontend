@@ -28,7 +28,7 @@ const Providers = ({ children }) => {
     return "en"; // Fallback для SSR
   });
 
-  const handleChangeLanguage = newLocale => {
+  const handleChangeLanguage = (newLocale) => {
     setLocale(newLocale);
   };
 
@@ -50,7 +50,7 @@ const Providers = ({ children }) => {
   return (
     <IntlContext.Provider value={providerValue}>
       <IntlProvider locale={locale} messages={messages[locale]}>
-        <TonConnectUIProvider manifestUrl="https://raw.githubusercontent.com/ton-connect/demo-telegram-bot/master/tonconnect-manifest.json">
+        <TonConnectUIProvider manifestUrl="https://raw.githubusercontent.com/Esternit/DurakFrontend/refs/heads/main/public/manifest.json">
           {children}
         </TonConnectUIProvider>
       </IntlProvider>
