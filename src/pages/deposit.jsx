@@ -41,8 +41,7 @@ const PageDeposit = () => {
         ],
       };
 
-      let resultTransaction = await tonConnectUI.sendTransaction(transaction);
-      console.log(resultTransaction + "resultTransaction");
+      await tonConnectUI.sendTransaction(transaction);
 
       setTimeout(async () => {
         let res = await paymentChecker(calculatedValue * 1000000000);
@@ -50,9 +49,9 @@ const PageDeposit = () => {
         if (res.status === 400) {
           ShowPopup("DUR поступят вам на счёт в ближайшее время", "Транзакция");
         }
-        setIsLoading(false);
       }, 2000);
     }
+    setIsLoading(false);
   };
 
   useEffect(() => {
