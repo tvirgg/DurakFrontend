@@ -16,7 +16,7 @@ async function paymentChecker(amount) {
       }
     );
     localStorage.setItem("session_key", res.headers.get("X-Session"));
-    return res.data;
+    return res;
   } catch (error) {
     console.error("Error connect:", error);
     return null;

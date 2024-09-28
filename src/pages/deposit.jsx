@@ -45,8 +45,11 @@ const PageDeposit = () => {
 
       setTimeout(async () => {
         let res = await paymentChecker(calculatedValue * 1000000000);
+        if (res.status === 400) {
+          ShowPopup("DUR поступят вам на счёт в ближайшее время", "Транзакция");
+        }
         setIsLoading(false);
-      }, 10000);
+      }, 2000);
     }
   };
 
