@@ -22,6 +22,7 @@ import PagePremium from "../pages/subcribe.premium";
 import PageRanking from "../pages/ranking";
 // Game
 import Game from "../game/game";
+import { Gameplay } from "../gameplay";
 // Routes
 const AppRoutes = () => {
   return (
@@ -43,6 +44,7 @@ const AppRoutes = () => {
         <Route path="/ranking" element={<PageRanking />} />
         {/* Game */}
         <Route path="/game" element={<Game />} />
+        {/* <Route path="/game" element={<Gameplay />} /> */}
       </Switch>
     </Router>
   );

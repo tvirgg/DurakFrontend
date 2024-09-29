@@ -50,7 +50,7 @@ const LobbiesCreate = () => {
           config.url + "/game/create",
           {
             fieldSize: fieldSize || 24,
-            type: "CLASSIC",
+            type: gameType,
             allowedShullerMoves: gameType === "SHULLER" ? 1 : 0,
             betAmount: bidCur === "Free" ? 0 : bidAmount,
             betType: bidCur === "Free" ? "usual" : bidCur,
