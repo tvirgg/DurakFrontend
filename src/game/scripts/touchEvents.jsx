@@ -157,6 +157,22 @@ export const touchEvents = (
         } else if (activeCard.dataset.type == "c") {
           convertedType = "Clubs";
         }
+
+        const gameType = JSON.parse(localStorage.getItem("game_status"))?.type;
+        let typeMove = "attack";
+        
+        if (gameType === "PODKIDNOY") {
+          if (newTableCards?.length > 0 && newTableCards?.find((card) => card?.dataset?.value === activeCard?.dataset?.value)) {
+            typeMove = "addCard";
+          }
+        }
+
+        if (gameType === "PEREVODNOY") {
+          if (newTableCards?.length > 0 && newTableCards?.every((card) => card?.dataset?.value === activeCard?.dataset?.value)) {
+            typeMove = "transfer";
+          }
+        }
+
         axios
           .post(
             config.url + "/game/play",
@@ -169,7 +185,7 @@ export const touchEvents = (
                 name: "Hearts",
                 nominal: 10,
               },
-              type: "attack",
+              type: typeMove,
               gameId: JSON.parse(localStorage.getItem("game_status")).gameId,
             },
             {
@@ -185,7 +201,6 @@ export const touchEvents = (
             localStorage.setItem("game_status", JSON.stringify(res.data));
             activeCard.classList.remove("self_card");
             cardDeactive(activeCard);
-            activeCard.classList.add("table_card");
             newTableCards.push(activeCard);
             let rect = cCard.getBoundingClientRect();
 
@@ -274,12 +289,8 @@ export const touchEvents = (
             applyCardState(activeCard, cardStates.get(activeCard));
             defaultSelfCards();
           });
-
-        // for (let i = 0; i < newTableCards.length; i++) {
-        //   const el = newTableCards[i];
-
-        // }
-
+        }
+        
         // last ev
       }
       if (target.classList.contains("table_card")) {
@@ -324,6 +335,8 @@ export const touchEvents = (
           if (cCard.dataset.type == "c") {
             convertedTypeTarget = "Clubs";
           }
+          let moveType = "defend";
+
           axios
             .post(
               config.url + "/game/play",
@@ -336,7 +349,7 @@ export const touchEvents = (
                   name: convertedTypeTarget,
                   nominal: parseInt(cCard.dataset.value, 10),
                 },
-                type: "defend",
+                type: moveType,
                 gameId: JSON.parse(localStorage.getItem("game_status")).gameId,
               },
               {
@@ -430,9 +443,6 @@ export const touchEvents = (
             });
         }
       }
-    } else {
-      deactiveSelfCards();
-    }
   }
 
   return () => {

@@ -10,15 +10,17 @@ import initUser from "./api/initUser";
 function App({ intlProviderValue }) {
   const [loading, setLoading] = React.useState(true);
   React.useEffect(() => {
-    const tg = window.Telegram.WebApp;
+    const tg = window.Telegram?.WebApp;
     const tgReady = () => {
-      tg.headerColor = "#141019";
-      tg.backgroundColor = "#141019";
+      if (tg) {
+        tg.headerColor = "#141019";
+        tg.backgroundColor = "#141019";
 
-      tg.disableVerticalSwipes();
-      tg.ready();
-      tg.expand();
-      tg.BackButton.hide();
+        tg.disableVerticalSwipes();
+        tg.ready();
+        tg.expand();
+        tg.BackButton.hide();
+      }
     };
 
     const auth = async () => {
