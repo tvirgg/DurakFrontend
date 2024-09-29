@@ -13,15 +13,32 @@ import { useNavigate } from "react-router-dom";
 import BackBtn from "../BackBtn";
 import balanceOwned from "../api/balanceOwned";
 import IconDUR from "../components/icons/dur";
+import buyUsual from "../api/buyUsual";
+import ShowPopup from "../ShowPopup";
 //
 const PageExchange = () => {
   const navigate = useNavigate();
   const [calculatedValue, setCalculatedValue] = React.useState(0);
   const [balanceInfo, setBalanceInfo] = React.useState({});
+  const [isLoading, setIsLoading] = React.useState(false);
 
   React.useEffect(() => {
     BackBtn("/", navigate);
   }, []);
+
+  const makeTransaction = () => {
+    setIsLoading(true);
+    buyUsual(calculatedValue)
+      .then((data) => {
+        ShowPopup("Транзакция успешно совершена", "Транзакция");
+        setCalculatedValue(0);
+        setIsLoading(false);
+      })
+      .catch((e) => {
+        setIsLoading(false);
+        ShowPopup("Произошла ошибка", "Ошибка");
+      });
+  };
 
   React.useEffect(() => {
     async function fetch() {
@@ -170,8 +187,15 @@ const PageExchange = () => {
           <TransactionHistory />
           {/* submit */}
           <div className="bar_btn">
-            <button className="btn_submit" type="submit">
-              <I18nText path="user_profile_exchange" />
+            <button
+              className="btn_submit"
+              type="submit"
+              disabled={isLoading}
+              onClick={makeTransaction}
+            >
+              <I18nText
+                path={isLoading ? "await_btn" : "user_profile_exchange"}
+              />
             </button>
           </div>
         </form>
