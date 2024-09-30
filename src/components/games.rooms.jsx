@@ -208,7 +208,11 @@ const GamesRooms = ({ roomsData }) => {
       {/* list */}
       <div className="rooms_list anim_sjump">
         {roomsData.map((room) => (
-          <div className="room" key={room.gameId}>
+          <div
+            className="room"
+            key={room.gameId}
+            onClick={() => connectToGame(room.gameId)}
+          >
             <div className="gr">
               <div className="price">
                 {getPriceContent(room.betAmount, room.betType)}
@@ -216,7 +220,7 @@ const GamesRooms = ({ roomsData }) => {
               <span className="owner_name">{room.name}</span>
             </div>
             <div className="info">
-              <button onClick={() => deleteGame(room.gameId)}>Delete</button>
+              {/* <button onClick={() => deleteGame(room.gameId)}>Delete</button> */}
               <div className="corner">
                 {room.type === "CLASSIC" ? (
                   <IconPlayWhite />
