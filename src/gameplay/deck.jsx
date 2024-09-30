@@ -13,7 +13,7 @@ export const Deck = ({trumpCard}) => {
     return (
         <div className="gameplay__deck">
             <img 
-                alt="Card"
+                alt=""
                 className="gameplay__card-back"
                 src={cardBack}
             />

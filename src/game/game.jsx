@@ -40,12 +40,13 @@ import { ConeStriped } from "react-bootstrap-icons";
 const Game = () => {
   const intl = useIntl();
   const playerTitle = intl.formatMessage({ id: "player_title" });
+  let gameStatus = JSON.parse(localStorage.getItem("game_status"));
 
   const [game, setGame] = useState({
     status: "load", // loading, await, start, distribution,trump_card, play, end ...
-    cardsCount: 36,
-    playersCount: 6,
-    trumpCard: null,
+    cardsCount: gameStatus?.fieldSize ?? 36,
+    playersCount: gameStatus?.playerAmount ?? 6,
+    trumpCard: gameStatus?.trumpCard ?? null,
   });
   // Сам игрок
   let player_selfk = {
@@ -58,39 +59,19 @@ const Game = () => {
     cardsCount: 0,
     self: true,
   };
+
   // Массив других игроков
-  let otherPlayerk = [
-    {
-      id: 1,
-      index: 1,
-      status: "online",
-      name: `${playerTitle} 1`,
-      avatar: imgAvatar,
-      cards: [],
-      cardsCount: 0,
-      self: false,
-    },
-    {
-      id: 2,
-      index: 2,
-      status: "online",
-      name: `${playerTitle} 2`,
-      avatar: imgAvatar,
-      cards: [],
-      cardsCount: 0,
-      self: false,
-    },
-    {
-      id: 3,
-      index: 3,
-      status: "online",
-      name: `${playerTitle} 3`,
-      avatar: imgAvatar,
-      cards: [],
-      cardsCount: 0,
-      self: false,
-    },
-  ];
+  let otherPlayerk = Array(game?.playersCount - 1).fill(1).map((_, index) => ({
+    id: index,
+    index,
+    status: "online",
+    name: `${playerTitle} ${index + 1}`,
+    avatar: imgAvatar,
+    cards: [],
+    cardsCount: 0,
+    self: false,
+  }))
+ 
   // functions
   // timer
   const [timerActive, setTimerActive] = useState(false);
@@ -965,6 +946,9 @@ const Game = () => {
   };
 
   const playerCenterIndex = Math.floor(otherPlayers.length / 2);
+
+  console.log({game});
+
   // render
   return (
     <section
@@ -1038,7 +1022,7 @@ const Game = () => {
       />
 
       {/* change_card */}
-      <span className="change_card"></span>
+      {(game?.status !== "await" && game?.status !== "load") && (<span className="change_card"></span>)}
       <span className="enemy_card"></span>
 
       {deck.map((card, index) => (
@@ -1058,32 +1042,34 @@ const Game = () => {
         {/* <div className="cards"></div> */}
       </div>
       {/* game control buttons */}
-      <div className="control_btns">
-        <button
-          className="cheat"
-          onClick={toggleTimer}
-          disabled={!buttonStates.cheat}
-        >
-          <I18nText path="cheat_button" />
-        </button>
-        <button className="take" disabled={!buttonStates.take}>
-          <I18nText path="take_button" />
-        </button>
-        <button
-          className="pass"
-          disabled={!buttonStates.pass}
-          onClick={finishTurn}
-        >
-          <I18nText path="pass_button" />
-        </button>
-        <button
-          className="react"
-          onClick={toggleEmojiPopup}
-          disabled={!buttonStates.react}
-        >
-          <I18nText path="react_button" />
-        </button>
-      </div>
+      {(game?.status !== "await" && game?.status !== "load") && (
+          <div className="control_btns">
+            <button
+              className="cheat"
+              onClick={toggleTimer}
+              disabled={!buttonStates.cheat}
+            >
+              <I18nText path="cheat_button" />
+            </button>
+            <button className="take" disabled={!buttonStates.take}>
+              <I18nText path="take_button" />
+            </button>
+            <button
+              className="pass"
+              disabled={!buttonStates.pass}
+              onClick={finishTurn}
+            >
+              <I18nText path="pass_button" />
+            </button>
+            <button
+              className="react"
+              onClick={toggleEmojiPopup}
+              disabled={!buttonStates.react}
+            >
+              <I18nText path="react_button" />
+            </button>
+          </div>
+      )}
 
       {/* Popup с эмодзи */}
       <EmojiPopup onSelectEmoji={selectEmoji} show={showEmojiPopup} />
