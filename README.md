@@ -1,107 +1,107 @@
-# Документация по компонентам игры
+# Documentation for Game Components
 
-## Обзор
-Эта документация описывает основные компоненты, используемые в реализации игры, находящиеся в директории `src/game`. Описано назначение каждого компонента, его ключевая функциональность и взаимодействие с другими частями системы.
+## Overview
+This documentation describes the main components used in the implementation of the game, located in the `src/game` directory. It outlines the purpose of each component, its key functionality, and how it interacts with other parts of the system.
 
-## Компоненты
+## Components
 
 ### 1. `Lobby.js`
-**Назначение:**
-- Управляет лобби, в котором игроки ждут начала игры.
-- Отображает количество подключенных игроков и ждет, пока наберется достаточно игроков для начала игры.
+**Purpose:**
+- Manages the lobby where players wait for the game to start.
+- Displays the number of connected players and waits until the required number of players join.
 
-**Ключевая функциональность:**
-- Использует `connectToSocket.js` для подключения к серверу и прослушивания событий `playerJoined`.
-- Обновляет количество подключенных игроков в UI.
-- Переходит к началу игры, когда подключается необходимое количество игроков.
+**Key Functionality:**
+- Uses `connectToSocket.js` to connect to the server and listen for `playerJoined` events.
+- Updates the UI with the number of connected players.
+- Starts the game when the required number of players has joined.
 
 ### 2. `connectToSocket.js`
-**Назначение:**
-- Обрабатывает логику подключения к сокету для игры.
+**Purpose:**
+- Handles socket connection logic for the game.
 
-**Ключевая функциональность:**
-- Подключает игрока к игровому серверу.
-- Прослушивает события сокета, такие как `playerJoined`, для обновления статуса игры.
-- Обрабатывает переподключения в случае разрывов соединения.
+**Key Functionality:**
+- Connects a player to the game server.
+- Listens for socket events such as `playerJoined` to update the game status.
+- Handles reconnections in case of connection drops.
 
 ### 3. `GameStart.js`
-**Назначение:**
-- Управляет переходом от лобби к активной игре.
-- Отвечает за инициацию игры.
+**Purpose:**
+- Manages the transition from the lobby to active gameplay.
+- Responsible for initializing the game.
 
-**Ключевая функциональность:**
-- Отправляет запрос `/start` на сервер, когда набрано необходимое количество игроков.
-- Получает уведомление о начале игры и инициирует раздачу карт.
-- Обновляет состояние, чтобы отразить начало игры.
+**Key Functionality:**
+- Sends a `/start` request to the server when enough players have joined.
+- Receives a game start notification and initiates card distribution.
+- Updates the state to reflect the game start.
 
 ### 4. `api/play.js`
-**Назначение:**
-- Содержит логику для обработки действий игроков во время игры, в частности для атак и защиты.
+**Purpose:**
+- Handles player actions during the game, particularly for attacks and defenses.
 
-**Ключевая функциональность:**
-- Отправляет запросы `/play` на сервер.
-- Обрабатывает как атаки, так и защиты.
-  - Для атаки: отправляет `attackCard`, чтобы указать, какая карта разыгрывается.
-  - Для защиты: отправляет `attackCard` и `defendCard`, чтобы указать, какая карта защищается.
-- Обрабатывает ответы сервера, включая ошибки (например, если ход невозможен).
+**Key Functionality:**
+- Sends `/play` requests to the server.
+- Processes both attacks and defenses.
+  - For attacks: Sends `attackCard` to specify the played card.
+  - For defenses: Sends both `attackCard` and `defendCard` to specify the defending card.
+- Handles server responses, including errors (e.g., invalid moves).
 
 ### 5. `GameTable.js`
-**Назначение:**
-- Представляет основной интерфейс игры, где игроки делают ходы.
+**Purpose:**
+- Represents the main game interface where players make their moves.
 
-**Ключевая функциональность:**
-- Отображает стол и карты каждого игрока.
-- Обрабатывает действия игроков, такие как выбор карты для атаки или защиты.
-- Обновляет позиции карт на столе в зависимости от статуса игры (атака или защита).
-- Прослушивает изменения от событий сокета и обновляет состояние игры соответственно.
+**Key Functionality:**
+- Displays the game table and each player's cards.
+- Handles player actions such as selecting a card for attack or defense.
+- Updates card positions on the table based on the game status (attack or defense).
+- Listens for changes from socket events and updates the game state accordingly.
 
 ### 6. `GameTimer.js`
-**Назначение:**
-- Реализует функциональность таймера для управления длительностью хода.
+**Purpose:**
+- Implements a timer to manage turn duration.
 
-**Ключевая функциональность:**
-- Запускает таймер в начале каждого хода.
-- Сбрасывает таймер после каждого действия игрока (запрос `/play`).
-- По окончании времени вызывает `/finish-turn` с помощью `api/finishTurn.js`, чтобы завершить ход.
+**Key Functionality:**
+- Starts a timer at the beginning of each turn.
+- Resets the timer after each player action (`/play` request).
+- Calls `/finish-turn` via `api/finishTurn.js` when the timer runs out to end the turn.
 
 ### 7. `api/finishTurn.js`
-**Назначение:**
-- Обрабатывает логику завершения хода игрока.
+**Purpose:**
+- Handles logic for ending a player's turn.
 
-**Ключевая функциональность:**
-- Отправляет запрос `/finish-turn` на сервер.
-- При успешном ответе обновляет состояние игры, удаляя сыгранные карты и раздавая новые.
+**Key Functionality:**
+- Sends a `/finish-turn` request to the server.
+- On success, updates the game state by removing played cards and distributing new ones.
 
 ### 8. `CardAnimations.js`
-**Назначение:**
-- Управляет анимациями карт во время атак, защит и раздачи карт.
+**Purpose:**
+- Manages animations for cards during attacks, defenses, and card distribution.
 
-**Ключевая функциональность:**
-- Использует функции из `touchevents`, `scriptedCardMoves` и `animationUtils` для управления движением карт.
-- Обрабатывает анимации для размещения карт на столе, тряски карт в случае неверного хода и раздачи карт игрокам.
+**Key Functionality:**
+- Uses functions from `touchevents`, `scriptedCardMoves`, and `animationUtils` to control card movement.
+- Handles animations for placing cards on the table, shaking cards for invalid moves, and distributing cards to players.
 
 ### 9. `GameContext.js`
-**Назначение:**
-- Обеспечивает общий контекст для состояния игры, позволяя легко получить доступ к текущим игровым данным в различных компонентах.
+**Purpose:**
+- Provides a shared context for game state, making it easy to access current game data across various components.
 
-**Ключевая функциональность:**
-- Хранит информацию об игроках, статусе игры, картах в игре и другую релевантную информацию.
-- Позволяет таким компонентам, как `GameTable.js`, `GameTimer.js` и `GameStart.js`, получать и изменять состояние игры.
+**Key Functionality:**
+- Stores information about players, game status, cards in play, and other relevant details.
+- Allows components like `GameTable.js`, `GameTimer.js`, and `GameStart.js` to access and modify game state.
 
-### Вспомогательные файлы для анимаций
+### Supporting Animation Files
 
 #### `touchevents.js`
-- Содержит обработчики событий касания и перетаскивания, используемых для перемещения карт на мобильных устройствах.
+- Contains touch and drag event handlers used for moving cards on mobile devices.
 
 #### `scriptedCardMoves.js`
-- Обеспечивает скриптованные движения карт, такие как раздача карт каждому игроку или перемещение карт с одной точки в другую.
+- Provides scripted card movements such as dealing cards to each player or moving cards from one point to another.
 
 #### `animationUtils.js`
-- Содержит утилиты для различных анимаций, таких как тряска карты для указания неверного действия или плавное перемещение карт на столе.
+- Contains utilities for various animations, such as shaking a card for invalid moves or smoothly moving cards on the table.
 
-## Рекомендуемый рабочий процесс
-1. **Настройка лобби (`Lobby.js` и `connectToSocket.js`)**: Реализуйте лобби, где игроки ждут подключения других игроков, включая обработку событий сокета.
-2. **Начало игры (`GameStart.js`)**: Когда достаточно игроков подключено, используйте `/start` для инициации игры и раздачи карт.
-3. **Игровой процесс (`GameTable.js`, `api/play.js`)**: Реализуйте основной игровой цикл с атаками и защитами, используя запросы `/play` для обновления состояния игры.
-4. **Управление ходами (`GameTimer.js`, `api/finishTurn.js`)**: Обеспечьте завершение ходов по истечении таймера и правильное удаление и перераспределение карт.
-5. **Анимации (`CardAnimations.js`, вспомогательные файлы)**: Интегрируйте анимации на протяжении всей игры, чтобы она выглядела плавной и отзывчивой для всех действий.
+## Recommended Workflow
+1. **Lobby Setup (`Lobby.js` and `connectToSocket.js`)**: Implement the lobby where players wait for other players to join, including socket event handling.
+2. **Game Start (`GameStart.js`)**: When enough players have joined, use `/start` to initiate the game and deal cards.
+3. **Gameplay (`GameTable.js`, `api/play.js`)**: Implement the core game loop with attacks and defenses, using `/play` requests to update the game state.
+4. **Turn Management (`GameTimer.js`, `api/finishTurn.js`)**: Ensure turns end correctly when the timer expires, and properly remove and redistribute cards.
+5. **Animations (`CardAnimations.js`, supporting files)**: Integrate animations throughout the game to make it feel smooth and responsive for all actions.
